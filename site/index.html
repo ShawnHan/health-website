@@ -4,7 +4,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Recova</title>
-  <meta name="description" content="Recova reads HealthKit data and provides training load and recovery guidance.">
+  <meta name="description" content="Recova turns HealthKit signals into a simple view of training load and recovery guidance.">
   <script>
     (function () {
       var language = "en";
@@ -31,71 +31,251 @@
   <main class="page">
     <div class="page-topbar">
       <a class="brand-link" href="./index.html">Recova</a>
-      <button class="lang-toggle" type="button" data-lang-toggle>中文</button>
+      <div class="topbar-group">
+        <div class="lang-content" data-lang="en">
+          <a class="ghost-link" href="./support.html">Support</a>
+          <a class="ghost-link" href="./privacy.html">Privacy</a>
+        </div>
+        <div class="lang-content" data-lang="zh">
+          <a class="ghost-link" href="./support.html">技术支持</a>
+          <a class="ghost-link" href="./privacy.html">隐私政策</a>
+        </div>
+        <button class="lang-toggle" type="button" data-lang-toggle>中文</button>
+      </div>
     </div>
 
-    <section class="hero">
-      <div class="lang-content" data-lang="en">
-        <p class="eyebrow">Recova</p>
-        <h1>Health insights for training load and recovery</h1>
-        <p class="hero-copy">
-          Recova reads HealthKit data to help users understand training load, recovery status,
-          and day-to-day readiness for exercise.
-        </p>
-      </div>
-      <div class="lang-content" data-lang="zh">
-        <p class="eyebrow">Recova</p>
-        <h1>运动负荷与恢复状态洞察</h1>
-        <p class="hero-copy">
-          Recova 读取 HealthKit 数据，帮助用户理解运动负荷、恢复状态，以及每天的训练准备度。
-        </p>
-      </div>
-      <div class="nav">
-        <div class="lang-content" data-lang="en">
-          <a class="primary" href="./support.html">Support</a>
-          <a href="./privacy.html">Privacy Policy</a>
+    <section class="showcase">
+      <div class="showcase-layout">
+        <div class="showcase-copy">
+          <div class="hero-badges">
+            <div class="lang-content" data-lang="en">
+              <span class="hero-badge">HealthKit-native</span>
+              <span class="hero-badge">Recovery-first</span>
+              <span class="hero-badge">No account required</span>
+            </div>
+            <div class="lang-content" data-lang="zh">
+              <span class="hero-badge">原生 HealthKit</span>
+              <span class="hero-badge">恢复优先</span>
+              <span class="hero-badge">无需账号</span>
+            </div>
+          </div>
+
+          <div class="lang-content" data-lang="en">
+            <p class="eyebrow">Daily training clarity</p>
+            <h1>Know when to train, when to recover, and why.</h1>
+            <p>
+              Recova brings heart rate, HRV, sleep, workouts, and other HealthKit signals
+              into one calm daily view of training load and recovery readiness.
+            </p>
+          </div>
+          <div class="lang-content" data-lang="zh">
+            <p class="eyebrow">Daily training clarity</p>
+            <h1>知道何时该训练，何时该恢复，以及为什么。</h1>
+            <p>
+              Recova 将心率、HRV、睡眠、运动记录和其他 HealthKit 信号整合成一个更简洁的每日视图，
+              帮助你理解当前的运动负荷与恢复准备度。
+            </p>
+          </div>
+
+          <div class="showcase-actions">
+            <div class="lang-content" data-lang="en">
+              <a class="pill-link primary" href="#product-overview">Product overview</a>
+              <a class="pill-link" href="./privacy.html">Privacy Policy</a>
+            </div>
+            <div class="lang-content" data-lang="zh">
+              <a class="pill-link primary" href="#product-overview">产品亮点</a>
+              <a class="pill-link" href="./privacy.html">隐私政策</a>
+            </div>
+          </div>
         </div>
-        <div class="lang-content" data-lang="zh">
-          <a class="primary" href="./support.html">技术支持</a>
-          <a href="./privacy.html">隐私政策</a>
-        </div>
-      </div>
-      <div class="notice">
-        <div class="lang-content" data-lang="en">
-          <strong>Developer:</strong> long han
-        </div>
-        <div class="lang-content" data-lang="zh">
-          <strong>开发者：</strong>long han
+
+        <div class="showcase-visual" aria-hidden="true">
+          <div class="device-stack">
+            <div class="phone-mock">
+              <div class="phone-screen">
+                <img class="phone-shot" src="./recova-app-shot.png" alt="Recova app screenshot">
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </section>
 
-    <section class="grid" aria-label="Quick links">
-      <article class="card">
-        <div class="lang-content" data-lang="en">
-          <h2 class="card-title">Support</h2>
-          <p>Contact details, response time, and basic troubleshooting guidance.</p>
-          <p><a href="./support.html">Open support page</a></p>
+    <section class="section-shell" id="product-overview">
+      <div class="section-head">
+        <div>
+          <div class="lang-content" data-lang="en">
+            <p class="eyebrow">Product pillars</p>
+            <h2>Three signals that matter most.</h2>
+            <p class="section-copy">
+              Recova keeps the experience centered on recovery, training load, and what that means for today.
+            </p>
+          </div>
+          <div class="lang-content" data-lang="zh">
+            <p class="eyebrow">Product pillars</p>
+            <h2>聚焦真正重要的三个信号。</h2>
+            <p class="section-copy">
+              Recova 把体验收敛在恢复状态、训练负荷，以及今天应该如何安排这三件事上。
+            </p>
+          </div>
         </div>
-        <div class="lang-content" data-lang="zh">
-          <h2 class="card-title">技术支持</h2>
-          <p>查看联系方式、回复时效，以及常见问题处理建议。</p>
-          <p><a href="./support.html">打开支持页面</a></p>
-        </div>
-      </article>
+      </div>
 
-      <article class="card">
-        <div class="lang-content" data-lang="en">
-          <h2 class="card-title">Privacy</h2>
-          <p>Learn what HealthKit data Recova reads and how it is used in the app.</p>
-          <p><a href="./privacy.html">Open privacy policy</a></p>
+      <div class="metric-strip">
+        <article class="metric-card">
+          <div class="lang-content" data-lang="en">
+            <span class="metric-value">Recovery</span>
+            <p>Translate HRV, resting heart rate, and sleep into an immediate readiness view.</p>
+          </div>
+          <div class="lang-content" data-lang="zh">
+            <span class="metric-value">恢复状态</span>
+            <p>把 HRV、静息心率和睡眠等数据整合成一眼能理解的准备度结果。</p>
+          </div>
+        </article>
+
+        <article class="metric-card">
+          <div class="lang-content" data-lang="en">
+            <span class="metric-value">Load</span>
+            <p>Summarize recent workouts and effort into a useful picture instead of scattered metrics.</p>
+          </div>
+          <div class="lang-content" data-lang="zh">
+            <span class="metric-value">训练负荷</span>
+            <p>把近期运动和努力程度汇总成有意义的整体，而不是分散的原始数据。</p>
+          </div>
+        </article>
+
+        <article class="metric-card">
+          <div class="lang-content" data-lang="en">
+            <span class="metric-value">Guidance</span>
+            <p>Move from data review to a clear decision about whether to build, hold, or recover.</p>
+          </div>
+          <div class="lang-content" data-lang="zh">
+            <span class="metric-value">行动建议</span>
+            <p>从查看数据走向明确判断，知道今天更适合推进、维持，还是优先恢复。</p>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <section class="section-shell">
+      <div class="section-head">
+        <div>
+          <div class="lang-content" data-lang="en">
+            <p class="eyebrow">How it fits the day</p>
+            <h2>Minimal on the surface, useful underneath.</h2>
+          </div>
+          <div class="lang-content" data-lang="zh">
+            <p class="eyebrow">How it fits the day</p>
+            <h2>表面更简约，底层依然有完整的信息逻辑。</h2>
+          </div>
         </div>
-        <div class="lang-content" data-lang="zh">
-          <h2 class="card-title">隐私说明</h2>
-          <p>了解 Recova 会读取哪些 HealthKit 数据，以及这些数据在应用中的用途。</p>
-          <p><a href="./privacy.html">打开隐私政策</a></p>
+      </div>
+
+      <div class="story-grid">
+        <article class="story-card">
+          <div class="lang-content" data-lang="en">
+            <p class="story-step">01</p>
+            <h3>Read the morning state</h3>
+            <p>Open Recova and see whether recovery is ready, neutral, or asking for restraint.</p>
+          </div>
+          <div class="lang-content" data-lang="zh">
+            <p class="story-step">01</p>
+            <h3>先看晨间状态</h3>
+            <p>打开 Recova，第一眼就知道今天的恢复状态是积极、中性，还是需要保守。</p>
+          </div>
+        </article>
+
+        <article class="story-card">
+          <div class="lang-content" data-lang="en">
+            <p class="story-step">02</p>
+            <h3>Understand recent load</h3>
+            <p>Recent workouts, sleep, and HRV are gathered into one view instead of many isolated numbers.</p>
+          </div>
+          <div class="lang-content" data-lang="zh">
+            <p class="story-step">02</p>
+            <h3>理解近期负荷</h3>
+            <p>近期运动、睡眠和 HRV 会被整理到同一个视图里，而不是很多孤立指标。</p>
+          </div>
+        </article>
+
+        <article class="story-card">
+          <div class="lang-content" data-lang="en">
+            <p class="story-step">03</p>
+            <h3>Train with context</h3>
+            <p>Use the guidance to decide whether today should build, maintain, or recover.</p>
+          </div>
+          <div class="lang-content" data-lang="zh">
+            <p class="story-step">03</p>
+            <h3>带着上下文训练</h3>
+            <p>根据建议判断今天更适合推进训练、维持节奏，还是优先恢复。</p>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <section class="section-shell">
+      <div class="privacy-band">
+        <article class="trust-card">
+          <div class="lang-content" data-lang="en">
+            <p class="eyebrow">Private by design</p>
+            <h2>Simple presentation, clear trust.</h2>
+            <p>
+              Recova is built around Apple Health data users already understand, while keeping
+              privacy and support one tap away for both review and real users.
+            </p>
+            <ul class="trust-list">
+              <li>No login or account creation required.</li>
+              <li>Support and privacy details stay one tap away.</li>
+              <li>Minimal layout, but still suitable for App Store review.</li>
+            </ul>
+          </div>
+          <div class="lang-content" data-lang="zh">
+            <p class="eyebrow">Private by design</p>
+            <h2>表达更简洁，可信度更直接。</h2>
+            <p>
+              Recova 围绕用户已经熟悉的 Apple Health 数据来设计，同时把隐私和支持入口保持在清晰可见的位置，
+              既适合审核，也适合正式上线后的访问。
+            </p>
+            <ul class="trust-list">
+              <li>无需登录或创建账号。</li>
+              <li>支持信息和隐私政策始终一跳可达。</li>
+              <li>页面风格更简约，但仍然满足 App Store 审核需要。</li>
+            </ul>
+          </div>
+        </article>
+
+        <div class="callout-grid">
+          <article class="callout-card">
+            <div class="lang-content" data-lang="en">
+              <p class="eyebrow">Support</p>
+              <h3>Need support details?</h3>
+              <p>Open the support page for contact information, FAQ, and subscription guidance.</p>
+              <p><a href="./support.html">Open support page</a></p>
+            </div>
+            <div class="lang-content" data-lang="zh">
+              <p class="eyebrow">Support</p>
+              <h3>需要支持信息？</h3>
+              <p>支持页里已经包含联系方式、FAQ，以及订阅相关说明。</p>
+              <p><a href="./support.html">打开支持页面</a></p>
+            </div>
+          </article>
+
+          <article class="callout-card">
+            <div class="lang-content" data-lang="en">
+              <p class="eyebrow">Privacy</p>
+              <h3>Need the HealthKit scope?</h3>
+              <p>Open the privacy policy to review the current data categories used by Recova.</p>
+              <p><a href="./privacy.html">Open privacy policy</a></p>
+            </div>
+            <div class="lang-content" data-lang="zh">
+              <p class="eyebrow">Privacy</p>
+              <h3>需要查看 HealthKit 范围？</h3>
+              <p>隐私政策页里已经列出当前版本会读取的 HealthKit 数据类别。</p>
+              <p><a href="./privacy.html">打开隐私政策</a></p>
+            </div>
+          </article>
         </div>
-      </article>
+      </div>
     </section>
 
     <footer class="footer">
