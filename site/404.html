@@ -5,23 +5,68 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Page Not Found - Recova</title>
   <meta name="description" content="Page not found for the Recova support website.">
+  <script>
+    (function () {
+      var language = "en";
+      try {
+        var saved = localStorage.getItem("recova-language");
+        if (saved === "en" || saved === "zh") {
+          language = saved;
+        } else {
+          var browserLanguage = (navigator.language || "en").toLowerCase();
+          language = browserLanguage.indexOf("zh") === 0 ? "zh" : "en";
+        }
+      } catch (error) {
+        var fallbackLanguage = (navigator.language || "en").toLowerCase();
+        language = fallbackLanguage.indexOf("zh") === 0 ? "zh" : "en";
+      }
+      document.documentElement.setAttribute("data-language", language);
+      document.documentElement.lang = language === "zh" ? "zh-CN" : "en";
+    })();
+  </script>
   <link rel="stylesheet" href="./styles.css">
+  <script defer src="./script.js"></script>
 </head>
 <body>
   <main class="page">
+    <div class="page-topbar">
+      <a class="brand-link" href="./index.html">Recova</a>
+      <button class="lang-toggle" type="button" data-lang-toggle>中文</button>
+    </div>
+
     <section class="hero">
-      <p class="eyebrow">404</p>
-      <h1>Page not found</h1>
-      <p class="hero-copy">
-        The page you requested is not available. Please return to the home page or open the
-        support information below.
-      </p>
+      <div class="lang-content" data-lang="en">
+        <p class="eyebrow">404</p>
+        <h1>Page not found</h1>
+        <p class="hero-copy">
+          The page you requested is not available. Please return to the home page or open the
+          support information below.
+        </p>
+      </div>
+      <div class="lang-content" data-lang="zh">
+        <p class="eyebrow">404</p>
+        <h1>页面不存在</h1>
+        <p class="hero-copy">
+          你访问的页面当前不可用，请返回首页或打开支持页面。
+        </p>
+      </div>
       <div class="nav">
-        <a class="primary" href="./index.html">Home</a>
-        <a href="./support.html">Support</a>
+        <div class="lang-content" data-lang="en">
+          <a class="primary" href="./index.html">Home</a>
+          <a href="./support.html">Support</a>
+        </div>
+        <div class="lang-content" data-lang="zh">
+          <a class="primary" href="./index.html">首页</a>
+          <a href="./support.html">技术支持</a>
+        </div>
       </div>
       <div class="notice">
-        <strong>中文：</strong>你访问的页面不存在，请返回首页或进入支持页面。
+        <div class="lang-content" data-lang="en">
+          <strong>Tip:</strong> Use the language switch in the top-right corner to change the display language.
+        </div>
+        <div class="lang-content" data-lang="zh">
+          <strong>提示：</strong>可以使用右上角语言切换按钮更改显示语言。
+        </div>
       </div>
     </section>
   </main>

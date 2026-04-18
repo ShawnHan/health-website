@@ -5,23 +5,62 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Recova Support</title>
   <meta name="description" content="Support information for Recova.">
+  <script>
+    (function () {
+      var language = "en";
+      try {
+        var saved = localStorage.getItem("recova-language");
+        if (saved === "en" || saved === "zh") {
+          language = saved;
+        } else {
+          var browserLanguage = (navigator.language || "en").toLowerCase();
+          language = browserLanguage.indexOf("zh") === 0 ? "zh" : "en";
+        }
+      } catch (error) {
+        var fallbackLanguage = (navigator.language || "en").toLowerCase();
+        language = fallbackLanguage.indexOf("zh") === 0 ? "zh" : "en";
+      }
+      document.documentElement.setAttribute("data-language", language);
+      document.documentElement.lang = language === "zh" ? "zh-CN" : "en";
+    })();
+  </script>
   <link rel="stylesheet" href="./styles.css">
+  <script defer src="./script.js"></script>
 </head>
 <body>
   <main class="page">
+    <div class="page-topbar">
+      <a class="brand-link" href="./index.html">Recova</a>
+      <button class="lang-toggle" type="button" data-lang-toggle>中文</button>
+    </div>
+
     <header class="page-header">
       <div>
         <div class="breadcrumbs">
           <a href="./index.html">Home</a>
           <span>/</span>
-          <span>Support</span>
+          <div class="lang-content" data-lang="en"><span>Support</span></div>
+          <div class="lang-content" data-lang="zh"><span>技术支持</span></div>
         </div>
-        <h1>Recova Support</h1>
-        <p class="muted">
-          Contact details and basic support information for App Store review and user help.
-        </p>
+        <div class="lang-content" data-lang="en">
+          <h1>Recova Support</h1>
+          <p class="muted">
+            Contact details and basic support information for App Store review and user help.
+          </p>
+        </div>
+        <div class="lang-content" data-lang="zh">
+          <h1>Recova 技术支持</h1>
+          <p class="muted">
+            这里提供 App Store 审核和用户帮助所需的联系方式与基础支持信息。
+          </p>
+        </div>
       </div>
-      <a class="button-link" href="./privacy.html">Privacy Policy</a>
+      <div class="lang-content" data-lang="en">
+        <a class="button-link" href="./privacy.html">Privacy Policy</a>
+      </div>
+      <div class="lang-content" data-lang="zh">
+        <a class="button-link" href="./privacy.html">隐私政策</a>
+      </div>
     </header>
 
     <section class="sections">
@@ -117,8 +156,14 @@
 
     <footer class="footer">
       <div class="footer-links">
-        <a href="./index.html">Home</a>
-        <a href="./privacy.html">Privacy Policy</a>
+        <div class="lang-content" data-lang="en">
+          <a href="./index.html">Home</a>
+          <a href="./privacy.html">Privacy Policy</a>
+        </div>
+        <div class="lang-content" data-lang="zh">
+          <a href="./index.html">首页</a>
+          <a href="./privacy.html">隐私政策</a>
+        </div>
       </div>
     </footer>
   </main>

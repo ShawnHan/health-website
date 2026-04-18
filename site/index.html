@@ -5,71 +5,115 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Recova</title>
   <meta name="description" content="Recova reads HealthKit data and provides training load and recovery guidance.">
+  <script>
+    (function () {
+      var language = "en";
+      try {
+        var saved = localStorage.getItem("recova-language");
+        if (saved === "en" || saved === "zh") {
+          language = saved;
+        } else {
+          var browserLanguage = (navigator.language || "en").toLowerCase();
+          language = browserLanguage.indexOf("zh") === 0 ? "zh" : "en";
+        }
+      } catch (error) {
+        var fallbackLanguage = (navigator.language || "en").toLowerCase();
+        language = fallbackLanguage.indexOf("zh") === 0 ? "zh" : "en";
+      }
+      document.documentElement.setAttribute("data-language", language);
+      document.documentElement.lang = language === "zh" ? "zh-CN" : "en";
+    })();
+  </script>
   <link rel="stylesheet" href="./styles.css">
+  <script defer src="./script.js"></script>
 </head>
 <body>
   <main class="page">
+    <div class="page-topbar">
+      <a class="brand-link" href="./index.html">Recova</a>
+      <button class="lang-toggle" type="button" data-lang-toggle>中文</button>
+    </div>
+
     <section class="hero">
-      <p class="eyebrow">Recova</p>
-      <h1>Health insights for training load and recovery</h1>
-      <p class="hero-copy">
-        Recova reads HealthKit data to help users understand training load, recovery status,
-        and day-to-day readiness for exercise.
-      </p>
+      <div class="lang-content" data-lang="en">
+        <p class="eyebrow">Recova</p>
+        <h1>Health insights for training load and recovery</h1>
+        <p class="hero-copy">
+          Recova reads HealthKit data to help users understand training load, recovery status,
+          and day-to-day readiness for exercise.
+        </p>
+      </div>
+      <div class="lang-content" data-lang="zh">
+        <p class="eyebrow">Recova</p>
+        <h1>运动负荷与恢复状态洞察</h1>
+        <p class="hero-copy">
+          Recova 读取 HealthKit 数据，帮助用户理解运动负荷、恢复状态，以及每天的训练准备度。
+        </p>
+      </div>
       <div class="nav">
-        <a class="primary" href="./support.html">Support</a>
-        <a href="./privacy.html">Privacy Policy</a>
+        <div class="lang-content" data-lang="en">
+          <a class="primary" href="./support.html">Support</a>
+          <a href="./privacy.html">Privacy Policy</a>
+        </div>
+        <div class="lang-content" data-lang="zh">
+          <a class="primary" href="./support.html">技术支持</a>
+          <a href="./privacy.html">隐私政策</a>
+        </div>
       </div>
       <div class="notice">
-        <strong>Developer:</strong> long han
+        <div class="lang-content" data-lang="en">
+          <strong>Developer:</strong> long han
+        </div>
+        <div class="lang-content" data-lang="zh">
+          <strong>开发者：</strong>long han
+        </div>
       </div>
-    </section>
-
-    <section class="grid" aria-label="English and Chinese overview">
-      <article class="card">
-        <p class="lang-label">English</p>
-        <h2 class="card-title">What Recova does</h2>
-        <p>
-          Recova analyzes HealthKit data such as heart rate, sleep, workouts, and other
-          health indicators to provide training load and recovery suggestions.
-        </p>
-        <p class="muted">
-          This site is used for App Store review metadata and user support information.
-        </p>
-      </article>
-
-      <article class="card">
-        <p class="lang-label">中文</p>
-        <h2 class="card-title">Recova 是什么</h2>
-        <p>
-          Recova 读取 HealthKit 中的心率、睡眠、运动记录等健康数据，
-          为用户提供运动负荷与恢复状态建议。
-        </p>
-        <p class="muted">
-          本网站用于 App Store 审核所需的产品介绍、支持信息和隐私政策展示。
-        </p>
-      </article>
     </section>
 
     <section class="grid" aria-label="Quick links">
       <article class="card">
-        <h2 class="card-title">Support</h2>
-        <p>Contact details, response time, and basic troubleshooting guidance.</p>
-        <p><a href="./support.html">Open support page</a></p>
+        <div class="lang-content" data-lang="en">
+          <h2 class="card-title">Support</h2>
+          <p>Contact details, response time, and basic troubleshooting guidance.</p>
+          <p><a href="./support.html">Open support page</a></p>
+        </div>
+        <div class="lang-content" data-lang="zh">
+          <h2 class="card-title">技术支持</h2>
+          <p>查看联系方式、回复时效，以及常见问题处理建议。</p>
+          <p><a href="./support.html">打开支持页面</a></p>
+        </div>
       </article>
 
       <article class="card">
-        <h2 class="card-title">Privacy</h2>
-        <p>Learn what HealthKit data Recova reads and how it is used in the app.</p>
-        <p><a href="./privacy.html">Open privacy policy</a></p>
+        <div class="lang-content" data-lang="en">
+          <h2 class="card-title">Privacy</h2>
+          <p>Learn what HealthKit data Recova reads and how it is used in the app.</p>
+          <p><a href="./privacy.html">Open privacy policy</a></p>
+        </div>
+        <div class="lang-content" data-lang="zh">
+          <h2 class="card-title">隐私说明</h2>
+          <p>了解 Recova 会读取哪些 HealthKit 数据，以及这些数据在应用中的用途。</p>
+          <p><a href="./privacy.html">打开隐私政策</a></p>
+        </div>
       </article>
     </section>
 
     <footer class="footer">
-      <p>Recova by long han.</p>
+      <div class="lang-content" data-lang="en">
+        <p>Recova by long han.</p>
+      </div>
+      <div class="lang-content" data-lang="zh">
+        <p>Recova 由 long han 开发。</p>
+      </div>
       <div class="footer-links">
-        <a href="./support.html">Support</a>
-        <a href="./privacy.html">Privacy Policy</a>
+        <div class="lang-content" data-lang="en">
+          <a href="./support.html">Support</a>
+          <a href="./privacy.html">Privacy Policy</a>
+        </div>
+        <div class="lang-content" data-lang="zh">
+          <a href="./support.html">技术支持</a>
+          <a href="./privacy.html">隐私政策</a>
+        </div>
       </div>
     </footer>
   </main>

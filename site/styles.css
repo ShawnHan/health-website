@@ -21,6 +21,11 @@ html {
   scroll-behavior: smooth;
 }
 
+html[data-language="en"] [data-lang="zh"],
+html[data-language="zh"] [data-lang="en"] {
+  display: none;
+}
+
 body {
   margin: 0;
   min-height: 100vh;
@@ -46,6 +51,45 @@ a:focus-visible {
   width: min(var(--content-width), calc(100vw - 32px));
   margin: 0 auto;
   padding: 32px 0 72px;
+}
+
+.page-topbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  margin-bottom: 16px;
+}
+
+.brand-link {
+  color: var(--text);
+  font-weight: 800;
+  letter-spacing: -0.02em;
+}
+
+.brand-link:hover,
+.brand-link:focus-visible {
+  color: var(--text);
+  text-decoration: none;
+}
+
+.lang-toggle {
+  min-height: 42px;
+  padding: 0 16px;
+  border: 1px solid rgba(11, 99, 206, 0.18);
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.9);
+  color: var(--text);
+  font: inherit;
+  font-weight: 700;
+  cursor: pointer;
+  box-shadow: 0 10px 24px rgba(15, 23, 42, 0.05);
+}
+
+.lang-toggle:hover,
+.lang-toggle:focus-visible {
+  border-color: rgba(11, 99, 206, 0.36);
+  color: var(--link-hover);
 }
 
 .hero {
@@ -230,6 +274,10 @@ p {
   text-transform: uppercase;
 }
 
+.lang-content > :last-child {
+  margin-bottom: 0;
+}
+
 ul {
   margin: 0 0 14px;
   padding-left: 20px;
@@ -265,6 +313,10 @@ li + li {
     width: min(calc(100vw - 24px), var(--content-width));
     padding-top: 24px;
     padding-bottom: 56px;
+  }
+
+  .page-topbar {
+    align-items: flex-start;
   }
 
   .hero,
