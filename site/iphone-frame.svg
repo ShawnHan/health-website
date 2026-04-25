@@ -1,0 +1,43 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 418 882" fill="none">
+  <defs>
+    <!-- Titanium rim gradient (top-down light reflection) -->
+    <linearGradient id="rim" x1="209" y1="0" x2="209" y2="882" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#c8cbd0"/>
+      <stop offset="8%" stop-color="#a0a4ab"/>
+      <stop offset="20%" stop-color="#d8dade"/>
+      <stop offset="35%" stop-color="#878b92"/>
+      <stop offset="50%" stop-color="#b0b4ba"/>
+      <stop offset="65%" stop-color="#70747c"/>
+      <stop offset="80%" stop-color="#9a9ea5"/>
+      <stop offset="100%" stop-color="#505560"/>
+    </linearGradient>
+    <!-- Bezel fill -->
+    <linearGradient id="bezel-fill" x1="209" y1="0" x2="209" y2="882" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#1a1c20"/>
+      <stop offset="50%" stop-color="#0e0f12"/>
+      <stop offset="100%" stop-color="#08090b"/>
+    </linearGradient>
+    <!-- Mask: screen cutout -->
+    <mask id="screen-cut">
+      <rect width="418" height="882" fill="white"/>
+      <rect x="10" y="10" width="398" height="862" rx="50" fill="black"/>
+    </mask>
+  </defs>
+
+  <!-- Bezel body (ring between outer edge and screen) -->
+  <rect width="418" height="882" rx="58" fill="url(#bezel-fill)" mask="url(#screen-cut)"/>
+
+  <!-- Outer titanium rim -->
+  <rect x="0.5" y="0.5" width="417" height="881" rx="57.5" stroke="url(#rim)" stroke-width="1"/>
+
+  <!-- Inner edge highlight (subtle light catch) -->
+  <rect x="9.5" y="9.5" width="399" height="863" rx="50.5" stroke="rgba(255,255,255,0.08)" stroke-width="0.5"/>
+
+  <!-- Left side buttons -->
+  <rect x="-1.5" y="162" width="2" height="30" rx="1" fill="#6e727a"/>
+  <rect x="-1.5" y="222" width="2" height="58" rx="1" fill="#6e727a"/>
+  <rect x="-1.5" y="292" width="2" height="58" rx="1" fill="#6e727a"/>
+
+  <!-- Right side button (Power) -->
+  <rect x="417.5" y="266" width="2" height="74" rx="1" fill="#6e727a"/>
+</svg>

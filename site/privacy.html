@@ -1,10 +1,13 @@
 <!doctype html>
-<html lang="en">
+<html lang="zh-Hans" data-theme="emerald">
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Recova Privacy Policy</title>
   <meta name="description" content="Privacy policy for Recova.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
   <script>
     (function () {
       var language = "en";
@@ -27,176 +30,209 @@
   <link rel="stylesheet" href="./styles.css">
   <script defer src="./script.js"></script>
 </head>
-<body>
-  <main class="page">
-    <div class="page-topbar">
-      <a class="brand-link" href="./index.html">Recova</a>
-      <button class="lang-toggle" type="button" data-lang-toggle>中文</button>
-    </div>
+<body class="page-editorial privacy-editorial">
+  <main class="page page-detail-page">
+    <header class="page-topbar page-topbar-editorial">
+      <a class="brand-link" href="./index.html" aria-label="Recova home">
+        <span class="brand-mark" aria-hidden="true">
+          <svg width="28" height="28" viewBox="0 0 28 28" fill="none">
+            <circle cx="14" cy="14" r="13" stroke="currentColor" stroke-width="1.5"></circle>
+            <path d="M6 14 A8 8 0 0 1 22 14" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"></path>
+            <circle cx="14" cy="14" r="2" fill="currentColor"></circle>
+          </svg>
+        </span>
+        <span>Recova</span>
+      </a>
 
-    <header class="page-header">
-      <div>
-        <div class="breadcrumbs">
-          <div class="lang-content" data-lang="en"><a href="./index.html">Home</a></div>
-          <div class="lang-content" data-lang="zh"><a href="./index.html">首页</a></div>
-          <span>/</span>
-          <div class="lang-content" data-lang="en"><span>Privacy Policy</span></div>
-          <div class="lang-content" data-lang="zh"><span>隐私政策</span></div>
+      <div class="topbar-group">
+        <nav class="topbar-nav" aria-label="Primary">
+          <div class="lang-content" data-lang="en">
+            <a class="topbar-link" href="./index.html">Home</a>
+            <a class="topbar-link" href="./support.html">Support</a>
+            <a class="topbar-link" href="./privacy.html">Privacy</a>
+          </div>
+          <div class="lang-content" data-lang="zh">
+            <a class="topbar-link" href="./index.html">首页</a>
+            <a class="topbar-link" href="./support.html">技术支持</a>
+            <a class="topbar-link" href="./privacy.html">隐私政策</a>
+          </div>
+        </nav>
+
+        <div class="topbar-actions">
+          <button class="lang-toggle lang-toggle-quiet" type="button" data-lang-toggle>中文</button>
+          <a class="button-link topbar-download" href="https://apps.apple.com" target="_blank" rel="noreferrer">
+            <span class="lang-content" data-lang="en">App Store</span>
+            <span class="lang-content" data-lang="zh">App Store</span>
+          </a>
         </div>
-        <div class="lang-content" data-lang="en">
-          <h1>Recova Privacy Policy</h1>
-          <p class="muted">
-            Effective date: April 18, 2026
-          </p>
-        </div>
-        <div class="lang-content" data-lang="zh">
-          <h1>Recova 隐私政策</h1>
-          <p class="muted">
-            生效日期：2026 年 4 月 18 日
-          </p>
-        </div>
-      </div>
-      <div class="lang-content" data-lang="en">
-        <a class="button-link" href="./support.html">Support</a>
-      </div>
-      <div class="lang-content" data-lang="zh">
-        <a class="button-link" href="./support.html">技术支持</a>
       </div>
     </header>
 
-    <section class="sections">
-      <article class="section">
-        <div class="lang-content" data-lang="en">
-          <h2>Overview</h2>
-          <p>
-            Recova is a health and fitness app that reads selected HealthKit data to provide
-            training load and recovery suggestions. Recova does not require account creation or login.
-          </p>
-          <p>
-            Contact email:
-            <a href="mailto:SUPPORT_EMAIL_PLACEHOLDER">SUPPORT_EMAIL_PLACEHOLDER</a>
-          </p>
+    <section class="page-hero page-hero-editorial">
+      <div class="page-hero-grid">
+        <div>
+          <div class="breadcrumbs">
+            <div class="lang-content" data-lang="en"><a href="./index.html">Home</a></div>
+            <div class="lang-content" data-lang="zh"><a href="./index.html">首页</a></div>
+            <span>/</span>
+            <div class="lang-content" data-lang="en"><span>Privacy Policy</span></div>
+            <div class="lang-content" data-lang="zh"><span>隐私政策</span></div>
+          </div>
+          <div class="lang-content" data-lang="en">
+            <p class="eyebrow">Privacy</p>
+            <h1>Health data, explained with <span class="serif-accent">restraint.</span></h1>
+            <p class="page-summary">This page outlines the current HealthKit categories Recova may read, why those signals are used, and how the product currently describes data handling for App Store review and real users.</p>
+          </div>
+          <div class="lang-content" data-lang="zh">
+            <p class="eyebrow">Privacy</p>
+            <h1>把健康数据的范围，<span class="serif-accent">说清楚。</span></h1>
+            <p class="page-summary">这里会列出 Recova 当前可能读取的 HealthKit 数据类别、这些信号的用途，以及当前版本在 App Store 审核和真实用户访问场景下如何表达数据处理方式。</p>
+          </div>
         </div>
-
-        <div class="lang-content" data-lang="zh">
-          <h2>概述</h2>
-          <p>
-            Recova 是一款健康与健身应用，会读取部分 HealthKit 数据，用于生成运动负荷与恢复建议。
-            Recova 当前不要求用户创建账号或登录。
-          </p>
-          <p>
-            联系邮箱：
-            <a href="mailto:SUPPORT_EMAIL_PLACEHOLDER">SUPPORT_EMAIL_PLACEHOLDER</a>
-          </p>
+        <div class="page-hero-actions">
+          <div class="lang-content" data-lang="en">
+            <a class="action-link" href="./support.html">Open support</a>
+          </div>
+          <div class="lang-content" data-lang="zh">
+            <a class="action-link" href="./support.html">打开支持页</a>
+          </div>
         </div>
-      </article>
-
-      <article class="section">
-        <div class="lang-content" data-lang="en">
-          <h2>HealthKit data used by Recova</h2>
-          <p>Based on the current app implementation, Recova may read the following HealthKit data:</p>
-          <ul>
-            <li>Heart rate</li>
-            <li>Resting heart rate</li>
-            <li>Heart rate variability (HRV / SDNN)</li>
-            <li>Heartbeat series</li>
-            <li>Step count</li>
-            <li>Workouts</li>
-            <li>Active energy burned</li>
-            <li>VO2 Max</li>
-            <li>Body temperature</li>
-            <li>Body mass</li>
-            <li>Sleep analysis</li>
-            <li>Biological sex</li>
-            <li>Date of birth</li>
-          </ul>
-        </div>
-
-        <div class="lang-content" data-lang="zh">
-          <h2>Recova 使用的 HealthKit 数据</h2>
-          <p>根据当前版本代码实现，Recova 可能会读取以下 HealthKit 数据：</p>
-          <ul>
-            <li>心率</li>
-            <li>静息心率</li>
-            <li>心率变异性（HRV / SDNN）</li>
-            <li>心跳序列</li>
-            <li>步数</li>
-            <li>运动记录</li>
-            <li>活动能量消耗</li>
-            <li>VO2 Max</li>
-            <li>体温</li>
-            <li>体重</li>
-            <li>睡眠分析</li>
-            <li>生理性别</li>
-            <li>出生日期</li>
-          </ul>
-        </div>
-      </article>
-
-      <article class="section">
-        <div class="lang-content" data-lang="en">
-          <h2>How data is used</h2>
-          <p>
-            Recova uses available HealthKit records to display trends and generate training load,
-            recovery, and readiness guidance inside the app.
-          </p>
-          <p>
-            The current version does not include third-party analytics, advertising, social login,
-            or crash reporting SDKs. The project contains native StoreKit subscription support, and
-            payment processing for App Store subscriptions is handled by Apple rather than directly
-            by the developer.
-          </p>
-          <p>
-            If Recova changes how data is processed in a future version, this privacy policy will
-            be updated accordingly.
-          </p>
-        </div>
-
-        <div class="lang-content" data-lang="zh">
-          <h2>数据如何使用</h2>
-          <p>
-            Recova 使用可用的 HealthKit 记录在应用内展示趋势，并生成运动负荷、恢复状态和训练准备度建议。
-          </p>
-          <p>
-            当前版本未接入第三方分析、广告、社交登录或崩溃统计 SDK。项目包含原生 StoreKit 订阅能力，
-            通过 App Store 产生的订阅支付由 Apple 处理，开发者不会直接处理用户银行卡信息。
-          </p>
-          <p>
-            如果未来版本调整了数据处理方式，本隐私政策会同步更新。
-          </p>
-        </div>
-      </article>
-
-      <article class="section">
-        <div class="lang-content" data-lang="en">
-          <h2>Data sharing and contact</h2>
-          <p>
-            Based on the current codebase review, no explicit third-party analytics or advertising
-            SDK integration was found. If you have questions about your data, please contact:
-            <a href="mailto:SUPPORT_EMAIL_PLACEHOLDER">SUPPORT_EMAIL_PLACEHOLDER</a>
-          </p>
-        </div>
-
-        <div class="lang-content" data-lang="zh">
-          <h2>数据共享与联系方式</h2>
-          <p>
-            根据当前代码检查结果，项目中未发现明确的第三方分析或广告 SDK 接入。如果你对数据使用有疑问，
-            请联系：
-            <a href="mailto:SUPPORT_EMAIL_PLACEHOLDER">SUPPORT_EMAIL_PLACEHOLDER</a>
-          </p>
-        </div>
-      </article>
+      </div>
     </section>
 
-    <footer class="footer">
+    <section class="detail-shell detail-shell-editorial">
+      <aside class="detail-sidebar">
+        <article class="sidebar-card">
+          <div class="lang-content" data-lang="en">
+            <p class="eyebrow">Effective date</p>
+            <div class="sidebar-value">April 18, 2026</div>
+            <p>Recova does not currently require account creation or login to present training-load and recovery guidance.</p>
+          </div>
+          <div class="lang-content" data-lang="zh">
+            <p class="eyebrow">生效日期</p>
+            <div class="sidebar-value">2026 年 4 月 18 日</div>
+            <p>Recova 当前不要求用户创建账号或登录，即可查看训练负荷与恢复建议。</p>
+          </div>
+        </article>
+
+        <article class="sidebar-card">
+          <div class="lang-content" data-lang="en">
+            <p class="eyebrow">Contact</p>
+            <div class="sidebar-value">SUPPORT_EMAIL_PLACEHOLDER</div>
+            <p>Questions about data handling can be sent directly to the support address listed here.</p>
+          </div>
+          <div class="lang-content" data-lang="zh">
+            <p class="eyebrow">联系方式</p>
+            <div class="sidebar-value">SUPPORT_EMAIL_PLACEHOLDER</div>
+            <p>如果你对数据处理方式有疑问，可以直接通过这里列出的支持邮箱联系我们。</p>
+          </div>
+        </article>
+      </aside>
+
+      <div>
+        <article class="detail-section">
+          <div class="lang-content" data-lang="en">
+            <h2>Overview</h2>
+            <p>Recova is a health and fitness app that reads selected HealthKit data to provide training load and recovery suggestions. Recova does not require account creation or login.</p>
+            <p>Contact email: <a href="mailto:SUPPORT_EMAIL_PLACEHOLDER">SUPPORT_EMAIL_PLACEHOLDER</a></p>
+          </div>
+          <div class="lang-content" data-lang="zh">
+            <h2>概述</h2>
+            <p>Recova 是一款健康与健身应用，会读取部分 HealthKit 数据，用于生成运动负荷与恢复建议。Recova 当前不要求用户创建账号或登录。</p>
+            <p>联系邮箱：<a href="mailto:SUPPORT_EMAIL_PLACEHOLDER">SUPPORT_EMAIL_PLACEHOLDER</a></p>
+          </div>
+        </article>
+
+        <article class="detail-section">
+          <div class="lang-content" data-lang="en">
+            <h2>HealthKit data used by Recova</h2>
+            <p>Based on the current app implementation, Recova may read the following HealthKit data:</p>
+            <ul class="data-list">
+              <li>Heart rate</li>
+              <li>Resting heart rate</li>
+              <li>Heart rate variability (HRV / SDNN)</li>
+              <li>Heartbeat series</li>
+              <li>Step count</li>
+              <li>Workouts</li>
+              <li>Active energy burned</li>
+              <li>VO2 Max</li>
+              <li>Body temperature</li>
+              <li>Body mass</li>
+              <li>Sleep analysis</li>
+              <li>Biological sex</li>
+              <li>Date of birth</li>
+            </ul>
+          </div>
+          <div class="lang-content" data-lang="zh">
+            <h2>Recova 使用的 HealthKit 数据</h2>
+            <p>根据当前版本代码实现，Recova 可能会读取以下 HealthKit 数据：</p>
+            <ul class="data-list">
+              <li>心率</li>
+              <li>静息心率</li>
+              <li>心率变异性（HRV / SDNN）</li>
+              <li>心跳序列</li>
+              <li>步数</li>
+              <li>运动记录</li>
+              <li>活动能量消耗</li>
+              <li>VO2 Max</li>
+              <li>体温</li>
+              <li>体重</li>
+              <li>睡眠分析</li>
+              <li>生理性别</li>
+              <li>出生日期</li>
+            </ul>
+          </div>
+        </article>
+
+        <article class="detail-section">
+          <div class="lang-content" data-lang="en">
+            <h2>How data is used</h2>
+            <p>Recova uses available HealthKit records to display trends and generate training load, recovery, and readiness guidance inside the app.</p>
+            <p>The current version does not include third-party analytics, advertising, social login, or crash reporting SDKs. The project contains native StoreKit subscription support, and payment processing for App Store subscriptions is handled by Apple rather than directly by the developer.</p>
+            <p>If Recova changes how data is processed in a future version, this privacy policy will be updated accordingly.</p>
+          </div>
+          <div class="lang-content" data-lang="zh">
+            <h2>数据如何使用</h2>
+            <p>Recova 使用可用的 HealthKit 记录在应用内展示趋势，并生成运动负荷、恢复状态和训练准备度建议。</p>
+            <p>当前版本未接入第三方分析、广告、社交登录或崩溃统计 SDK。项目包含原生 StoreKit 订阅能力，通过 App Store 产生的订阅支付由 Apple 处理，开发者不会直接处理用户银行卡信息。</p>
+            <p>如果未来版本调整了数据处理方式，本隐私政策会同步更新。</p>
+          </div>
+        </article>
+
+        <article class="detail-section">
+          <div class="lang-content" data-lang="en">
+            <h2>Data sharing and contact</h2>
+            <p>Based on the current codebase review, no explicit third-party analytics or advertising SDK integration was found. If you have questions about your data, please contact: <a href="mailto:SUPPORT_EMAIL_PLACEHOLDER">SUPPORT_EMAIL_PLACEHOLDER</a></p>
+          </div>
+          <div class="lang-content" data-lang="zh">
+            <h2>数据共享与联系方式</h2>
+            <p>根据当前代码检查结果，项目中未发现明确的第三方分析或广告 SDK 接入。如果你对数据使用有疑问，请联系：<a href="mailto:SUPPORT_EMAIL_PLACEHOLDER">SUPPORT_EMAIL_PLACEHOLDER</a></p>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <footer class="page-footer">
+      <div class="footer-brand">
+        <span class="brand-mark" aria-hidden="true">
+          <svg width="28" height="28" viewBox="0 0 28 28" fill="none">
+            <circle cx="14" cy="14" r="13" stroke="currentColor" stroke-width="1.5"></circle>
+            <path d="M6 14 A8 8 0 0 1 22 14" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"></path>
+            <circle cx="14" cy="14" r="2" fill="currentColor"></circle>
+          </svg>
+        </span>
+        <span>Recova</span>
+      </div>
       <div class="footer-links">
         <div class="lang-content" data-lang="en">
           <a href="./index.html">Home</a>
           <a href="./support.html">Support</a>
+          <a href="https://apps.apple.com" target="_blank" rel="noreferrer">App Store</a>
         </div>
         <div class="lang-content" data-lang="zh">
           <a href="./index.html">首页</a>
           <a href="./support.html">技术支持</a>
+          <a href="https://apps.apple.com" target="_blank" rel="noreferrer">App Store</a>
         </div>
       </div>
     </footer>

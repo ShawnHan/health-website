@@ -1,10 +1,13 @@
 <!doctype html>
-<html lang="en">
+<html lang="zh-Hans" data-theme="emerald">
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Recova Support</title>
   <meta name="description" content="Support information for Recova.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
   <script>
     (function () {
       var language = "en";
@@ -27,137 +30,190 @@
   <link rel="stylesheet" href="./styles.css">
   <script defer src="./script.js"></script>
 </head>
-<body>
-  <main class="page">
-    <div class="page-topbar">
-      <a class="brand-link" href="./index.html">Recova</a>
-      <button class="lang-toggle" type="button" data-lang-toggle>中文</button>
-    </div>
+<body class="page-editorial support-editorial">
+  <main class="page page-detail-page">
+    <header class="page-topbar page-topbar-editorial">
+      <a class="brand-link" href="./index.html" aria-label="Recova home">
+        <span class="brand-mark" aria-hidden="true">
+          <svg width="28" height="28" viewBox="0 0 28 28" fill="none">
+            <circle cx="14" cy="14" r="13" stroke="currentColor" stroke-width="1.5"></circle>
+            <path d="M6 14 A8 8 0 0 1 22 14" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"></path>
+            <circle cx="14" cy="14" r="2" fill="currentColor"></circle>
+          </svg>
+        </span>
+        <span>Recova</span>
+      </a>
 
-    <header class="page-header">
-      <div>
-        <div class="breadcrumbs">
-          <div class="lang-content" data-lang="en"><a href="./index.html">Home</a></div>
-          <div class="lang-content" data-lang="zh"><a href="./index.html">首页</a></div>
-          <span>/</span>
-          <div class="lang-content" data-lang="en"><span>Support</span></div>
-          <div class="lang-content" data-lang="zh"><span>技术支持</span></div>
+      <div class="topbar-group">
+        <nav class="topbar-nav" aria-label="Primary">
+          <div class="lang-content" data-lang="en">
+            <a class="topbar-link" href="./index.html">Home</a>
+            <a class="topbar-link" href="./support.html">Support</a>
+            <a class="topbar-link" href="./privacy.html">Privacy</a>
+          </div>
+          <div class="lang-content" data-lang="zh">
+            <a class="topbar-link" href="./index.html">首页</a>
+            <a class="topbar-link" href="./support.html">支持</a>
+            <a class="topbar-link" href="./privacy.html">隐私政策</a>
+          </div>
+        </nav>
+
+        <div class="topbar-actions">
+          <button class="lang-toggle lang-toggle-quiet" type="button" data-lang-toggle>中文</button>
+          <a class="button-link topbar-download" href="https://apps.apple.com" target="_blank" rel="noreferrer">
+            <span class="lang-content" data-lang="en">App Store</span>
+            <span class="lang-content" data-lang="zh">App Store</span>
+          </a>
         </div>
-        <div class="lang-content" data-lang="en">
-          <h1>Recova Support</h1>
-          <p class="muted">
-            Contact details and basic support information for App Store review and user help.
-          </p>
-        </div>
-        <div class="lang-content" data-lang="zh">
-          <h1>Recova 技术支持</h1>
-          <p class="muted">
-            这里提供 App Store 审核和用户帮助所需的联系方式与基础支持信息。
-          </p>
-        </div>
-      </div>
-      <div class="lang-content" data-lang="en">
-        <a class="button-link" href="./privacy.html">Privacy Policy</a>
-      </div>
-      <div class="lang-content" data-lang="zh">
-        <a class="button-link" href="./privacy.html">隐私政策</a>
       </div>
     </header>
 
-    <section class="sections">
-      <article class="section">
-        <div class="lang-content" data-lang="en">
-          <h2>Contact</h2>
-          <p>Developer: long han</p>
-          <p>
-            Support email:
-            <a href="mailto:SUPPORT_EMAIL_PLACEHOLDER">SUPPORT_EMAIL_PLACEHOLDER</a>
-          </p>
-          <p>Typical response time: within 3 business days.</p>
+    <section class="page-hero page-hero-editorial">
+      <div class="page-hero-grid">
+        <div>
+          <div class="breadcrumbs">
+            <div class="lang-content" data-lang="en"><a href="./index.html">Home</a></div>
+            <div class="lang-content" data-lang="zh"><a href="./index.html">首页</a></div>
+            <span>/</span>
+            <div class="lang-content" data-lang="en"><span>Support</span></div>
+            <div class="lang-content" data-lang="zh"><span>技术支持</span></div>
+          </div>
+          <div class="lang-content" data-lang="en">
+            <p class="eyebrow">Support</p>
+            <h1>Calm answers, kept <span class="serif-accent">nearby.</span></h1>
+            <p class="page-summary">This page keeps the practical support details ready for App Store review and for real users who need contact information, basic troubleshooting, and subscription guidance.</p>
+          </div>
+          <div class="lang-content" data-lang="zh">
+            <p class="eyebrow">Support</p>
+            <h1>需要的时候，<span class="serif-accent">答案要够近。</span></h1>
+            <p class="page-summary">这里保留 App Store 审核和真实用户帮助都需要的支持信息，包括联系方式、排查前建议准备的信息，以及最基础的订阅与使用说明。</p>
+          </div>
         </div>
-
-        <div class="lang-content" data-lang="zh">
-          <h2>联系方式</h2>
-          <p>开发者：long han</p>
-          <p>
-            支持邮箱：
-            <a href="mailto:SUPPORT_EMAIL_PLACEHOLDER">SUPPORT_EMAIL_PLACEHOLDER</a>
-          </p>
-          <p>通常会在 3 个工作日内回复。</p>
+        <div class="page-hero-actions">
+          <div class="lang-content" data-lang="en">
+            <a class="action-link" href="mailto:SUPPORT_EMAIL_PLACEHOLDER">Email support</a>
+            <a class="secondary-link" href="./privacy.html">Privacy policy</a>
+          </div>
+          <div class="lang-content" data-lang="zh">
+            <a class="action-link" href="mailto:SUPPORT_EMAIL_PLACEHOLDER">发送邮件</a>
+            <a class="secondary-link" href="./privacy.html">隐私政策</a>
+          </div>
         </div>
-      </article>
-
-      <article class="section">
-        <div class="lang-content" data-lang="en">
-          <h2>Before you contact support</h2>
-          <ul>
-            <li>Device model</li>
-            <li>iOS or watchOS version</li>
-            <li>Recova app version</li>
-            <li>Short description of the issue</li>
-            <li>Screenshots or screen recordings if available</li>
-          </ul>
-        </div>
-
-        <div class="lang-content" data-lang="zh">
-          <h2>联系支持前建议准备的信息</h2>
-          <ul>
-            <li>设备型号</li>
-            <li>iOS 或 watchOS 版本</li>
-            <li>Recova 应用版本号</li>
-            <li>问题简述</li>
-            <li>如有可能，请附上截图或录屏</li>
-          </ul>
-        </div>
-      </article>
-
-      <article class="section">
-        <div class="lang-content" data-lang="en">
-          <h2>Frequently asked questions</h2>
-          <h3>Health data is not showing up</h3>
-          <p>
-            Please check that HealthKit permission is enabled for Recova and that the relevant
-            data exists in the Health app.
-          </p>
-          <h3>Recommendations look incomplete</h3>
-          <p>
-            Training load and recovery guidance depends on available HealthKit records such as
-            workouts, heart rate, sleep, and related metrics.
-          </p>
-          <h3>How do I manage a subscription?</h3>
-          <p>
-            If you subscribed through the App Store, subscription billing, renewal, and
-            cancellation are managed through your Apple account subscription settings.
-          </p>
-        </div>
-
-        <div class="lang-content" data-lang="zh">
-          <h2>常见问题</h2>
-          <h3>为什么看不到健康数据？</h3>
-          <p>
-            请确认已为 Recova 开启 HealthKit 权限，并且相关数据已经存在于“健康”应用中。
-          </p>
-          <h3>为什么建议内容不完整？</h3>
-          <p>
-            运动负荷和恢复建议依赖可用的 HealthKit 数据，例如运动记录、心率、睡眠和其他相关指标。
-          </p>
-          <h3>如何管理订阅？</h3>
-          <p>
-            如果你通过 App Store 订阅，订阅的续费、取消和账单管理需要在 Apple 账户的订阅设置中完成。
-          </p>
-        </div>
-      </article>
+      </div>
     </section>
 
-    <footer class="footer">
+    <section class="detail-shell detail-shell-editorial">
+      <aside class="detail-sidebar">
+        <article class="sidebar-card">
+          <div class="lang-content" data-lang="en">
+            <p class="eyebrow">Contact</p>
+            <div class="sidebar-value">SUPPORT_EMAIL_PLACEHOLDER</div>
+            <p>Developer: long han<br>Typical response time: within 3 business days.</p>
+          </div>
+          <div class="lang-content" data-lang="zh">
+            <p class="eyebrow">联系方式</p>
+            <div class="sidebar-value">SUPPORT_EMAIL_PLACEHOLDER</div>
+            <p>开发者：long han<br>通常会在 3 个工作日内回复。</p>
+          </div>
+        </article>
+
+        <article class="sidebar-card">
+          <div class="lang-content" data-lang="en">
+            <p class="eyebrow">Before you write</p>
+            <p>Include device model, iOS or watchOS version, app version, a short description of the issue, and screenshots or screen recordings when possible.</p>
+          </div>
+          <div class="lang-content" data-lang="zh">
+            <p class="eyebrow">来信前建议准备</p>
+            <p>建议附上设备型号、iOS 或 watchOS 版本、Recova 版本号、问题简述，以及可提供的截图或录屏。</p>
+          </div>
+        </article>
+      </aside>
+
+      <div>
+        <article class="detail-section">
+          <div class="lang-content" data-lang="en">
+            <h2>Contact</h2>
+            <p>Developer: long han</p>
+            <p>Support email: <a href="mailto:SUPPORT_EMAIL_PLACEHOLDER">SUPPORT_EMAIL_PLACEHOLDER</a></p>
+            <p>Typical response time: within 3 business days.</p>
+          </div>
+          <div class="lang-content" data-lang="zh">
+            <h2>联系方式</h2>
+            <p>开发者：long han</p>
+            <p>支持邮箱：<a href="mailto:SUPPORT_EMAIL_PLACEHOLDER">SUPPORT_EMAIL_PLACEHOLDER</a></p>
+            <p>通常会在 3 个工作日内回复。</p>
+          </div>
+        </article>
+
+        <article class="detail-section">
+          <div class="lang-content" data-lang="en">
+            <h2>Before you contact support</h2>
+            <ul>
+              <li>Device model</li>
+              <li>iOS or watchOS version</li>
+              <li>Recova app version</li>
+              <li>Short description of the issue</li>
+              <li>Screenshots or screen recordings if available</li>
+            </ul>
+          </div>
+          <div class="lang-content" data-lang="zh">
+            <h2>联系支持前建议准备的信息</h2>
+            <ul>
+              <li>设备型号</li>
+              <li>iOS 或 watchOS 版本</li>
+              <li>Recova 应用版本号</li>
+              <li>问题简述</li>
+              <li>如有可能，请附上截图或录屏</li>
+            </ul>
+          </div>
+        </article>
+
+        <article class="detail-section">
+          <div class="lang-content" data-lang="en">
+            <h2>Frequently asked questions</h2>
+            <h3>Health data is not showing up</h3>
+            <p>Please check that HealthKit permission is enabled for Recova and that the relevant data exists in the Health app.</p>
+            <h3>Recommendations look incomplete</h3>
+            <p>Training load and recovery guidance depends on available HealthKit records such as workouts, heart rate, sleep, and related metrics.</p>
+            <h3>How do I manage a subscription?</h3>
+            <p>If you subscribed through the App Store, subscription billing, renewal, and cancellation are managed through your Apple account subscription settings.</p>
+          </div>
+          <div class="lang-content" data-lang="zh">
+            <h2>常见问题</h2>
+            <h3>为什么看不到健康数据？</h3>
+            <p>请确认已为 Recova 开启 HealthKit 权限，并且相关数据已经存在于“健康”应用中。</p>
+            <h3>为什么建议内容不完整？</h3>
+            <p>运动负荷和恢复建议依赖可用的 HealthKit 数据，例如运动记录、心率、睡眠和其他相关指标。</p>
+            <h3>如何管理订阅？</h3>
+            <p>如果你通过 App Store 订阅，订阅的续费、取消和账单管理需要在 Apple 账户的订阅设置中完成。</p>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <footer class="page-footer">
+      <div class="footer-brand">
+        <span class="brand-mark" aria-hidden="true">
+          <svg width="28" height="28" viewBox="0 0 28 28" fill="none">
+            <circle cx="14" cy="14" r="13" stroke="currentColor" stroke-width="1.5"></circle>
+            <path d="M6 14 A8 8 0 0 1 22 14" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"></path>
+            <circle cx="14" cy="14" r="2" fill="currentColor"></circle>
+          </svg>
+        </span>
+        <span>Recova</span>
+      </div>
       <div class="footer-links">
         <div class="lang-content" data-lang="en">
           <a href="./index.html">Home</a>
+          <a href="./support.html">Support</a>
           <a href="./privacy.html">Privacy Policy</a>
+          <a href="https://apps.apple.com" target="_blank" rel="noreferrer">App Store</a>
         </div>
         <div class="lang-content" data-lang="zh">
           <a href="./index.html">首页</a>
+          <a href="./support.html">技术支持</a>
           <a href="./privacy.html">隐私政策</a>
+          <a href="https://apps.apple.com" target="_blank" rel="noreferrer">App Store</a>
         </div>
       </div>
     </footer>
