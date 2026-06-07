@@ -3,16 +3,18 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Recova</title>
-  <meta name="description" content="Recova 读取 Apple Watch 的心率、睡眠与运动数据，量化训练负荷与恢复状态，给出克制而明确的训练建议。">
+  <title>SwimTrace</title>
+  <meta name="description" content="SwimTrace 面向泳池游泳者，围绕游泳表现与运动恢复两大主题：净配速、SWOLF、分泳姿、个人最佳与进步趋势，配合 HRV、睡眠与恢复。所有数据本地处理，不上传服务器。">
+  <link rel="icon" type="image/svg+xml" href="./favicon.svg">
+  <link rel="apple-touch-icon" href="./apple-touch-icon.png">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;500;600;700&family=Noto+Sans+SC:wght@400;500;600;700&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
   <script>
     (function () {
       var language = "en";
       try {
-        var saved = localStorage.getItem("recova-language");
+        var saved = localStorage.getItem("swimtrace-language");
         if (saved === "en" || saved === "zh") {
           language = saved;
         } else {
@@ -33,29 +35,33 @@
 <body class="home-editorial">
   <main class="page page-home">
     <header class="page-topbar page-topbar-home">
-      <a class="brand-link" href="./index.html" aria-label="Recova home">
+      <a class="brand-link" href="./index.html" aria-label="SwimTrace home">
         <span class="brand-mark" aria-hidden="true">
-          <svg width="28" height="28" viewBox="0 0 28 28" fill="none">
-            <circle cx="14" cy="14" r="13" stroke="currentColor" stroke-width="1.5"></circle>
-            <path d="M6 14 A8 8 0 0 1 22 14" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"></path>
-            <circle cx="14" cy="14" r="2" fill="currentColor"></circle>
+          <svg class="app-icon" width="28" height="28" viewBox="0 0 40 40" fill="none" role="img" aria-hidden="true">
+            <rect width="40" height="40" rx="9" fill="#6b9b7e"></rect>
+            <circle cx="20" cy="20" r="12.5" fill="none" stroke="#f0ece0" stroke-width="2.6" opacity="0.32"></circle>
+            <path d="M21.1 7.55 A12.5 12.5 0 1 1 7.93 23.24" fill="none" stroke="#f0ece0" stroke-width="2.6" stroke-linecap="round"></path>
+            <path d="M13.5 18.2 q3.2 -2.6 6.5 0 t6.5 0" fill="none" stroke="#f0ece0" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"></path>
+            <path d="M13.5 21.8 q3.2 -2.6 6.5 0 t6.5 0" fill="none" stroke="#f0ece0" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"></path>
           </svg>
         </span>
-        <span>Recova</span>
+        <span>SwimTrace</span>
       </a>
 
       <div class="topbar-group topbar-group-home">
         <nav class="topbar-nav" aria-label="Primary">
           <div class="lang-content" data-lang="en">
-            <a class="topbar-link" href="#product-overview">Features</a>
-            <a class="topbar-link" href="#how-it-works">How it works</a>
-            <a class="topbar-link" href="./support.html">Support</a>
+            <a class="topbar-link" href="#themes">Two themes</a>
+            <a class="topbar-link" href="#capabilities">Features</a>
+            <a class="topbar-link" href="#pricing">Pricing</a>
+            <a class="topbar-link" href="#support">Support</a>
             <a class="topbar-link" href="./privacy.html">Privacy</a>
           </div>
           <div class="lang-content" data-lang="zh">
-            <a class="topbar-link" href="#product-overview">功能</a>
-            <a class="topbar-link" href="#how-it-works">使用场景</a>
-            <a class="topbar-link" href="./support.html">支持</a>
+            <a class="topbar-link" href="#themes">双主题</a>
+            <a class="topbar-link" href="#capabilities">功能</a>
+            <a class="topbar-link" href="#pricing">订阅</a>
+            <a class="topbar-link" href="#support">支持</a>
             <a class="topbar-link" href="./privacy.html">隐私</a>
           </div>
         </nav>
@@ -73,17 +79,17 @@
     <section class="landing-hero">
       <div class="hero-copy">
         <div class="hero-badges">
-          <span class="hero-badge" data-lang="en">For Apple Watch · v1.2</span>
-          <span class="hero-badge" data-lang="zh">适用于 Apple Watch · v1.2</span>
+          <span class="hero-badge" data-lang="en">For pool swimmers · Apple Watch</span>
+          <span class="hero-badge" data-lang="zh">为泳池游泳者打造 · Apple Watch</span>
         </div>
 
-        <h1 class="display-title" data-lang="en">Train hard.<br>Recover with<br><span class="serif-accent">clarity.</span></h1>
-        <h1 class="display-title" data-lang="zh">训练之外，<br>更该懂得<br><span class="serif-accent">怎么 recover.</span></h1>
+        <h1 class="display-title" data-lang="en">See your<br>swimming<br><span class="serif-accent">progress.</span></h1>
+        <h1 class="display-title" data-lang="zh">看见你的<br><span class="serif-accent">游泳进步。</span></h1>
         <p class="hero-body" data-lang="en">
-          Recova reads heart rate, sleep, and workout signals from Apple Watch, turns each session into training load and recovery context, and tells you whether today is for pushing, holding, or resting.
+          SwimTrace turns each pool session into <em>net pace</em>, SWOLF, per-stroke splits, and personal bests — then shows it against your history. Not just a log: a clear picture of whether you are actually getting faster.
         </p>
         <p class="hero-body" data-lang="zh">
-          Recova 读取 Apple Watch 上的心率、睡眠与运动数据，量化每一次的 <em>training load</em> 与 <em>recovery</em>，告诉你今天该推、该缓，还是该歇。
+          SwimTrace 把每一次泳池训练还原成 <em>净配速</em>、SWOLF、分泳姿配速与个人最佳，并和你的历史成绩对比。不只是记录，而是看见你到底有没有变快。
         </p>
 
         <div class="hero-actions">
@@ -104,28 +110,28 @@
 
         <div class="hero-stats">
           <div class="hero-stat" data-lang="en">
-            <strong>72h</strong>
-            <span>analysis window</span>
+            <strong>4</strong>
+            <span>strokes tracked apart</span>
           </div>
           <div class="hero-stat" data-lang="en">
-            <strong>14+</strong>
-            <span>health signals</span>
+            <strong class="swim-accent">0</strong>
+            <span>data uploaded</span>
           </div>
           <div class="hero-stat" data-lang="en">
-            <strong>0</strong>
-            <span>manual input</span>
+            <strong>100%</strong>
+            <span>on-device</span>
           </div>
           <div class="hero-stat" data-lang="zh">
-            <strong>72h</strong>
-            <span>连续分析窗口</span>
+            <strong>4</strong>
+            <span>种泳姿严格分列</span>
           </div>
           <div class="hero-stat" data-lang="zh">
-            <strong>14+</strong>
-            <span>种健康指标</span>
+            <strong class="swim-accent">0</strong>
+            <span>数据上传服务器</span>
           </div>
           <div class="hero-stat" data-lang="zh">
-            <strong>0</strong>
-            <span>手动录入</span>
+            <strong>100%</strong>
+            <span>本地处理</span>
           </div>
         </div>
       </div>
@@ -133,260 +139,568 @@
       <div class="hero-visual" aria-hidden="true">
         <div class="hero-glow"></div>
         <div class="phone-mock">
-          <div class="phone-island" aria-hidden="true"></div>
           <div class="phone-screen">
-            <img class="phone-shot" src="./screen-today.png" alt="Recova today screen">
+            <img class="phone-shot" src="./swim-detail.png" alt="SwimTrace swim session — total distance, net pace, and per-stroke splits">
           </div>
         </div>
       </div>
     </section>
 
-    <section class="editorial-section" id="product-overview">
-      <div class="section-head">
-        <p class="eyebrow" data-lang="en">Core features</p>
-        <p class="eyebrow" data-lang="zh">Core features</p>
-        <h2 class="section-title" data-lang="en">Three jobs,<span class="serif-accent"> done well.</span></h2>
-        <h2 class="section-title" data-lang="zh">三件事，<span class="serif-accent">做到位。</span></h2>
-        <p class="section-copy" data-lang="en">Recova is not another step counter. It focuses on the three things athletes actually need to understand.</p>
-        <p class="section-copy" data-lang="zh">我们不做第十八个计步器。Recova 专注在训练者真正关心的三件事。</p>
+    <!-- ============================ TWO THEMES ============================ -->
+    <section class="editorial-section" id="themes">
+      <div class="section-head" data-reveal>
+        <p class="eyebrow" data-lang="en">Two themes, one app</p>
+        <p class="eyebrow" data-lang="zh">两大主题，一个 App</p>
+        <h2 class="section-title" data-lang="en">Swim performance,<br>backed by <span class="serif-accent">recovery.</span></h2>
+        <h2 class="section-title" data-lang="zh">游泳表现，<br>由<span class="serif-accent">恢复</span>支撑。</h2>
+        <p class="section-copy" data-lang="en">Performance is the main line — pace, splits, bests. Recovery is the supporting line that tells you when your body is ready to chase them.</p>
+        <p class="section-copy" data-lang="zh">游泳表现是主线——配速、分段、个人最佳；运动恢复是支撑线——告诉你身体什么时候准备好去冲它。</p>
+      </div>
+
+      <div class="theme-grid">
+        <article class="theme-card is-swim" data-reveal>
+          <span class="theme-tag is-swim" data-lang="en">Swim performance · main line</span>
+          <span class="theme-tag is-swim" data-lang="zh">游泳表现 · 主线</span>
+          <h3 data-lang="en">Every length, measured honestly</h3>
+          <h3 data-lang="zh">每一趟，都被诚实地量化</h3>
+          <p data-lang="en">From the moment you push off, SwimTrace reads your swim and breaks it down the way swimmers actually think about it.</p>
+          <p data-lang="zh">从你蹬壁出发的那一刻起，SwimTrace 就按游泳者真正在意的方式拆解这次训练。</p>
+          <ul class="theme-points">
+            <li data-lang="en">Net pace (rest removed)</li>
+            <li data-lang="en">SWOLF efficiency</li>
+            <li data-lang="en">Distance &amp; lengths</li>
+            <li data-lang="en">Per-stroke splits</li>
+            <li data-lang="en">Personal bests</li>
+            <li data-lang="en">Progress trends</li>
+            <li data-lang="zh">净配速（去掉组间休息）</li>
+            <li data-lang="zh">SWOLF 划水效率</li>
+            <li data-lang="zh">距离与圈数</li>
+            <li data-lang="zh">分泳姿配速</li>
+            <li data-lang="zh">个人最佳</li>
+            <li data-lang="zh">进步趋势</li>
+          </ul>
+          <div class="theme-media">
+            <div class="phone-mock">
+              <div class="phone-screen">
+                <img class="phone-shot" src="./swim-activity.png" alt="SwimTrace activity list with weekly totals and personal bests" loading="lazy">
+              </div>
+            </div>
+          </div>
+        </article>
+
+        <article class="theme-card is-recovery" data-reveal>
+          <span class="theme-tag is-recovery" data-lang="en">Recovery · supporting line</span>
+          <span class="theme-tag is-recovery" data-lang="zh">运动恢复 · 支撑线</span>
+          <h3 data-lang="en">Know when you are ready</h3>
+          <h3 data-lang="zh">知道自己什么时候准备好</h3>
+          <p data-lang="en">Readiness, HRV, sleep, and load are read from Apple Health so a hard swim lands on a day your body can actually take it.</p>
+          <p data-lang="zh">运动准备度、HRV、睡眠与负荷来自 Apple Health，让强度落在身体真正扛得住的那天。</p>
+          <ul class="theme-points">
+            <li data-lang="en">Training readiness</li>
+            <li data-lang="en">Heart-rate variability (HRV)</li>
+            <li data-lang="en">Sleep quality</li>
+            <li data-lang="en">Load &amp; recovery balance</li>
+            <li data-lang="zh">运动准备度</li>
+            <li data-lang="zh">心率变异性（HRV）</li>
+            <li data-lang="zh">睡眠质量</li>
+            <li data-lang="zh">负荷与恢复平衡</li>
+          </ul>
+          <div class="theme-media">
+            <div class="phone-mock">
+              <div class="phone-screen">
+                <img class="phone-shot" src="./swim-today.png" alt="SwimTrace today screen — readiness, HRV, and your latest swim" loading="lazy">
+              </div>
+            </div>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <!-- ============================ DIFFERENCES ============================ -->
+    <section class="editorial-section" id="difference">
+      <div class="section-head" data-reveal>
+        <p class="eyebrow" data-lang="en">Why it is different</p>
+        <p class="eyebrow" data-lang="zh">和原生有何不同</p>
+        <h2 class="section-title" data-lang="en">Four things the watch<br><span class="serif-accent">won't tell you.</span></h2>
+        <h2 class="section-title" data-lang="zh">原生不会告诉你的<br><span class="serif-accent">四件事。</span></h2>
+        <p class="section-copy" data-lang="en">Apple Watch records the swim. SwimTrace reads it the way a coach would.</p>
+        <p class="section-copy" data-lang="zh">Apple Watch 把这次游泳记下来；SwimTrace 像教练一样把它读懂。</p>
       </div>
 
       <div class="feature-stack">
-        <article class="feature-row">
+        <article class="feature-row" data-reveal>
           <div class="feature-index">01</div>
           <div>
-            <h3 class="feature-name">Load</h3>
-            <p class="feature-subtitle" data-lang="en">Measure your training load</p>
-            <p class="feature-subtitle" data-lang="zh">量化你的训练负荷</p>
+            <h3 class="feature-name">Net pace</h3>
+            <p class="feature-subtitle" data-lang="en">Pace that understands intervals</p>
+            <p class="feature-subtitle" data-lang="zh">懂间歇的净配速</p>
           </div>
           <div>
-            <p class="feature-description" data-lang="en">Using heart-rate reserve, duration, and a TRIMP model, each session becomes a comparable training-load score. Long-term trends stay legible at a glance.</p>
-            <p class="feature-description" data-lang="zh">基于心率储备、时长与 TRIMP 模型，将每一次运动折算为统一的训练负荷分数。长期趋势一目了然。</p>
-          </div>
-          <div class="feature-metric" style="--feature-color:#ef6c3a;">
-            <strong>+42</strong>
-            <span data-lang="en">TRIMP this week</span>
-            <span data-lang="zh">本周 TRIMP</span>
-          </div>
-        </article>
-
-        <article class="feature-row">
-          <div class="feature-index">02</div>
-          <div>
-            <h3 class="feature-name">Recovery</h3>
-            <p class="feature-subtitle" data-lang="en">Read recovery with context</p>
-            <p class="feature-subtitle" data-lang="zh">读懂身体的修复状态</p>
-          </div>
-          <div>
-            <p class="feature-description" data-lang="en">HRV, resting heart rate, and sleep stages are folded into a 0-100 recovery score, so you know before the next session whether the body is actually ready.</p>
-            <p class="feature-description" data-lang="zh">HRV、静息心率、睡眠分期融合成一个 0-100 的恢复分，让你在下一次训练前就知道身体是否准备好。</p>
+            <p class="feature-description" data-lang="en">Rest between sets quietly inflates your average pace. SwimTrace removes the rest and shows the pace you actually swam — so a real effort isn't watered down by standing at the wall.</p>
+            <p class="feature-description" data-lang="zh">组间休息会悄悄拉低你的平均配速。SwimTrace 去掉休息时间，还原你真正游出来的配速——真实强度不会被池边的等待稀释。</p>
           </div>
           <div class="feature-metric">
-            <strong>84</strong>
-            <span data-lang="en">recovery today</span>
-            <span data-lang="zh">今日恢复</span>
+            <strong class="swim-accent">1:38</strong>
+            <span data-lang="en">net /100m</span>
+            <span data-lang="zh">净配速 /100m</span>
           </div>
         </article>
 
-        <article class="feature-row">
+        <article class="feature-row" data-reveal>
+          <div class="feature-index">02</div>
+          <div>
+            <h3 class="feature-name">Progress</h3>
+            <p class="feature-subtitle" data-lang="en">See yourself getting faster</p>
+            <p class="feature-subtitle" data-lang="zh">看见自己在进步</p>
+          </div>
+          <div>
+            <p class="feature-description" data-lang="en">Every session is placed next to your history and personal bests. Instead of a wall of numbers, you see the line that matters: are you improving, holding, or slipping?</p>
+            <p class="feature-description" data-lang="zh">每次训练都会和你的历史成绩、个人最佳并排放在一起。你看到的不是一堆数字，而是最关键的那条线：在进步、在保持，还是在退步？</p>
+          </div>
+          <div class="feature-metric">
+            <strong>+6%</strong>
+            <span data-lang="en">vs last month</span>
+            <span data-lang="zh">较上月</span>
+          </div>
+        </article>
+
+        <article class="feature-row" data-reveal>
           <div class="feature-index">03</div>
           <div>
-            <h3 class="feature-name">Guidance</h3>
-            <p class="feature-subtitle" data-lang="en">Tell you the next move</p>
-            <p class="feature-subtitle" data-lang="zh">给出下一步该做什么</p>
+            <h3 class="feature-name">Per stroke</h3>
+            <p class="feature-subtitle" data-lang="en">Strokes never get mixed</p>
+            <p class="feature-subtitle" data-lang="zh">分泳姿不混算</p>
           </div>
           <div>
-            <p class="feature-description" data-lang="en">Short term, it tells you whether today is for training, dialing back, or resting. Long term, it frames four-week blocks as Base, Build, Peak, and Recover.</p>
-            <p class="feature-description" data-lang="zh">短期告诉你今天练不练、练多重；长期按四周为周期建议 Base / Build / Peak / Recover。像有个教练在你手腕上。</p>
+            <p class="feature-description" data-lang="en">Freestyle, breaststroke, backstroke, and butterfly are kept strictly apart — and so is every pool length. Your free pace is never averaged together with your breaststroke.</p>
+            <p class="feature-description" data-lang="zh">自由泳、蛙泳、仰泳、蝶泳严格分列，每种池长也分开统计。你的自由泳配速，绝不会和蛙泳被平均到一起。</p>
           </div>
-          <div class="feature-metric" style="--feature-color:#0a0a0a;">
-            <strong data-lang="en">Push</strong>
-            <strong data-lang="zh">Push</strong>
-            <span data-lang="en">today's call</span>
-            <span data-lang="zh">今日建议</span>
+          <div class="feature-metric">
+            <strong class="swim-accent">4</strong>
+            <span data-lang="en">strokes split out</span>
+            <span data-lang="zh">泳姿独立统计</span>
+          </div>
+        </article>
+
+        <article class="feature-row" data-reveal>
+          <div class="feature-index">04</div>
+          <div>
+            <h3 class="feature-name">Guardrails</h3>
+            <p class="feature-subtitle" data-lang="en">Bad data, caught for you</p>
+            <p class="feature-subtitle" data-lang="zh">替你把关数据</p>
+          </div>
+          <div>
+            <p class="feature-description" data-lang="en">A misread turn or a physically impossible split shouldn't become a fake personal best. SwimTrace flags those segments automatically and leaves them out of your results.</p>
+            <p class="feature-description" data-lang="zh">一次误判的转身、一段物理上不可能的分段，不该变成假的个人最佳。SwimTrace 会自动标注这些异常分段，并把它们排除在成绩之外。</p>
+          </div>
+          <div class="feature-metric">
+            <strong>Auto</strong>
+            <span data-lang="en">anomaly flagging</span>
+            <span data-lang="zh">异常自动标注</span>
           </div>
         </article>
       </div>
     </section>
 
-    <section class="editorial-section" id="how-it-works">
-      <div class="section-head">
-        <p class="eyebrow" data-lang="en">How it works</p>
-        <p class="eyebrow" data-lang="zh">How it works</p>
-        <h2 class="section-title" data-lang="en">A normal week,<br><span class="serif-accent">three moments.</span></h2>
-        <h2 class="section-title" data-lang="zh">一个普通周，<br><span class="serif-accent">三个瞬间。</span></h2>
+    <!-- ============================ CAPABILITIES ============================ -->
+    <section class="editorial-section" id="capabilities">
+      <div class="section-head" data-reveal>
+        <p class="eyebrow" data-lang="en">Everything inside</p>
+        <p class="eyebrow" data-lang="zh">完整功能</p>
+        <h2 class="section-title" data-lang="en">The full <span class="serif-accent">picture.</span></h2>
+        <h2 class="section-title" data-lang="zh">完整的<span class="serif-accent">全貌。</span></h2>
+        <p class="section-copy" data-lang="en">Swim metrics in blue, recovery context in green — everything works together, all on your device.</p>
+        <p class="section-copy" data-lang="zh">蓝色是游泳指标，绿色是恢复信息——它们彼此配合，全部在你的设备上完成。</p>
       </div>
 
-      <div class="scenario-grid">
-        <article class="scenario-card">
-          <div class="scenario-top">
-            <div>
-              <p class="scenario-time">07:20</p>
-              <p class="scenario-day" data-lang="en">Monday</p>
-              <p class="scenario-day" data-lang="zh">周一</p>
-            </div>
-            <span class="status-pill status-hold" data-lang="en">Hold</span>
-            <span class="status-pill status-hold" data-lang="zh">保守</span>
-          </div>
-          <div class="scenario-content">
-            <h3 data-lang="en">Mileage week, early morning</h3>
-            <h3 data-lang="zh">跑量周，清晨醒来</h3>
-            <p data-lang="en">HRV is 12% below baseline and last week's cumulative load ran high. Recova recommends swapping the planned 10k intervals for 45 minutes of Z2 aerobic work.</p>
-            <p data-lang="zh">HRV 比基线低 12%，上周累计负荷偏高。Recova 建议今天把 10k 间歇换成 45 分钟 Z2 有氧。</p>
-          </div>
-          <div class="scenario-visual" aria-hidden="true">
-            <div class="phone-mock">
-              <div class="phone-island" aria-hidden="true"></div>
-              <div class="phone-screen">
-                <img class="phone-shot" src="./screen-today.png" alt="Recova status screen">
-              </div>
-            </div>
-          </div>
+      <div class="capability-grid">
+        <article class="capability-card is-swim" data-reveal>
+          <span class="cap-icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 12c2-2 4-2 6 0s4 2 6 0 4-2 6 0"/><path d="M2 17c2-2 4-2 6 0s4 2 6 0 4-2 6 0"/></svg>
+          </span>
+          <h3 data-lang="en">Net pace</h3>
+          <h3 data-lang="zh">净配速</h3>
+          <p data-lang="en">Rest removed, so each interval reflects real swimming intensity.</p>
+          <p data-lang="zh">去掉休息时间，让每组都反映真实的游泳强度。</p>
         </article>
 
-        <article class="scenario-card">
-          <div class="scenario-top">
-            <div>
-              <p class="scenario-time">18:45</p>
-              <p class="scenario-day" data-lang="en">Thursday</p>
-              <p class="scenario-day" data-lang="zh">周四</p>
-            </div>
-            <span class="status-pill status-good" data-lang="en">Good</span>
-            <span class="status-pill status-good" data-lang="zh">良好</span>
-          </div>
-          <div class="scenario-content">
-            <h3 data-lang="en">Two hours after strength work</h3>
-            <h3 data-lang="zh">力量训练后两小时</h3>
-            <p data-lang="en">Heart-rate recovery has normalized and the lower-body load is being absorbed well. Tomorrow's moderate cycling session can stay on plan.</p>
-            <p data-lang="zh">心率恢复曲线正常，下肢训练负荷吸收良好。明日中等强度骑行可按计划进行。</p>
-          </div>
-          <div class="scenario-visual" aria-hidden="true">
-            <div class="phone-mock">
-              <div class="phone-island" aria-hidden="true"></div>
-              <div class="phone-screen">
-                <img class="phone-shot" src="./screen-summary.png" alt="Recova monthly summary screen">
-              </div>
-            </div>
-          </div>
+        <article class="capability-card is-swim" data-reveal>
+          <span class="cap-icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 18V8m5 10V5m5 13v-7m5 7V9"/></svg>
+          </span>
+          <h3 data-lang="en">SWOLF</h3>
+          <h3 data-lang="zh">SWOLF 效率</h3>
+          <p data-lang="en">Stroke efficiency per length, tracked over time.</p>
+          <p data-lang="zh">每趟的划水效率，随时间持续追踪。</p>
         </article>
 
-        <article class="scenario-card">
-          <div class="scenario-top">
-            <div>
-              <p class="scenario-time">23:10</p>
-              <p class="scenario-day" data-lang="en">Saturday</p>
-              <p class="scenario-day" data-lang="zh">周六</p>
-            </div>
-            <span class="status-pill status-recover" data-lang="en">Recover</span>
-            <span class="status-pill status-recover" data-lang="zh">恢复期</span>
-          </div>
-          <div class="scenario-content">
-            <h3 data-lang="en">Long endurance day finished</h3>
-            <h3 data-lang="zh">长距离拉练完成</h3>
-            <p data-lang="en">Weekly TRIMP has reached 380 and is now near the top of the Peak band. The next 72 hours shift into active recovery with only light movement.</p>
-            <p data-lang="zh">当周 TRIMP 达到 380，处于 Peak 上沿。未来 72 小时进入主动恢复期，只做轻松活动。</p>
-          </div>
-          <div class="scenario-visual" aria-hidden="true">
-            <div class="phone-mock">
-              <div class="phone-island" aria-hidden="true"></div>
-              <div class="phone-screen">
-                <img class="phone-shot" src="./screen-trends.png" alt="Recova trends screen">
-              </div>
-            </div>
-          </div>
+        <article class="capability-card is-swim" data-reveal>
+          <span class="cap-icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12h4l3 7 4-14 3 7h4"/></svg>
+          </span>
+          <h3 data-lang="en">Distance &amp; lengths</h3>
+          <h3 data-lang="zh">距离与圈数</h3>
+          <p data-lang="en">Totals and per-length detail for every session.</p>
+          <p data-lang="zh">每次训练的总距离与逐趟明细。</p>
+        </article>
+
+        <article class="capability-card is-swim" data-reveal>
+          <span class="cap-icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="16" rx="2"/><path d="M3 10h18M9 4v16"/></svg>
+          </span>
+          <h3 data-lang="en">Per-stroke splits</h3>
+          <h3 data-lang="zh">分泳姿配速</h3>
+          <p data-lang="en">Free, breast, back, fly — each stroke and pool length kept separate.</p>
+          <p data-lang="zh">自由泳、蛙泳、仰泳、蝶泳——每种泳姿、每种池长分开统计。</p>
+        </article>
+
+        <article class="capability-card is-swim" data-reveal>
+          <span class="cap-icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M8 21h8M12 17v4M7 4h10v4a5 5 0 0 1-10 0zM7 6H4v2a3 3 0 0 0 3 3M17 6h3v2a3 3 0 0 1-3 3"/></svg>
+          </span>
+          <h3 data-lang="en">Personal bests</h3>
+          <h3 data-lang="zh">个人最佳</h3>
+          <p data-lang="en">Bests by distance and stroke, with the date you set them.</p>
+          <p data-lang="zh">按距离与泳姿记录个人最佳，并标注创造日期。</p>
+        </article>
+
+        <article class="capability-card is-swim" data-reveal>
+          <span class="cap-icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 17l6-6 4 4 7-8"/><path d="M21 7v5h-5"/></svg>
+          </span>
+          <h3 data-lang="en">Progress trends</h3>
+          <h3 data-lang="zh">进步趋势</h3>
+          <p data-lang="en">Long-term lines that show whether you are truly improving.</p>
+          <p data-lang="zh">长期趋势曲线，看清你是否真的在进步。</p>
+        </article>
+
+        <article class="capability-card is-recovery" data-reveal>
+          <span class="cap-icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>
+          </span>
+          <h3 data-lang="en">Readiness</h3>
+          <h3 data-lang="zh">运动准备度</h3>
+          <p data-lang="en">A daily read on whether your body is ready to push.</p>
+          <p data-lang="zh">每天判断身体是否准备好加量。</p>
+        </article>
+
+        <article class="capability-card is-recovery" data-reveal>
+          <span class="cap-icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12h4l2-5 3 10 2-6 2 3h5"/></svg>
+          </span>
+          <h3 data-lang="en">HRV &amp; heart rate</h3>
+          <h3 data-lang="zh">HRV 与心率</h3>
+          <p data-lang="en">HRV and resting heart rate as recovery signals.</p>
+          <p data-lang="zh">以 HRV 和静息心率作为恢复信号。</p>
+        </article>
+
+        <article class="capability-card is-recovery" data-reveal>
+          <span class="cap-icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"/></svg>
+          </span>
+          <h3 data-lang="en">Sleep &amp; load</h3>
+          <h3 data-lang="zh">睡眠与负荷</h3>
+          <p data-lang="en">Sleep quality and training load, balanced against recovery.</p>
+          <p data-lang="zh">睡眠质量与训练负荷，与恢复状态相互平衡。</p>
         </article>
       </div>
     </section>
 
+    <!-- ============================ PRIVACY STANCE ============================ -->
+    <section class="editorial-section" id="privacy-stance">
+      <div class="privacy-band" data-reveal>
+        <div>
+          <p class="eyebrow" data-lang="en">Privacy</p>
+          <p class="eyebrow" data-lang="zh">隐私</p>
+          <h2 class="section-title" data-lang="en">Your data <span class="serif-accent">stays</span> with you.</h2>
+          <h2 class="section-title" data-lang="zh">你的数据，<span class="serif-accent">留在你这里。</span></h2>
+          <p class="privacy-lead" data-lang="en">SwimTrace is built to process everything on your device. There is nothing to log into, and nothing is sent to a server.</p>
+          <p class="privacy-lead" data-lang="zh">SwimTrace 的设计是把一切都放在你的设备上处理。没有账号要登录，也没有任何数据发往服务器。</p>
+          <a class="action-link privacy-link" href="./privacy.html" data-lang="en">Read the full privacy policy →</a>
+          <a class="action-link privacy-link" href="./privacy.html" data-lang="zh">查看完整隐私政策 →</a>
+        </div>
+        <ul class="privacy-points">
+          <li>
+            <strong data-lang="en">Processed on your device</strong>
+            <strong data-lang="zh">全部在你的设备上处理</strong>
+            <span data-lang="en">All analysis happens locally — there is no SwimTrace server.</span>
+            <span data-lang="zh">所有分析都在本地完成——没有 SwimTrace 服务器。</span>
+          </li>
+          <li>
+            <strong data-lang="en">No third-party SDKs</strong>
+            <strong data-lang="zh">无第三方 SDK</strong>
+            <span data-lang="en">No analytics, no advertising, no tracking SDKs.</span>
+            <span data-lang="zh">不接入统计、广告或追踪类 SDK。</span>
+          </li>
+          <li>
+            <strong data-lang="en">No account, no tracking</strong>
+            <strong data-lang="zh">无账户、无追踪</strong>
+            <span data-lang="en">No sign-up, no name or email collection, no location tracking.</span>
+            <span data-lang="zh">无需注册，不收集姓名或邮箱，不进行位置追踪。</span>
+          </li>
+          <li>
+            <strong data-lang="en">Subscriptions via Apple</strong>
+            <strong data-lang="zh">订阅经 Apple StoreKit</strong>
+            <span data-lang="en">Billing is handled by Apple StoreKit — we never see payment details.</span>
+            <span data-lang="zh">支付由 Apple StoreKit 处理——我们不会接触你的支付信息。</span>
+          </li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- ============================ PRICING ============================ -->
+    <section class="editorial-section" id="pricing">
+      <div class="section-head" data-reveal>
+        <p class="eyebrow" data-lang="en">Pricing</p>
+        <p class="eyebrow" data-lang="zh">订阅方案</p>
+        <h2 class="section-title" data-lang="en">Free to start,<br><span class="serif-accent">more when you want it.</span></h2>
+        <h2 class="section-title" data-lang="zh">免费开始，<br><span class="serif-accent">想要更多再升级。</span></h2>
+        <p class="section-copy" data-lang="en">Core swim metrics stay free. Premium adds deeper history, trends, and recovery integration.</p>
+        <p class="section-copy" data-lang="zh">核心游泳指标永久免费；高级版提供更深入的历史、趋势与恢复整合。</p>
+      </div>
+
+      <div class="plan-grid">
+        <article class="plan-card" data-reveal>
+          <div class="plan-head">
+            <span class="plan-name" data-lang="en">Free</span>
+            <span class="plan-name" data-lang="zh">免费版</span>
+          </div>
+          <div class="plan-price" data-lang="en">$0<span> / forever</span></div>
+          <div class="plan-price" data-lang="zh">¥0<span> / 永久</span></div>
+          <ul class="plan-features">
+            <li data-lang="en">Net pace, distance &amp; SWOLF</li>
+            <li data-lang="en">Per-stroke splits</li>
+            <li data-lang="en">Single-session view</li>
+            <li data-lang="en">Anomaly guardrails</li>
+            <li class="is-muted" data-lang="en">Long-term trends &amp; bests history</li>
+            <li class="is-muted" data-lang="en">Recovery integration</li>
+            <li data-lang="zh">净配速、距离与 SWOLF</li>
+            <li data-lang="zh">分泳姿配速</li>
+            <li data-lang="zh">单次训练查看</li>
+            <li data-lang="zh">异常数据把关</li>
+            <li class="is-muted" data-lang="zh">长期趋势与个人最佳历史</li>
+            <li class="is-muted" data-lang="zh">恢复整合</li>
+          </ul>
+          <p class="plan-note" data-lang="en">No account needed. Just download and swim.</p>
+          <p class="plan-note" data-lang="zh">无需账号，下载即用。</p>
+        </article>
+
+        <article class="plan-card is-featured" data-reveal>
+          <div class="plan-head">
+            <span class="plan-name" data-lang="en">Premium</span>
+            <span class="plan-name" data-lang="zh">高级版</span>
+            <span class="plan-flag" data-lang="en">Subscription</span>
+            <span class="plan-flag" data-lang="zh">订阅</span>
+          </div>
+          <div class="plan-price" data-lang="en">Pricing<span> shown in App Store</span></div>
+          <div class="plan-price" data-lang="zh">价格<span> 以 App Store 为准</span></div>
+          <ul class="plan-features">
+            <li data-lang="en">Everything in Free</li>
+            <li data-lang="en">Unlimited history</li>
+            <li data-lang="en">Full progress trends</li>
+            <li data-lang="en">Personal-best history</li>
+            <li data-lang="en">Recovery integration (readiness, HRV, sleep)</li>
+            <li data-lang="en">Periodized guidance</li>
+            <li data-lang="zh">包含免费版全部功能</li>
+            <li data-lang="zh">无限历史记录</li>
+            <li data-lang="zh">完整进步趋势</li>
+            <li data-lang="zh">个人最佳历史</li>
+            <li data-lang="zh">恢复整合（准备度、HRV、睡眠）</li>
+            <li data-lang="zh">周期化训练建议</li>
+          </ul>
+          <p class="plan-note" data-lang="en">Billed through your Apple account. Cancel anytime in App Store subscription settings.</p>
+          <p class="plan-note" data-lang="zh">通过 Apple 账户结算，可随时在 App Store 订阅设置中取消。</p>
+          <a class="button-link primary plan-cta" href="https://apps.apple.com" target="_blank" rel="noreferrer">
+            <span data-lang="en">Get SwimTrace</span>
+            <span data-lang="zh">获取 SwimTrace</span>
+          </a>
+        </article>
+      </div>
+    </section>
+
+    <!-- ============================ FAQ / SUPPORT ============================ -->
     <section class="editorial-section faq-section" id="faq">
+      <span id="support" class="sr-only" aria-hidden="true"></span>
       <div class="faq-layout">
-        <aside class="support-panel">
-          <p class="eyebrow" data-lang="en">Support FAQ</p>
-          <p class="eyebrow" data-lang="zh">Support · FAQ</p>
-          <h2 class="section-title" data-lang="en">Need another<br><span class="serif-accent">answer?</span></h2>
-          <h2 class="section-title" data-lang="zh">还有<br><span class="serif-accent">问题？</span></h2>
+        <aside class="support-panel" data-reveal>
+          <p class="eyebrow" data-lang="en">Support · FAQ</p>
+          <p class="eyebrow" data-lang="zh">支持 · 常见问题</p>
+          <h2 class="section-title" data-lang="en">Questions,<br><span class="serif-accent">answered.</span></h2>
+          <h2 class="section-title" data-lang="zh">你的<br><span class="serif-accent">疑问。</span></h2>
           <div class="contact-list">
             <div class="contact-block">
               <strong data-lang="en">Email</strong>
               <strong data-lang="zh">邮件 · Email</strong>
-              <a href="mailto:SUPPORT_EMAIL_PLACEHOLDER">SUPPORT_EMAIL_PLACEHOLDER</a>
+              <a href="mailto:support@swimtrace.app">support@swimtrace.app</a>
             </div>
             <div class="contact-block">
               <strong data-lang="en">Privacy</strong>
               <strong data-lang="zh">隐私 · Privacy</strong>
-              <span data-lang="en">Health data is processed on your device only.</span><br data-lang="en">
-              <span data-lang="zh">所有健康数据仅在你的设备上处理。</span><br data-lang="zh">
+              <span data-lang="en">All data is processed on your device only.</span>
+              <span data-lang="zh">所有数据仅在你的设备上处理。</span>
+              <br>
               <a href="./privacy.html" data-lang="en">Read the full privacy policy →</a>
               <a href="./privacy.html" data-lang="zh">查看完整隐私政策 →</a>
+            </div>
+            <div class="contact-block">
+              <strong data-lang="en">More help</strong>
+              <strong data-lang="zh">更多帮助</strong>
+              <a href="./support.html" data-lang="en">Open the support page →</a>
+              <a href="./support.html" data-lang="zh">打开支持页面 →</a>
             </div>
           </div>
         </aside>
 
-        <div>
-          <article class="faq-row">
-            <div>
-              <h3 class="faq-question" data-lang="en">Does Recova require a subscription?</h3>
-              <h3 class="faq-question" data-lang="zh">Recova 需要付费吗？</h3>
-              <p class="faq-answer" data-lang="en">The download is free. Core analysis can stay free, while deeper long-term trends and periodized guidance can gradually become subscription features.</p>
-              <p class="faq-answer" data-lang="zh">下载免费。基础分析永久免费；更完整的长期趋势与周期化建议可以逐步作为订阅能力提供。</p>
+        <div class="faq-list" data-reveal>
+          <details class="faq-item">
+            <summary>
+              <span data-lang="en">Why is my pace different from the native Workout app?</span>
+              <span data-lang="zh">为什么配速和原生「体能训练」不一样？</span>
+              <span class="faq-toggle" aria-hidden="true"></span>
+            </summary>
+            <div class="faq-a">
+              <p data-lang="en">SwimTrace shows <strong>net pace</strong>: it removes the rest between sets so the number reflects the speed you actually swam. The native average often blends in time spent resting at the wall, which makes a hard interval look slower than it was.</p>
+              <p data-lang="zh">SwimTrace 显示的是<strong>净配速</strong>：它会去掉组间休息，让数字反映你真正游出来的速度。原生的平均配速常常把池边休息的时间也算进去，于是一组高强度间歇看起来反而更慢。</p>
             </div>
-            <div class="faq-number">01</div>
-          </article>
+          </details>
 
-          <article class="faq-row">
-            <div>
-              <h3 class="faq-question" data-lang="en">Does data get uploaded to your servers?</h3>
-              <h3 class="faq-question" data-lang="zh">数据会上传到你们服务器吗？</h3>
-              <p class="faq-answer" data-lang="en">The current product direction is centered on Apple Health permissions and on-device interpretation. The privacy page lists the HealthKit categories currently read and the present handling scope.</p>
-              <p class="faq-answer" data-lang="zh">当前产品方向围绕 Apple Health 授权与本地信号解读展开。独立隐私页会列出当前会读取的 HealthKit 类别，以及现阶段的数据处理范围。</p>
+          <details class="faq-item">
+            <summary>
+              <span data-lang="en">Why does SwimTrace need HealthKit permission?</span>
+              <span data-lang="zh">为什么需要 HealthKit 权限？</span>
+              <span class="faq-toggle" aria-hidden="true"></span>
+            </summary>
+            <div class="faq-a">
+              <p data-lang="en">Your swims, heart rate, sleep, and related metrics are recorded by Apple Watch into Apple Health. SwimTrace reads those records (with your permission) to calculate pace, splits, and recovery. Without HealthKit access there is no swim data to analyze.</p>
+              <p data-lang="zh">你的游泳、心率、睡眠等数据由 Apple Watch 记录到 Apple「健康」中。SwimTrace 在你授权后读取这些记录，用于计算配速、分段和恢复。没有 HealthKit 权限，就没有可分析的游泳数据。</p>
             </div>
-            <div class="faq-number">02</div>
-          </article>
+          </details>
 
-          <article class="faq-row">
-            <div>
-              <h3 class="faq-question" data-lang="en">Can I use it without an Apple Watch?</h3>
-              <h3 class="faq-question" data-lang="zh">没有 Apple Watch 可以用吗？</h3>
-              <p class="faq-answer" data-lang="en">Not for now. Recova depends on continuous heart-rate, sleep, and workout signals from Apple Watch, and the phone alone cannot reach the same fidelity.</p>
-              <p class="faq-answer" data-lang="zh">暂不支持。Recova 的核心依赖 Apple Watch 持续采集的心率、睡眠与运动数据，手机单机无法达到同等精度。</p>
+          <details class="faq-item">
+            <summary>
+              <span data-lang="en">Is my data uploaded anywhere?</span>
+              <span data-lang="zh">我的数据会被上传吗？</span>
+              <span class="faq-toggle" aria-hidden="true"></span>
+            </summary>
+            <div class="faq-a">
+              <p data-lang="en">No. SwimTrace processes everything on your device. There is no SwimTrace server, no account, and no third-party analytics or advertising SDKs. Your data is not uploaded, sold, or shared.</p>
+              <p data-lang="zh">不会。SwimTrace 在你的设备上完成全部处理。没有 SwimTrace 服务器、没有账号，也没有第三方统计或广告 SDK。你的数据不会被上传、出售或共享。</p>
             </div>
-            <div class="faq-number">03</div>
-          </article>
+          </details>
 
-          <article class="faq-row">
-            <div>
-              <h3 class="faq-question" data-lang="en">Which workout types are supported?</h3>
-              <h3 class="faq-question" data-lang="zh">支持哪些运动类型？</h3>
-              <p class="faq-answer" data-lang="en">Any workout already recorded through Apple Health can feed the load model, including running, cycling, swimming, strength training, hiking, yoga, and other mixed sessions.</p>
-              <p class="faq-answer" data-lang="zh">凡是已经通过 Apple Health 记录下来的运动，都可以进入负荷判断，包括跑步、骑行、游泳、力量训练、登山、瑜伽以及更多混合型训练。</p>
+          <details class="faq-item">
+            <summary>
+              <span data-lang="en">How are different strokes counted?</span>
+              <span data-lang="zh">不同泳姿是怎么统计的？</span>
+              <span class="faq-toggle" aria-hidden="true"></span>
+            </summary>
+            <div class="faq-a">
+              <p data-lang="en">Freestyle, breaststroke, backstroke, and butterfly are tracked strictly separately, and each pool length is kept distinct too. Your freestyle pace is never averaged together with another stroke.</p>
+              <p data-lang="zh">自由泳、蛙泳、仰泳、蝶泳严格分开统计，每种池长也分别记录。你的自由泳配速绝不会和其他泳姿被平均到一起。</p>
             </div>
-            <div class="faq-number">04</div>
-          </article>
+          </details>
+
+          <details class="faq-item">
+            <summary>
+              <span data-lang="en">What's the difference between Free and Premium?</span>
+              <span data-lang="zh">免费版和高级版有什么区别？</span>
+              <span class="faq-toggle" aria-hidden="true"></span>
+            </summary>
+            <div class="faq-a">
+              <p data-lang="en">Free covers core swim metrics — net pace, distance, SWOLF, per-stroke splits, and single-session views. Premium adds unlimited history, full progress trends, personal-best history, and recovery integration.</p>
+              <p data-lang="zh">免费版包含核心游泳指标——净配速、距离、SWOLF、分泳姿配速和单次训练查看。高级版增加无限历史、完整进步趋势、个人最佳历史以及恢复整合。</p>
+            </div>
+          </details>
+
+          <details class="faq-item">
+            <summary>
+              <span data-lang="en">How do I manage or cancel a subscription?</span>
+              <span data-lang="zh">如何管理或取消订阅？</span>
+              <span class="faq-toggle" aria-hidden="true"></span>
+            </summary>
+            <div class="faq-a">
+              <p data-lang="en">Premium is billed through your Apple account using Apple StoreKit. Renewal, billing, and cancellation are all managed in your Apple account's subscription settings — the developer never handles your payment information.</p>
+              <p data-lang="zh">高级版通过 Apple StoreKit、由你的 Apple 账户结算。续费、账单和取消都在 Apple 账户的订阅设置中完成——开发者不会接触你的支付信息。</p>
+            </div>
+          </details>
+
+          <details class="faq-item">
+            <summary>
+              <span data-lang="en">What can I see on Apple Watch?</span>
+              <span data-lang="zh">Apple Watch 上能看到什么？</span>
+              <span class="faq-toggle" aria-hidden="true"></span>
+            </summary>
+            <div class="faq-a">
+              <p data-lang="en">SwimTrace relies on the swim Apple Watch records during your session. After the swim, your pace, splits, distance, and recovery context appear on iPhone where there is room to compare against your history.</p>
+              <p data-lang="zh">SwimTrace 依赖 Apple Watch 在训练中记录的游泳数据。游完之后，配速、分段、距离与恢复信息会在 iPhone 上呈现，那里有足够空间和你的历史成绩做对比。</p>
+            </div>
+          </details>
+
+          <details class="faq-item">
+            <summary>
+              <span data-lang="en">What happens to abnormal or impossible data?</span>
+              <span data-lang="zh">异常或不可能的数据会怎么处理？</span>
+              <span class="faq-toggle" aria-hidden="true"></span>
+            </summary>
+            <div class="faq-a">
+              <p data-lang="en">A misread turn can produce a split that's physically impossible. SwimTrace detects those segments, marks them clearly, and leaves them out of your results so they never become a fake personal best.</p>
+              <p data-lang="zh">一次误判的转身可能产生物理上不可能的分段。SwimTrace 会识别这些片段、清楚标注，并把它们排除在成绩之外，避免变成假的个人最佳。</p>
+            </div>
+          </details>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================ CLOSING CTA ============================ -->
+    <section class="editorial-section">
+      <div class="cta-band" data-reveal>
+        <h2 data-lang="en">Stop logging swims.<br>Start <span class="serif-accent">seeing progress.</span></h2>
+        <h2 data-lang="zh">别再只是记录，<br>开始<span class="serif-accent">看见进步。</span></h2>
+        <p data-lang="en">Free to download. Everything on your device. Built for pool swimmers who want to get faster.</p>
+        <p data-lang="zh">免费下载，全部本地处理。为想变快的泳池游泳者而做。</p>
+        <div class="hero-actions">
+          <a class="app-store-badge" href="https://apps.apple.com" target="_blank" rel="noreferrer">
+            <svg width="20" height="24" viewBox="0 0 22 26" fill="currentColor" aria-hidden="true">
+              <path d="M18.4 13.2c0-3.1 2.5-4.6 2.6-4.7-1.4-2.1-3.7-2.4-4.5-2.4-1.9-.2-3.7 1.1-4.7 1.1-1 0-2.5-1.1-4.1-1.1-2.1 0-4 1.2-5.1 3.1-2.2 3.8-.6 9.4 1.5 12.5 1.1 1.5 2.3 3.2 3.9 3.1 1.6-.1 2.2-1 4.1-1 1.9 0 2.5 1 4.1 1 1.7 0 2.8-1.5 3.8-3 1.2-1.7 1.7-3.4 1.7-3.5-.1 0-3.3-1.3-3.3-5.1zM15.3 4c.9-1.1 1.5-2.5 1.3-4-1.3.1-2.8.9-3.7 1.9-.8.9-1.5 2.4-1.3 3.7 1.4.1 2.9-.7 3.7-1.6z"></path>
+            </svg>
+            <span class="app-store-label" data-lang="en">
+              <small>Download on the</small>
+              <strong>App Store</strong>
+            </span>
+            <span class="app-store-label" data-lang="zh">
+              <small>立即下载</small>
+              <strong>App Store</strong>
+            </span>
+          </a>
         </div>
       </div>
 
       <footer class="page-footer">
         <div class="footer-brand">
           <span class="brand-mark" aria-hidden="true">
-            <svg width="28" height="28" viewBox="0 0 28 28" fill="none">
-              <circle cx="14" cy="14" r="13" stroke="currentColor" stroke-width="1.5"></circle>
-              <path d="M6 14 A8 8 0 0 1 22 14" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"></path>
-              <circle cx="14" cy="14" r="2" fill="currentColor"></circle>
+            <svg class="app-icon" width="28" height="28" viewBox="0 0 40 40" fill="none" role="img" aria-hidden="true">
+              <rect width="40" height="40" rx="9" fill="#6b9b7e"></rect>
+              <circle cx="20" cy="20" r="12.5" fill="none" stroke="#f0ece0" stroke-width="2.6" opacity="0.32"></circle>
+              <path d="M21.1 7.55 A12.5 12.5 0 1 1 7.93 23.24" fill="none" stroke="#f0ece0" stroke-width="2.6" stroke-linecap="round"></path>
+              <path d="M13.5 18.2 q3.2 -2.6 6.5 0 t6.5 0" fill="none" stroke="#f0ece0" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"></path>
+              <path d="M13.5 21.8 q3.2 -2.6 6.5 0 t6.5 0" fill="none" stroke="#f0ece0" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"></path>
             </svg>
           </span>
-          <span>Recova</span>
+          <span>SwimTrace</span>
         </div>
         <div class="footer-links">
           <div class="lang-content" data-lang="en">
-            <span>© 2026 Recova. All rights reserved.</span>
+            <span>© 2026 SwimTrace. All rights reserved.</span>
             <a href="./privacy.html">Privacy Policy</a>
             <a href="./support.html">Support</a>
+            <a href="mailto:support@swimtrace.app">Contact</a>
             <a href="https://apps.apple.com" target="_blank" rel="noreferrer">App Store</a>
           </div>
           <div class="lang-content" data-lang="zh">
-            <span>© 2026 Recova. 保留所有权利。</span>
+            <span>© 2026 SwimTrace. 保留所有权利。</span>
             <a href="./privacy.html">隐私政策</a>
             <a href="./support.html">技术支持</a>
+            <a href="mailto:support@swimtrace.app">联系邮箱</a>
             <a href="https://apps.apple.com" target="_blank" rel="noreferrer">App Store</a>
           </div>
         </div>

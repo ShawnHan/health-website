@@ -1,7 +1,9 @@
 (function () {
+  var STORAGE_KEY = "swimtrace-language";
+
   function detectLanguage() {
     try {
-      var saved = window.localStorage.getItem("recova-language");
+      var saved = window.localStorage.getItem(STORAGE_KEY);
       if (saved === "en" || saved === "zh") {
         return saved;
       }
@@ -27,10 +29,43 @@
     });
 
     try {
-      window.localStorage.setItem("recova-language", nextLanguage);
+      window.localStorage.setItem(STORAGE_KEY, nextLanguage);
     } catch (error) {
       // Ignore storage issues.
     }
+  }
+
+  function setupReveal() {
+    var targets = document.querySelectorAll("[data-reveal]");
+    if (!targets.length) {
+      return;
+    }
+
+    var prefersReduced =
+      window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+    // Only opt into the hidden initial state when we can actually reveal.
+    if (prefersReduced || typeof IntersectionObserver === "undefined") {
+      return;
+    }
+
+    document.documentElement.classList.add("reveal-ready");
+
+    var observer = new IntersectionObserver(
+      function (entries) {
+        entries.forEach(function (entry) {
+          if (entry.isIntersecting) {
+            entry.target.classList.add("is-visible");
+            observer.unobserve(entry.target);
+          }
+        });
+      },
+      { rootMargin: "0px 0px -10% 0px", threshold: 0.08 }
+    );
+
+    targets.forEach(function (target) {
+      observer.observe(target);
+    });
   }
 
   document.addEventListener("DOMContentLoaded", function () {
@@ -42,5 +77,7 @@
         applyLanguage(current === "zh" ? "en" : "zh");
       });
     });
+
+    setupReveal();
   });
 })();
