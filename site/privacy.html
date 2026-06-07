@@ -1,328 +1,106 @@
-<!doctype html>
-<html lang="zh-Hans" data-theme="emerald">
+<!DOCTYPE html>
+<html lang="zh-CN">
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>SwimTrace Privacy Policy</title>
-  <meta name="description" content="Privacy policy for SwimTrace — all data is processed on your device, with no server, no account, and no third-party SDKs.">
-  <link rel="icon" type="image/svg+xml" href="./favicon.svg">
-  <link rel="apple-touch-icon" href="./apple-touch-icon.png">
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;500;600;700&family=Noto+Sans+SC:wght@400;500;600;700&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
-  <script>
-    (function () {
-      var language = "en";
-      try {
-        var saved = localStorage.getItem("swimtrace-language");
-        if (saved === "en" || saved === "zh") {
-          language = saved;
-        } else {
-          var browserLanguage = (navigator.language || "en").toLowerCase();
-          language = browserLanguage.indexOf("zh") === 0 ? "zh" : "en";
-        }
-      } catch (error) {
-        var fallbackLanguage = (navigator.language || "en").toLowerCase();
-        language = fallbackLanguage.indexOf("zh") === 0 ? "zh" : "en";
-      }
-      document.documentElement.setAttribute("data-language", language);
-      document.documentElement.lang = language === "zh" ? "zh-CN" : "en";
-    })();
-  </script>
-  <link rel="stylesheet" href="./styles.css">
-  <script defer src="./script.js"></script>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>隐私政策 — SwimTrace</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Sora:wght@600;700;800&family=Noto+Sans+SC:wght@400;500;700&display=swap');
+  :root{
+    --ink:#1C2B22;--green:#5B9B78;--green-d:#3E7D5B;--green-deep:#2C5C42;
+    --green-soft:#E8F1EC;--paper:#FBFCFB;--mute:#6E7E74;--line:rgba(28,43,34,0.08);
+  }
+  *{margin:0;padding:0;box-sizing:border-box;}
+  body{font-family:'Noto Sans SC',sans-serif;color:var(--ink);background:var(--paper);-webkit-font-smoothing:antialiased;line-height:1.7;}
+  h1,h2,h3{font-family:'Sora','Noto Sans SC',sans-serif;}
+
+  .top{background:linear-gradient(135deg,#2C5C42,#3E7D5B);color:#fff;padding:54px 7vw 46px;}
+  .top .home{display:inline-flex;align-items:center;gap:10px;text-decoration:none;color:rgba(255,255,255,.9);font-family:'Sora';font-weight:700;font-size:18px;margin-bottom:30px;}
+  .top .home svg{width:34px;height:34px;}
+  .top h1{font-size:clamp(30px,5vw,44px);font-weight:800;letter-spacing:-1px;margin-bottom:12px;}
+  .top .meta{font-size:14px;color:rgba(255,255,255,.75);}
+
+  .wrap{max-width:780px;margin:0 auto;padding:56px 7vw 80px;}
+  .intro{font-size:17px;color:var(--mute);line-height:1.8;margin-bottom:44px;padding-bottom:32px;border-bottom:1px solid var(--line);}
+  .intro b{color:var(--ink);font-weight:600;}
+
+  h2{font-size:22px;font-weight:700;margin:42px 0 16px;color:var(--ink);display:flex;align-items:center;gap:12px;}
+  h2 .num{font-family:'Sora';font-size:14px;font-weight:700;color:#fff;background:var(--green);width:28px;height:28px;border-radius:9px;display:flex;align-items:center;justify-content:center;flex-shrink:0;}
+  p{font-size:15.5px;color:#3a4a40;margin-bottom:14px;}
+  ul{margin:0 0 16px;padding-left:4px;list-style:none;}
+  li{font-size:15px;color:#3a4a40;padding:8px 0 8px 26px;position:relative;line-height:1.65;}
+  li::before{content:'';position:absolute;left:4px;top:16px;width:7px;height:7px;border-radius:50%;background:var(--green);}
+  .callout{background:var(--green-soft);border-radius:16px;padding:22px 24px;margin:24px 0;}
+  .callout strong{color:var(--green-deep);}
+  a{color:var(--green-d);}
+  .foot{margin-top:50px;padding-top:30px;border-top:1px solid var(--line);font-size:13px;color:var(--mute);}
+</style>
 </head>
-<body class="page-editorial privacy-editorial">
-  <main class="page page-detail-page">
-    <header class="page-topbar page-topbar-editorial">
-      <a class="brand-link" href="./index.html" aria-label="SwimTrace home">
-        <span class="brand-mark" aria-hidden="true">
-          <svg class="app-icon" width="28" height="28" viewBox="0 0 40 40" fill="none" role="img" aria-hidden="true">
-            <rect width="40" height="40" rx="9" fill="#6b9b7e"></rect>
-            <circle cx="20" cy="20" r="12.5" fill="none" stroke="#f0ece0" stroke-width="2.6" opacity="0.32"></circle>
-            <path d="M21.1 7.55 A12.5 12.5 0 1 1 7.93 23.24" fill="none" stroke="#f0ece0" stroke-width="2.6" stroke-linecap="round"></path>
-            <path d="M13.5 18.2 q3.2 -2.6 6.5 0 t6.5 0" fill="none" stroke="#f0ece0" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"></path>
-            <path d="M13.5 21.8 q3.2 -2.6 6.5 0 t6.5 0" fill="none" stroke="#f0ece0" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"></path>
-          </svg>
-        </span>
-        <span>SwimTrace</span>
-      </a>
+<body>
 
-      <div class="topbar-group">
-        <nav class="topbar-nav" aria-label="Primary">
-          <div class="lang-content" data-lang="en">
-            <a class="topbar-link" href="./index.html">Home</a>
-            <a class="topbar-link" href="./support.html">Support</a>
-            <a class="topbar-link" href="./privacy.html">Privacy</a>
-          </div>
-          <div class="lang-content" data-lang="zh">
-            <a class="topbar-link" href="./index.html">首页</a>
-            <a class="topbar-link" href="./support.html">技术支持</a>
-            <a class="topbar-link" href="./privacy.html">隐私政策</a>
-          </div>
-        </nav>
+<div class="top">
+  <a href="swimtrace_landing.html" class="home">
+    <svg viewBox="0 0 100 100"><rect width="100" height="100" rx="24" fill="rgba(255,255,255,.16)"/><circle cx="50" cy="52" r="30" fill="none" stroke="rgba(255,255,255,.4)" stroke-width="7"/><circle cx="50" cy="52" r="30" fill="none" stroke="#fff" stroke-width="7" stroke-dasharray="160 188" stroke-linecap="round" transform="rotate(-90 50 52)"/><path d="M37 49 q4 -4 8 0 t8 0 t8 0" fill="none" stroke="#fff" stroke-width="4.5" stroke-linecap="round"/><path d="M37 58 q4 -4 8 0 t8 0 t8 0" fill="none" stroke="#fff" stroke-width="4.5" stroke-linecap="round"/></svg>
+    SwimTrace
+  </a>
+  <h1>隐私政策</h1>
+  <div class="meta">最近更新:2026 年 6 月 · 适用于 SwimTrace iOS 与 watchOS 应用</div>
+</div>
 
-        <div class="topbar-actions">
-          <button class="lang-toggle lang-toggle-quiet" type="button" data-lang-toggle>中文</button>
-          <a class="button-link topbar-download" href="https://apps.apple.com" target="_blank" rel="noreferrer">
-            <span class="lang-content" data-lang="en">App Store</span>
-            <span class="lang-content" data-lang="zh">App Store</span>
-          </a>
-        </div>
-      </div>
-    </header>
+<div class="wrap">
+  <p class="intro">SwimTrace(下称"本应用")是一款面向游泳者的训练分析工具。我们在设计之初就把隐私放在首位:<b>你的健康数据全部在你的设备本地处理,不上传服务器,我们不收集、不存储、不共享你的个人健康信息。</b>本政策说明我们如何处理数据。</p>
 
-    <section class="page-hero page-hero-editorial">
-      <div class="page-hero-grid">
-        <div>
-          <div class="breadcrumbs">
-            <div class="lang-content" data-lang="en"><a href="./index.html">Home</a></div>
-            <div class="lang-content" data-lang="zh"><a href="./index.html">首页</a></div>
-            <span>/</span>
-            <div class="lang-content" data-lang="en"><span>Privacy Policy</span></div>
-            <div class="lang-content" data-lang="zh"><span>隐私政策</span></div>
-          </div>
-          <div class="lang-content" data-lang="en">
-            <p class="eyebrow">Privacy</p>
-            <h1>Your data stays <span class="serif-accent">on your device.</span></h1>
-            <p class="page-summary">SwimTrace reads selected HealthKit data to show swim performance and recovery. Everything is processed locally — there is no SwimTrace server, no account, and no third-party analytics or advertising SDKs.</p>
-          </div>
-          <div class="lang-content" data-lang="zh">
-            <p class="eyebrow">Privacy</p>
-            <h1>你的数据，<span class="serif-accent">留在你的设备上。</span></h1>
-            <p class="page-summary">SwimTrace 会读取部分 HealthKit 数据，用于展示游泳表现与运动恢复。所有处理都在本地完成——没有 SwimTrace 服务器、没有账号，也没有第三方统计或广告 SDK。</p>
-          </div>
-        </div>
-        <div class="page-hero-actions">
-          <div class="lang-content" data-lang="en">
-            <a class="action-link" href="./support.html">Open support</a>
-          </div>
-          <div class="lang-content" data-lang="zh">
-            <a class="action-link" href="./support.html">打开支持页</a>
-          </div>
-        </div>
-      </div>
-    </section>
+  <h2><span class="num">1</span>我们读取哪些数据</h2>
+  <p>在你明确授权后,本应用通过 Apple HealthKit 读取以下数据,用于在本地生成训练与恢复分析:</p>
+  <ul>
+    <li>游泳训练记录:距离、圈数、泳姿、划水次数、池长</li>
+    <li>心率与心率变异性(HRV)</li>
+    <li>静息心率</li>
+    <li>睡眠数据</li>
+    <li>训练记录与活动能量(卡路里)</li>
+  </ul>
+  <p>这些数据仅用于展示你的游泳表现(配速、SWOLF、进步趋势等)与运动恢复(负荷、恢复、HRV 趋势等)分析。</p>
 
-    <section class="detail-shell detail-shell-editorial">
-      <aside class="detail-sidebar">
-        <article class="sidebar-card">
-          <div class="lang-content" data-lang="en">
-            <p class="eyebrow">Last updated</p>
-            <div class="sidebar-value">June 7, 2026</div>
-            <p>SwimTrace does not require account creation or login to show swim performance and recovery.</p>
-          </div>
-          <div class="lang-content" data-lang="zh">
-            <p class="eyebrow">最近更新</p>
-            <div class="sidebar-value">2026 年 6 月 7 日</div>
-            <p>SwimTrace 无需创建账号或登录，即可查看游泳表现与恢复信息。</p>
-          </div>
-        </article>
+  <h2><span class="num">2</span>数据如何处理与存储</h2>
+  <div class="callout">
+    <p style="margin:0;"><strong>全部本地处理。</strong>所有数据的读取、计算、趋势分析与提醒生成,均在你的 iPhone 与 Apple Watch 本地完成。分析结果存储在你的设备本地,不上传到任何服务器。</p>
+  </div>
+  <ul>
+    <li>本应用<b>没有自有服务器</b>来接收或存储你的健康数据</li>
+    <li>本应用<b>不包含任何第三方统计、分析、崩溃上报或广告 SDK</b>,不向第三方发送你的数据</li>
+    <li>Apple Watch 与 iPhone 之间的数据通过 Apple 的 App Group 在你的设备本地共享,不经过外部网络</li>
+  </ul>
 
-        <article class="sidebar-card">
-          <div class="lang-content" data-lang="en">
-            <p class="eyebrow">Contact</p>
-            <div class="sidebar-value">support@swimtrace.app</div>
-            <p>Questions about data handling can be sent directly to the support address listed here.</p>
-          </div>
-          <div class="lang-content" data-lang="zh">
-            <p class="eyebrow">联系方式</p>
-            <div class="sidebar-value">support@swimtrace.app</div>
-            <p>如果你对数据处理方式有疑问，可以直接通过这里列出的支持邮箱联系我们。</p>
-          </div>
-        </article>
-      </aside>
+  <h2><span class="num">3</span>我们不收集什么</h2>
+  <p>本应用不会收集你的姓名、邮箱、电话、位置轨迹或设备标识用于追踪。我们不建立用户账户,你无需注册即可使用。</p>
 
-      <div>
-        <article class="detail-section">
-          <div class="lang-content" data-lang="en">
-            <h2>Overview</h2>
-            <p>SwimTrace is a health and fitness app for pool swimmers. It reads selected HealthKit data to calculate swim performance metrics (such as net pace, SWOLF, distance, and per-stroke splits) and recovery context (such as readiness, HRV, and sleep). SwimTrace does not require account creation or login.</p>
-            <p>Contact email: <a href="mailto:support@swimtrace.app">support@swimtrace.app</a></p>
-          </div>
-          <div class="lang-content" data-lang="zh">
-            <h2>概述</h2>
-            <p>SwimTrace 是一款面向泳池游泳者的健康与健身应用。它会读取部分 HealthKit 数据，用于计算游泳表现指标（如净配速、SWOLF、距离、分泳姿配速）和运动恢复信息（如准备度、HRV、睡眠）。SwimTrace 不要求创建账号或登录。</p>
-            <p>联系邮箱：<a href="mailto:support@swimtrace.app">support@swimtrace.app</a></p>
-          </div>
-        </article>
+  <h2><span class="num">4</span>订阅与支付</h2>
+  <p>如你选择订阅高级版,支付通过 <b>Apple StoreKit</b> 处理,遵循 Apple 的条款与隐私政策。本应用不接触、不保存你的支付卡信息或 Apple ID 凭据。订阅可在 iPhone「设置 › Apple ID › 订阅」中随时管理或取消。</p>
 
-        <article class="detail-section">
-          <div class="lang-content" data-lang="en">
-            <h2>1. Data SwimTrace reads</h2>
-            <p>With your permission, SwimTrace may read the following HealthKit data:</p>
-            <ul class="data-list">
-              <li>Swimming distance</li>
-              <li>Swimming laps / lengths</li>
-              <li>Swimming stroke style</li>
-              <li>Stroke count</li>
-              <li>Pool length</li>
-              <li>Heart rate</li>
-              <li>Heart rate variability (HRV)</li>
-              <li>Resting heart rate</li>
-              <li>Sleep analysis</li>
-              <li>Workouts</li>
-              <li>Active energy burned</li>
-            </ul>
-          </div>
-          <div class="lang-content" data-lang="zh">
-            <h2>1. 读取哪些数据</h2>
-            <p>在你授权后，SwimTrace 可能读取以下 HealthKit 数据：</p>
-            <ul class="data-list">
-              <li>游泳距离</li>
-              <li>游泳圈数 / 趟数</li>
-              <li>泳姿</li>
-              <li>划水次数</li>
-              <li>池长</li>
-              <li>心率</li>
-              <li>心率变异性（HRV）</li>
-              <li>静息心率</li>
-              <li>睡眠分析</li>
-              <li>训练记录</li>
-              <li>活动能量</li>
-            </ul>
-          </div>
-        </article>
+  <h2><span class="num">5</span>你的权利与控制</h2>
+  <ul>
+    <li><b>撤销授权:</b>可随时在系统「设置 › 隐私与安全性 › 健康 › SwimTrace」中关闭任意数据类型的读取权限</li>
+    <li><b>删除数据:</b>卸载本应用即会移除其在设备上存储的所有本地数据</li>
+    <li><b>关闭通知:</b>可在系统「设置 › 通知」中随时关闭本应用的提醒</li>
+  </ul>
 
-        <article class="detail-section">
-          <div class="lang-content" data-lang="en">
-            <h2>2. How data is processed and stored</h2>
-            <p>All analysis happens on your device. SwimTrace does not operate its own server, and your health data is not uploaded to or stored by the developer.</p>
-            <p>SwimTrace does not include third-party analytics, advertising, social login, or crash-reporting SDKs.</p>
-            <p>If an Apple Watch companion is used, data is shared locally between the iPhone and Watch through an App Group on your devices; it is not sent to any external service.</p>
-          </div>
-          <div class="lang-content" data-lang="zh">
-            <h2>2. 数据如何处理与存储</h2>
-            <p>所有分析都在你的设备上完成。SwimTrace 不运营自有服务器，你的健康数据不会被上传到开发者处，也不会由开发者保存。</p>
-            <p>SwimTrace 未接入第三方统计、广告、社交登录或崩溃统计 SDK。</p>
-            <p>如使用 Apple Watch 配套端，数据通过设备上的 App Group 在 iPhone 与 Watch 之间本地共享，不会发送到任何外部服务。</p>
-          </div>
-        </article>
+  <h2><span class="num">6</span>健康数据使用限制</h2>
+  <p>本应用遵循 Apple HealthKit 的相关要求:我们不会将通过 HealthKit 获取的数据用于广告、市场营销,或出售给第三方;也不会将其用于本应用核心健康与健身功能以外的用途。</p>
 
-        <article class="detail-section">
-          <div class="lang-content" data-lang="en">
-            <h2>3. What we do not collect</h2>
-            <p>SwimTrace does not require an account and does not collect your name, email address, or other identifying profile information. It does not track your location, and it does not build advertising or marketing profiles.</p>
-          </div>
-          <div class="lang-content" data-lang="zh">
-            <h2>3. 不收集什么</h2>
-            <p>SwimTrace 不需要账户，也不收集你的姓名、邮箱或其他可识别身份的资料。它不追踪你的位置，也不会构建广告或营销画像。</p>
-          </div>
-        </article>
+  <h2><span class="num">7</span>儿童隐私</h2>
+  <p>本应用面向一般用户,不针对 13 岁以下儿童,也不会有意收集儿童的个人信息。</p>
 
-        <article class="detail-section">
-          <div class="lang-content" data-lang="en">
-            <h2>4. Subscriptions and payment</h2>
-            <p>SwimTrace offers an optional premium subscription through Apple StoreKit. Billing, renewal, and cancellation are handled by Apple via your Apple account. The developer does not receive or process your payment card details.</p>
-          </div>
-          <div class="lang-content" data-lang="zh">
-            <h2>4. 订阅与支付</h2>
-            <p>SwimTrace 通过 Apple StoreKit 提供可选的高级订阅。账单、续费与取消均由 Apple 通过你的 Apple 账户处理。开发者不会接收或处理你的支付卡信息。</p>
-          </div>
-        </article>
+  <h2><span class="num">8</span>政策更新</h2>
+  <p>我们可能会不时更新本政策。重大变更将在本应用或本页面公示,并更新顶部的"最近更新"日期。</p>
 
-        <article class="detail-section">
-          <div class="lang-content" data-lang="en">
-            <h2>5. Your rights and choices</h2>
-            <ul>
-              <li>You can revoke HealthKit access at any time in the Health app under Sharing &gt; Apps.</li>
-              <li>Uninstalling SwimTrace removes the app and the data it stored on your device.</li>
-              <li>You can turn off notifications in iOS Settings at any time.</li>
-            </ul>
-          </div>
-          <div class="lang-content" data-lang="zh">
-            <h2>5. 你的权利与选择</h2>
-            <ul>
-              <li>你可以随时在“健康”应用的“共享 &gt; App”中撤销 HealthKit 授权。</li>
-              <li>卸载 SwimTrace 会删除应用本身及其在你设备上保存的数据。</li>
-              <li>你可以随时在 iOS 设置中关闭通知。</li>
-            </ul>
-          </div>
-        </article>
+  <h2><span class="num">9</span>联系我们</h2>
+  <p>如对本隐私政策有任何疑问,请联系:<a href="mailto:support@swimtrace.app">support@swimtrace.app</a></p>
 
-        <article class="detail-section">
-          <div class="lang-content" data-lang="en">
-            <h2>6. HealthKit usage restrictions</h2>
-            <p>SwimTrace follows Apple's HealthKit requirements. Health data obtained through HealthKit is never used for advertising or marketing, is never sold, and is not used beyond providing health and fitness features inside the app.</p>
-          </div>
-          <div class="lang-content" data-lang="zh">
-            <h2>6. HealthKit 使用限制</h2>
-            <p>SwimTrace 遵循 Apple 对 HealthKit 的要求。通过 HealthKit 获取的健康数据，绝不会用于广告或营销，绝不出售，也不会超出应用内健康与健身功能的用途。</p>
-          </div>
-        </article>
+  <div class="foot">
+    © 2026 SwimTrace · 本页为隐私政策模板,正式上架前请结合应用实际行为核对确认。<br>
+    占位说明:App 名称(SwimTrace)与联系邮箱(support@swimtrace.app)为占位,确定后请全局替换。
+  </div>
+</div>
 
-        <article class="detail-section">
-          <div class="lang-content" data-lang="en">
-            <h2>7. Children's privacy</h2>
-            <p>SwimTrace is not directed to children and does not knowingly collect personal information from children. The app does not require an account or personal profile to function.</p>
-          </div>
-          <div class="lang-content" data-lang="zh">
-            <h2>7. 儿童隐私</h2>
-            <p>SwimTrace 并非面向儿童，也不会有意收集儿童的个人信息。应用无需账户或个人资料即可使用。</p>
-          </div>
-        </article>
-
-        <article class="detail-section">
-          <div class="lang-content" data-lang="en">
-            <h2>8. Policy updates</h2>
-            <p>If a future version of SwimTrace changes how data is processed, this privacy policy will be updated and the “Last updated” date above will change accordingly.</p>
-          </div>
-          <div class="lang-content" data-lang="zh">
-            <h2>8. 政策更新</h2>
-            <p>如果未来版本的 SwimTrace 调整了数据处理方式，本隐私政策会同步更新，上方的“最近更新”日期也会相应变化。</p>
-          </div>
-        </article>
-
-        <article class="detail-section">
-          <div class="lang-content" data-lang="en">
-            <h2>9. Contact</h2>
-            <p>If you have questions about this policy or your data, contact: <a href="mailto:support@swimtrace.app">support@swimtrace.app</a></p>
-          </div>
-          <div class="lang-content" data-lang="zh">
-            <h2>9. 联系方式</h2>
-            <p>如果你对本政策或你的数据有疑问，请联系：<a href="mailto:support@swimtrace.app">support@swimtrace.app</a></p>
-          </div>
-        </article>
-
-        <div class="notice">
-          <div class="lang-content" data-lang="en">
-            <strong>Template note:</strong> This page is a template. Before submitting to the App Store, verify every statement against the app's actual behavior. The app name (SwimTrace) and contact email (support@swimtrace.app) are placeholders to be replaced.
-          </div>
-          <div class="lang-content" data-lang="zh">
-            <strong>模板说明：</strong>本页为模板，正式上架前需结合 App 实际行为逐条核对。App 名（SwimTrace）与联系邮箱（support@swimtrace.app）为占位，待替换。
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <footer class="page-footer">
-      <div class="footer-brand">
-        <span class="brand-mark" aria-hidden="true">
-          <svg class="app-icon" width="28" height="28" viewBox="0 0 40 40" fill="none" role="img" aria-hidden="true">
-            <rect width="40" height="40" rx="9" fill="#6b9b7e"></rect>
-            <circle cx="20" cy="20" r="12.5" fill="none" stroke="#f0ece0" stroke-width="2.6" opacity="0.32"></circle>
-            <path d="M21.1 7.55 A12.5 12.5 0 1 1 7.93 23.24" fill="none" stroke="#f0ece0" stroke-width="2.6" stroke-linecap="round"></path>
-            <path d="M13.5 18.2 q3.2 -2.6 6.5 0 t6.5 0" fill="none" stroke="#f0ece0" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"></path>
-            <path d="M13.5 21.8 q3.2 -2.6 6.5 0 t6.5 0" fill="none" stroke="#f0ece0" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"></path>
-          </svg>
-        </span>
-        <span>SwimTrace</span>
-      </div>
-      <div class="footer-links">
-        <div class="lang-content" data-lang="en">
-          <a href="./index.html">Home</a>
-          <a href="./support.html">Support</a>
-          <a href="mailto:support@swimtrace.app">Contact</a>
-          <a href="https://apps.apple.com" target="_blank" rel="noreferrer">App Store</a>
-        </div>
-        <div class="lang-content" data-lang="zh">
-          <a href="./index.html">首页</a>
-          <a href="./support.html">技术支持</a>
-          <a href="mailto:support@swimtrace.app">联系邮箱</a>
-          <a href="https://apps.apple.com" target="_blank" rel="noreferrer">App Store</a>
-        </div>
-      </div>
-    </footer>
-  </main>
 </body>
 </html>

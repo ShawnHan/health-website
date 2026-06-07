@@ -1,711 +1,354 @@
-<!doctype html>
-<html lang="zh-Hans" data-theme="emerald">
+<!DOCTYPE html>
+<html lang="zh-CN">
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>SwimTrace</title>
-  <meta name="description" content="SwimTrace 面向泳池游泳者，围绕游泳表现与运动恢复两大主题：净配速、SWOLF、分泳姿、个人最佳与进步趋势，配合 HRV、睡眠与恢复。所有数据本地处理，不上传服务器。">
-  <link rel="icon" type="image/svg+xml" href="./favicon.svg">
-  <link rel="apple-touch-icon" href="./apple-touch-icon.png">
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;500;600;700&family=Noto+Sans+SC:wght@400;500;600;700&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
-  <script>
-    (function () {
-      var language = "en";
-      try {
-        var saved = localStorage.getItem("swimtrace-language");
-        if (saved === "en" || saved === "zh") {
-          language = saved;
-        } else {
-          var browserLanguage = (navigator.language || "en").toLowerCase();
-          language = browserLanguage.indexOf("zh") === 0 ? "zh" : "en";
-        }
-      } catch (error) {
-        var fallbackLanguage = (navigator.language || "en").toLowerCase();
-        language = fallbackLanguage.indexOf("zh") === 0 ? "zh" : "en";
-      }
-      document.documentElement.setAttribute("data-language", language);
-      document.documentElement.lang = language === "zh" ? "zh-CN" : "en";
-    })();
-  </script>
-  <link rel="stylesheet" href="./styles.css">
-  <script defer src="./script.js"></script>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SwimTrace — 看见你的游泳进步</title>
+<style>
+  /* ===== 占位:App 名最终确定后,全局替换 "SwimTrace" ===== */
+  @import url('https://fonts.googleapis.com/css2?family=Sora:wght@400;600;700;800&family=Noto+Sans+SC:wght@400;500;700&display=swap');
+
+  :root{
+    --ink:#1C2B22;
+    --green:#5B9B78;       /* icon 主绿 */
+    --green-d:#3E7D5B;
+    --green-deep:#2C5C42;
+    --green-soft:#E8F1EC;
+    --green-tint:#F2F7F4;
+    --blue:#3DA5E8;        /* 游泳数据强调色 */
+    --blue-l:#5FB8EE;
+    --aqua:#7FD4E8;
+    --paper:#FBFCFB;       /* 偏白背景 */
+    --paper2:#F4F8F5;
+    --cream:#EFEDE6;       /* icon 米白 */
+    --mute:#6E7E74;
+    --line:rgba(28,43,34,0.08);
+    --gold:#E0A53C;
+  }
+  *{margin:0;padding:0;box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    font-family:'Noto Sans SC',sans-serif;
+    color:var(--ink);
+    background:var(--paper);
+    overflow-x:hidden;
+    -webkit-font-smoothing:antialiased;
+  }
+  h1,h2,h3,.display{font-family:'Sora','Noto Sans SC',sans-serif;}
+
+  @keyframes wave{0%{background-position:0 0;}100%{background-position:1200px 0;}}
+  @keyframes floatup{0%{opacity:0;transform:translateY(30px);}100%{opacity:1;transform:translateY(0);}}
+  @keyframes shimmer{0%,100%{opacity:.5;}50%{opacity:1;}}
+  @keyframes ringdraw{0%{stroke-dashoffset:283;}100%{stroke-dashoffset:70;}}
+
+  .reveal{opacity:0;animation:floatup .9s cubic-bezier(.2,.7,.2,1) forwards;}
+  .d1{animation-delay:.1s;}.d2{animation-delay:.25s;}.d3{animation-delay:.4s;}.d4{animation-delay:.55s;}.d5{animation-delay:.7s;}
+
+  /* ===== 复刻 icon 的 logo ===== */
+  .brand-icon{display:inline-block;}
+  .brand-icon .ring{fill:none;stroke-linecap:round;}
+
+  /* ===== HERO(浅色) ===== */
+  .hero{
+    position:relative;
+    min-height:96vh;
+    background:
+      radial-gradient(circle at 85% 8%, rgba(91,155,120,0.12), transparent 40%),
+      radial-gradient(circle at 10% 90%, rgba(61,165,232,0.08), transparent 45%),
+      linear-gradient(180deg,#FBFCFB 0%,#F2F7F4 100%);
+    display:flex;flex-direction:column;overflow:hidden;
+  }
+  nav{position:relative;z-index:10;display:flex;justify-content:space-between;align-items:center;padding:24px 7vw;}
+  .logo{display:flex;align-items:center;gap:11px;font-family:'Sora';font-weight:700;font-size:20px;letter-spacing:.3px;color:var(--ink);}
+  .logo .brand-icon{width:38px;height:38px;}
+  .nav-cta{
+    font-family:'Sora';font-size:14px;font-weight:600;padding:10px 22px;border-radius:30px;
+    background:var(--green);color:#fff;text-decoration:none;transition:.3s;
+    box-shadow:0 6px 18px rgba(91,155,120,.3);
+  }
+  .nav-cta:hover{background:var(--green-d);transform:translateY(-2px);}
+
+  .hero-body{position:relative;z-index:5;flex:1;display:flex;align-items:center;padding:30px 7vw 70px;gap:5vw;flex-wrap:wrap;}
+  .hero-text{flex:1;min-width:320px;max-width:620px;}
+  .eyebrow{
+    display:inline-flex;align-items:center;gap:8px;font-family:'Sora';font-size:13px;font-weight:600;letter-spacing:1.5px;
+    color:var(--green-d);padding:7px 16px;background:var(--green-soft);border-radius:30px;margin-bottom:28px;
+  }
+  .eyebrow .dot{width:7px;height:7px;border-radius:50%;background:var(--green);animation:shimmer 2s infinite;}
+  h1.hero-title{font-size:clamp(40px,6vw,74px);font-weight:800;line-height:1.06;letter-spacing:-1.5px;margin-bottom:26px;color:var(--ink);}
+  h1.hero-title .grad{background:linear-gradient(110deg,var(--green),var(--blue));-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;}
+  .hero-sub{font-size:clamp(16px,2vw,19px);line-height:1.7;color:var(--mute);max-width:520px;margin-bottom:38px;}
+  .hero-btns{display:flex;gap:18px;flex-wrap:wrap;align-items:center;}
+  .btn-store{display:inline-flex;align-items:center;gap:12px;background:var(--ink);color:#fff;font-family:'Sora';font-weight:700;font-size:16px;padding:15px 28px;border-radius:16px;text-decoration:none;box-shadow:0 10px 30px rgba(28,43,34,.18);transition:.3s;}
+  .btn-store:hover{transform:translateY(-3px);box-shadow:0 16px 40px rgba(28,43,34,.28);}
+  .btn-store svg{width:26px;height:26px;}
+  .btn-store small{display:block;font-size:11px;font-weight:400;opacity:.6;}
+  .btn-store b{font-size:18px;}
+  .hero-note{font-size:13px;color:var(--mute);line-height:1.5;}
+
+  /* 手机:iPhone 17 Pro 外框 + 真实截图 */
+  .hero-visual{flex:1;min-width:300px;display:flex;justify-content:center;position:relative;}
+  .iphone{
+    position:relative;width:300px;padding:10px;border-radius:56px;
+    background:linear-gradient(150deg,#44494b 0%,#23272a 18%,#15181a 50%,#22262a 82%,#3e4345 100%);
+    box-shadow:0 38px 84px rgba(44,92,66,.22),0 10px 24px rgba(28,43,34,.16),
+               inset 0 1px 1px rgba(255,255,255,.22),inset 0 -2px 3px rgba(0,0,0,.5);
+  }
+  /* 侧边按键 */
+  .iphone::before,.iphone::after{content:"";position:absolute;background:#1b1e20;border-radius:3px;}
+  .iphone::before{left:-3px;top:152px;width:3px;height:84px;}   /* 音量/静音 */
+  .iphone::after{right:-3px;top:176px;width:3px;height:62px;}    /* 电源 */
+  .iphone-screen{position:relative;border-radius:46px;overflow:hidden;background:#fff;box-shadow:0 0 0 2px #050606;line-height:0;}
+  .iphone-screen img{display:block;width:100%;height:auto;}
+  /* 灵动岛 */
+  .iphone-island{position:absolute;top:13px;left:50%;transform:translateX(-50%);width:33%;height:25px;background:#000;border-radius:14px;z-index:3;}
+
+  /* SECTION */
+  section{padding:100px 7vw;}
+  .sec-head{max-width:720px;margin:0 auto 64px;text-align:center;}
+  .sec-tag{font-family:'Sora';font-size:13px;font-weight:700;letter-spacing:1.5px;color:var(--green-d);margin-bottom:16px;}
+  .sec-title{font-size:clamp(30px,4vw,44px);font-weight:800;line-height:1.16;letter-spacing:-1px;color:var(--ink);}
+  .sec-desc{font-size:17px;color:var(--mute);margin-top:20px;line-height:1.7;}
+
+  /* 双主题 */
+  .themes{display:grid;grid-template-columns:1fr 1fr;gap:22px;max-width:1080px;margin:0 auto;}
+  .theme-card{border-radius:26px;padding:42px 36px;position:relative;overflow:hidden;min-height:270px;display:flex;flex-direction:column;}
+  .theme-perf{background:linear-gradient(155deg,#EAF4FB,#D9ECF9);}
+  .theme-rec{background:linear-gradient(155deg,#E8F1EC,#D6E8DD);}
+  .theme-card .ticon{width:52px;height:52px;border-radius:15px;display:flex;align-items:center;justify-content:center;margin-bottom:22px;}
+  .theme-perf .ticon{background:rgba(61,165,232,.16);}
+  .theme-rec .ticon{background:rgba(91,155,120,.18);}
+  .theme-card .ticon svg{width:27px;height:27px;}
+  .theme-card h3{font-size:25px;font-weight:700;margin-bottom:13px;color:var(--ink);}
+  .theme-card p{font-size:15px;line-height:1.7;color:var(--mute);margin-bottom:20px;}
+  .theme-tags{margin-top:auto;display:flex;gap:8px;flex-wrap:wrap;}
+  .theme-perf .theme-tags span{font-size:13px;padding:6px 13px;border-radius:20px;background:rgba(61,165,232,.12);color:#2C6A9E;}
+  .theme-rec .theme-tags span{font-size:13px;padding:6px 13px;border-radius:20px;background:rgba(91,155,120,.15);color:var(--green-deep);}
+
+  /* 核心差异(浅色卡) */
+  .diff-bg{background:var(--paper2);}
+  .diffs{display:grid;grid-template-columns:repeat(2,1fr);gap:20px;max-width:1080px;margin:0 auto;}
+  .diff{background:#fff;padding:36px 32px;border-radius:22px;border:1px solid var(--line);transition:.35s;}
+  .diff:hover{transform:translateY(-5px);box-shadow:0 18px 44px rgba(44,92,66,.1);border-color:transparent;}
+  .diff-n{font-family:'Sora';font-size:14px;font-weight:700;color:var(--green);margin-bottom:16px;}
+  .diff h4{font-size:21px;font-weight:700;margin-bottom:11px;color:var(--ink);}
+  .diff p{font-size:14.5px;line-height:1.7;color:var(--mute);}
+  .diff .hl{color:var(--green-d);font-weight:600;}
+
+  /* 功能 */
+  .feat-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;max-width:1120px;margin:0 auto;}
+  .feat{background:#fff;border:1px solid var(--line);border-radius:22px;padding:30px 26px;transition:.35s;}
+  .feat:hover{transform:translateY(-6px);box-shadow:0 20px 50px rgba(44,92,66,.1);border-color:transparent;}
+  .feat .fi{width:46px;height:46px;border-radius:13px;background:var(--green-soft);display:flex;align-items:center;justify-content:center;margin-bottom:18px;}
+  .feat .fi svg{width:24px;height:24px;stroke:var(--green-d);}
+  .feat h4{font-size:18px;font-weight:700;margin-bottom:9px;color:var(--ink);}
+  .feat p{font-size:14px;color:var(--mute);line-height:1.65;}
+
+  /* 隐私 */
+  .privacy{background:linear-gradient(135deg,#2C5C42,#3E7D5B);color:#fff;text-align:center;border-radius:30px;max-width:1080px;margin:0 auto;padding:60px 40px;}
+  .privacy .plock{width:62px;height:62px;border-radius:19px;background:rgba(255,255,255,.14);display:flex;align-items:center;justify-content:center;margin:0 auto 24px;}
+  .privacy .plock svg{width:30px;height:30px;}
+  .privacy h3{font-size:29px;font-weight:800;margin-bottom:16px;letter-spacing:-.5px;}
+  .privacy p{font-size:16px;line-height:1.75;color:rgba(255,255,255,.8);max-width:600px;margin:0 auto;}
+
+  /* 订阅 */
+  .pricing{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;max-width:900px;margin:0 auto;}
+  .plan{background:#fff;border:1.5px solid var(--line);border-radius:22px;padding:32px 26px;text-align:center;position:relative;}
+  .plan.feat-plan{border-color:var(--green);box-shadow:0 16px 40px rgba(91,155,120,.16);}
+  .plan-pop{position:absolute;top:-13px;left:50%;transform:translateX(-50%);background:var(--green);color:#fff;font-family:'Sora';font-size:12px;font-weight:700;padding:6px 16px;border-radius:20px;}
+  .plan h4{font-size:16px;font-weight:600;color:var(--mute);margin-bottom:13px;}
+  .plan .price{font-family:'Sora';font-size:37px;font-weight:800;color:var(--ink);}
+  .plan .price small{font-size:15px;font-weight:500;color:var(--mute);}
+  .plan .pnote{font-size:13px;color:var(--green-d);margin-top:9px;font-weight:600;}
+
+  /* FINAL */
+  .final{background:linear-gradient(165deg,#3E7D5B,#5B9B78 70%,#6FA98A);color:#fff;text-align:center;position:relative;overflow:hidden;}
+  .final h2{font-size:clamp(32px,5vw,54px);font-weight:800;letter-spacing:-1px;margin-bottom:22px;position:relative;z-index:2;}
+  .final p{font-size:18px;color:rgba(255,255,255,.82);margin-bottom:38px;position:relative;z-index:2;}
+  .final .btn-store{background:#fff;color:var(--green-deep);}
+  .waves{position:absolute;bottom:0;left:0;width:100%;height:150px;opacity:.35;}
+  .waves svg{width:200%;height:100%;animation:wave 18s linear infinite;}
+  footer{padding:38px 7vw;background:var(--ink);color:rgba(255,255,255,.45);font-size:13px;display:flex;justify-content:space-between;flex-wrap:wrap;gap:16px;}
+  footer a{color:rgba(255,255,255,.65);text-decoration:none;margin-left:22px;}
+
+  /* FAQ */
+  .faq{background:#fff;border:1px solid var(--line);border-radius:16px;padding:4px 22px;transition:.3s;}
+  .faq[open]{box-shadow:0 8px 24px rgba(44,92,66,.08);border-color:transparent;}
+  .faq summary{font-family:'Sora','Noto Sans SC';font-size:16px;font-weight:600;color:var(--ink);padding:18px 0;cursor:pointer;list-style:none;display:flex;justify-content:space-between;align-items:center;gap:16px;}
+  .faq summary::-webkit-details-marker{display:none;}
+  .faq summary::after{content:'+';font-size:22px;color:var(--green);font-weight:400;transition:.3s;flex-shrink:0;}
+  .faq[open] summary::after{transform:rotate(45deg);}
+  .faq p{font-size:14.5px;line-height:1.75;color:var(--mute);padding:0 0 20px;}
+
+  @media(max-width:860px){
+    .themes,.diffs,.feat-grid,.pricing{grid-template-columns:1fr;}
+    .hero-body{flex-direction:column;padding-top:10px;}
+    .hero-visual{margin-top:24px;}
+    section{padding:66px 6vw;}
+  }
+</style>
 </head>
-<body class="home-editorial">
-  <main class="page page-home">
-    <header class="page-topbar page-topbar-home">
-      <a class="brand-link" href="./index.html" aria-label="SwimTrace home">
-        <span class="brand-mark" aria-hidden="true">
-          <svg class="app-icon" width="28" height="28" viewBox="0 0 40 40" fill="none" role="img" aria-hidden="true">
-            <rect width="40" height="40" rx="9" fill="#6b9b7e"></rect>
-            <circle cx="20" cy="20" r="12.5" fill="none" stroke="#f0ece0" stroke-width="2.6" opacity="0.32"></circle>
-            <path d="M21.1 7.55 A12.5 12.5 0 1 1 7.93 23.24" fill="none" stroke="#f0ece0" stroke-width="2.6" stroke-linecap="round"></path>
-            <path d="M13.5 18.2 q3.2 -2.6 6.5 0 t6.5 0" fill="none" stroke="#f0ece0" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"></path>
-            <path d="M13.5 21.8 q3.2 -2.6 6.5 0 t6.5 0" fill="none" stroke="#f0ece0" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"></path>
-          </svg>
-        </span>
-        <span>SwimTrace</span>
-      </a>
+<body>
 
-      <div class="topbar-group topbar-group-home">
-        <nav class="topbar-nav" aria-label="Primary">
-          <div class="lang-content" data-lang="en">
-            <a class="topbar-link" href="#themes">Two themes</a>
-            <a class="topbar-link" href="#capabilities">Features</a>
-            <a class="topbar-link" href="#pricing">Pricing</a>
-            <a class="topbar-link" href="#support">Support</a>
-            <a class="topbar-link" href="./privacy.html">Privacy</a>
-          </div>
-          <div class="lang-content" data-lang="zh">
-            <a class="topbar-link" href="#themes">双主题</a>
-            <a class="topbar-link" href="#capabilities">功能</a>
-            <a class="topbar-link" href="#pricing">订阅</a>
-            <a class="topbar-link" href="#support">支持</a>
-            <a class="topbar-link" href="./privacy.html">隐私</a>
-          </div>
-        </nav>
+<!-- ============ HERO ============ -->
+<header class="hero">
+  <nav class="reveal d1">
+    <div class="logo">
+      <!-- 复刻 icon:绿底圆环(带缺口)+ 水波 -->
+      <svg class="brand-icon" viewBox="0 0 100 100">
+        <rect width="100" height="100" rx="24" fill="#5B9B78"/>
+        <circle cx="50" cy="52" r="30" class="ring" stroke="rgba(239,237,230,0.35)" stroke-width="7"/>
+        <circle cx="50" cy="52" r="30" class="ring" stroke="#EFEDE6" stroke-width="7" stroke-dasharray="160 188" transform="rotate(-90 50 52)"/>
+        <path d="M37 49 q4 -4 8 0 t8 0 t8 0" fill="none" stroke="#EFEDE6" stroke-width="4.5" stroke-linecap="round"/>
+        <path d="M37 58 q4 -4 8 0 t8 0 t8 0" fill="none" stroke="#EFEDE6" stroke-width="4.5" stroke-linecap="round"/>
+      </svg>
+      SwimTrace
+    </div>
+    <a href="#download" class="nav-cta">免费下载</a>
+  </nav>
 
-        <div class="topbar-actions">
-          <button class="lang-toggle lang-toggle-quiet" type="button" data-lang-toggle>中文</button>
-          <a class="button-link topbar-download" href="https://apps.apple.com" target="_blank" rel="noreferrer">
-            <span data-lang="en">App Store</span>
-            <span data-lang="zh">下载 App</span>
-          </a>
+  <div class="hero-body">
+    <div class="hero-text">
+      <span class="eyebrow reveal d2"><span class="dot"></span>游泳表现 · 运动恢复</span>
+      <h1 class="hero-title reveal d2">看见你的<br><span class="grad">游泳进步</span></h1>
+      <p class="hero-sub reveal d3">专为泳池游泳者打造。用去掉休息的净配速还原真实强度,把每一次训练和过去的你对比,清楚地看见——你正在变快。所有分析都在你的设备上完成。</p>
+      <div class="hero-btns reveal d4">
+        <a href="#download" class="btn-store">
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M17.05 12.04c-.03-2.6 2.13-3.85 2.22-3.91-1.21-1.77-3.1-2.01-3.77-2.04-1.6-.16-3.13.94-3.94.94-.81 0-2.07-.92-3.4-.89-1.75.03-3.36 1.02-4.26 2.58-1.82 3.16-.47 7.84 1.3 10.41.86 1.26 1.89 2.67 3.24 2.62 1.3-.05 1.79-.84 3.36-.84 1.57 0 2.01.84 3.39.81 1.4-.02 2.29-1.28 3.15-2.55.99-1.46 1.4-2.87 1.42-2.94-.03-.01-2.73-1.05-2.76-4.16M14.5 4.7c.72-.87 1.2-2.07 1.07-3.27-1.03.04-2.28.69-3.02 1.55-.66.77-1.24 2-1.08 3.18 1.15.09 2.32-.59 3.03-1.46"/></svg>
+          <span><small>下载于</small><b>App Store</b></span>
+        </a>
+        <span class="hero-note">iPhone · Apple Watch<br>需 iOS 15 及以上</span>
+      </div>
+    </div>
+
+    <!-- 手机:iPhone 17 Pro 外框 + 真实截图 -->
+    <div class="hero-visual reveal d4">
+      <div class="iphone">
+        <div class="iphone-screen">
+          <img src="hero-shot.png" alt="SwimTrace 单次游泳训练详情:总距离、净配速、训练结构与心率区间">
+          <span class="iphone-island"></span>
         </div>
       </div>
-    </header>
+    </div>
+  </div>
+</header>
 
-    <section class="landing-hero">
-      <div class="hero-copy">
-        <div class="hero-badges">
-          <span class="hero-badge" data-lang="en">For pool swimmers · Apple Watch</span>
-          <span class="hero-badge" data-lang="zh">为泳池游泳者打造 · Apple Watch</span>
-        </div>
+<!-- ============ 双主题 ============ -->
+<section>
+  <div class="sec-head">
+    <div class="sec-tag reveal">两大主题</div>
+    <h2 class="sec-title reveal">表现为主线,恢复为支撑</h2>
+    <p class="sec-desc reveal">游泳是为了变快,身体是变快的本钱。两条线一起看,训练才有据可依。</p>
+  </div>
+  <div class="themes">
+    <div class="theme-card theme-perf reveal d1">
+      <span class="ticon"><svg viewBox="0 0 24 24" fill="none"><path d="M3 17l5-5 4 3 8-9" stroke="#3DA5E8" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/><path d="M21 6v5h-5" stroke="#3DA5E8" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+      <h3>游泳表现</h3>
+      <p>配速、SWOLF、距离的每一点变化都看得见。和过去的自己比,和你的个人最佳比——清楚地知道,你在进步。</p>
+      <div class="theme-tags"><span>净配速</span><span>SWOLF</span><span>分泳姿</span><span>个人最佳</span><span>进步趋势</span></div>
+    </div>
+    <div class="theme-card theme-rec reveal d2">
+      <span class="ticon"><svg viewBox="0 0 24 24" fill="none"><path d="M12 21C7 17 3 13.5 3 9a4.5 4.5 0 018-2.8A4.5 4.5 0 0121 9c0 4.5-4 8-9 12z" stroke="#5B9B78" stroke-width="2" stroke-linejoin="round"/></svg></span>
+      <h3>运动恢复</h3>
+      <p>结合 HRV、睡眠、训练负荷,告诉你今天该不该练、练多少。让每一次进步,都建立在科学恢复之上。</p>
+      <div class="theme-tags"><span>运动准备度</span><span>HRV</span><span>睡眠</span><span>负荷与恢复</span></div>
+    </div>
+  </div>
+</section>
 
-        <h1 class="display-title" data-lang="en">See your<br>swimming<br><span class="serif-accent">progress.</span></h1>
-        <h1 class="display-title" data-lang="zh">看见你的<br><span class="serif-accent">游泳进步。</span></h1>
-        <p class="hero-body" data-lang="en">
-          SwimTrace turns each pool session into <em>net pace</em>, SWOLF, per-stroke splits, and personal bests — then shows it against your history. Not just a log: a clear picture of whether you are actually getting faster.
-        </p>
-        <p class="hero-body" data-lang="zh">
-          SwimTrace 把每一次泳池训练还原成 <em>净配速</em>、SWOLF、分泳姿配速与个人最佳，并和你的历史成绩对比。不只是记录，而是看见你到底有没有变快。
-        </p>
+<!-- ============ 核心差异 ============ -->
+<section class="diff-bg">
+  <div class="sec-head">
+    <div class="sec-tag reveal">为什么不一样</div>
+    <h2 class="sec-title reveal">Apple Watch 给你数据,<br>我们让数据说话</h2>
+  </div>
+  <div class="diffs">
+    <div class="diff reveal d1"><div class="diff-n">01</div><h4>懂间歇的净配速</h4><p>自动识别组间休息并切分,还原<span class="hl">去掉休息的真实配速</span>。间歇训练再也不会被一段休息拉垮整体数据——这正是原生记录最头疼的地方。</p></div>
+    <div class="diff reveal d2"><div class="diff-n">02</div><h4>看见进步,而不只是记录</h4><p>每一次训练都和你的<span class="hl">历史与个人最佳</span>对比。不是孤立的一堆数字,而是回答那个最重要的问题:我变快了吗?</p></div>
+    <div class="diff reveal d3"><div class="diff-n">03</div><h4>分泳姿,不混算</h4><p>自由泳、蛙泳、仰泳、蝶泳的配速与效率<span class="hl">各自统计</span>,不同池长严格分列。每一种泳姿的进步都看得清。</p></div>
+    <div class="diff reveal d4"><div class="diff-n">04</div><h4>替你把关数据</h4><p>自动识别<span class="hl">物理不可能的异常分段</span>(比如比世界纪录还快的脏数据),清晰标注、不计入你的成绩与纪录。诚实,是可信的前提。</p></div>
+  </div>
+</section>
 
-        <div class="hero-actions">
-          <a class="app-store-badge" href="https://apps.apple.com" target="_blank" rel="noreferrer">
-            <svg width="20" height="24" viewBox="0 0 22 26" fill="currentColor" aria-hidden="true">
-              <path d="M18.4 13.2c0-3.1 2.5-4.6 2.6-4.7-1.4-2.1-3.7-2.4-4.5-2.4-1.9-.2-3.7 1.1-4.7 1.1-1 0-2.5-1.1-4.1-1.1-2.1 0-4 1.2-5.1 3.1-2.2 3.8-.6 9.4 1.5 12.5 1.1 1.5 2.3 3.2 3.9 3.1 1.6-.1 2.2-1 4.1-1 1.9 0 2.5 1 4.1 1 1.7 0 2.8-1.5 3.8-3 1.2-1.7 1.7-3.4 1.7-3.5-.1 0-3.3-1.3-3.3-5.1zM15.3 4c.9-1.1 1.5-2.5 1.3-4-1.3.1-2.8.9-3.7 1.9-.8.9-1.5 2.4-1.3 3.7 1.4.1 2.9-.7 3.7-1.6z"></path>
-            </svg>
-            <span class="app-store-label" data-lang="en">
-              <small>Download on the</small>
-              <strong>App Store</strong>
-            </span>
-            <span class="app-store-label" data-lang="zh">
-              <small>立即下载</small>
-              <strong>App Store</strong>
-            </span>
-          </a>
-        </div>
+<!-- ============ 功能 ============ -->
+<section>
+  <div class="sec-head">
+    <div class="sec-tag reveal">完整体验</div>
+    <h2 class="sec-title reveal">从每一次下水,到每一段进步</h2>
+  </div>
+  <div class="feat-grid">
+    <div class="feat reveal d1"><span class="fi"><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M3 17l5-5 4 3 8-9" stroke-linecap="round" stroke-linejoin="round"/></svg></span><h4>趋势与进步</h4><p>配速、SWOLF、距离的长期趋势,泳姿分布,本月对比上月,一眼看清节奏。</p></div>
+    <div class="feat reveal d1"><span class="fi"><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2" stroke-linecap="round"/></svg></span><h4>单次训练详情</h4><p>核心指标、心率区间、分段净配速、各泳姿配速分位、训练后身体反应,完整呈现。</p></div>
+    <div class="feat reveal d1"><span class="fi"><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><rect x="3" y="4" width="18" height="16" rx="3"/><path d="M3 9h18M8 2v4M16 2v4" stroke-linecap="round"/></svg></span><h4>月度总结</h4><p>本月游泳量、活跃日历、配速分布、个人最佳,一张卡片回顾整月。</p></div>
+    <div class="feat reveal d2"><span class="fi"><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M4 16l5-5 4 3 7-8" stroke-linecap="round" stroke-linejoin="round"/><path d="M16 6h5v5" stroke-linecap="round" stroke-linejoin="round"/></svg></span><h4>个人最佳 PB</h4><p>按池长、泳姿分别追踪你的最佳配速,破纪录即时祝贺。</p></div>
+    <div class="feat reveal d2"><span class="fi"><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M4 12a8 8 0 0116 0" stroke-linecap="round"/><path d="M12 4v8l4 2" stroke-linecap="round"/></svg></span><h4>Apple Watch & 表盘</h4><p>抬腕即看运动准备度、最近游泳、本周距离;表盘 complication 随时提醒。</p></div>
+    <div class="feat reveal d2"><span class="fi"><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M12 3l8 4v5c0 5-3.5 8-8 9-4.5-1-8-4-8-9V7l8-4z" stroke-linejoin="round"/></svg></span><h4>本地智能提醒</h4><p>破纪录祝贺、训练反馈、趋势预警,全部在设备本地生成,不上传。</p></div>
+  </div>
+</section>
 
-        <div class="hero-stats">
-          <div class="hero-stat" data-lang="en">
-            <strong>4</strong>
-            <span>strokes tracked apart</span>
-          </div>
-          <div class="hero-stat" data-lang="en">
-            <strong class="swim-accent">0</strong>
-            <span>data uploaded</span>
-          </div>
-          <div class="hero-stat" data-lang="en">
-            <strong>100%</strong>
-            <span>on-device</span>
-          </div>
-          <div class="hero-stat" data-lang="zh">
-            <strong>4</strong>
-            <span>种泳姿严格分列</span>
-          </div>
-          <div class="hero-stat" data-lang="zh">
-            <strong class="swim-accent">0</strong>
-            <span>数据上传服务器</span>
-          </div>
-          <div class="hero-stat" data-lang="zh">
-            <strong>100%</strong>
-            <span>本地处理</span>
-          </div>
-        </div>
-      </div>
+<!-- ============ 隐私 ============ -->
+<section>
+  <div class="privacy reveal">
+    <span class="plock"><svg viewBox="0 0 24 24" fill="none"><rect x="5" y="11" width="14" height="9" rx="2.5" stroke="#fff" stroke-width="2"/><path d="M8 11V8a4 4 0 018 0v3" stroke="#fff" stroke-width="2"/></svg></span>
+    <h3>你的数据,留在你的设备</h3>
+    <p>健康数据的读取、分析与提醒生成,全部在你的 iPhone 与 Apple Watch 本地完成,不上传服务器。订阅通过 Apple StoreKit 处理,我们不保存你的支付信息。</p>
+  </div>
+</section>
 
-      <div class="hero-visual" aria-hidden="true">
-        <div class="hero-glow"></div>
-        <div class="phone-mock">
-          <div class="phone-screen">
-            <img class="phone-shot" src="./swim-detail.png" alt="SwimTrace swim session — total distance, net pace, and per-stroke splits">
-          </div>
-        </div>
-      </div>
-    </section>
+<!-- ============ 订阅 ============ -->
+<section class="diff-bg">
+  <div class="sec-head">
+    <div class="sec-tag reveal">订阅方案</div>
+    <h2 class="sec-title reveal">数据始终免费,解读随你解锁</h2>
+    <p class="sec-desc reveal">每一次训练的客观数据完全免费。跨训练的对比、长期趋势与深度解读,由高级版解锁。</p>
+  </div>
+  <div class="pricing">
+    <div class="plan reveal d1"><h4>月付</h4><div class="price">¥18<small>/月</small></div><div class="pnote">灵活体验</div></div>
+    <div class="plan feat-plan reveal d2"><span class="plan-pop">最受欢迎</span><h4>年付</h4><div class="price">¥168<small>/年</small></div><div class="pnote">含 7 天免费试用</div></div>
+    <div class="plan reveal d3"><h4>终身</h4><div class="price">¥398</div><div class="pnote">一次买断 · 约两年回本</div></div>
+  </div>
+</section>
 
-    <!-- ============================ TWO THEMES ============================ -->
-    <section class="editorial-section" id="themes">
-      <div class="section-head" data-reveal>
-        <p class="eyebrow" data-lang="en">Two themes, one app</p>
-        <p class="eyebrow" data-lang="zh">两大主题，一个 App</p>
-        <h2 class="section-title" data-lang="en">Swim performance,<br>backed by <span class="serif-accent">recovery.</span></h2>
-        <h2 class="section-title" data-lang="zh">游泳表现，<br>由<span class="serif-accent">恢复</span>支撑。</h2>
-        <p class="section-copy" data-lang="en">Performance is the main line — pace, splits, bests. Recovery is the supporting line that tells you when your body is ready to chase them.</p>
-        <p class="section-copy" data-lang="zh">游泳表现是主线——配速、分段、个人最佳；运动恢复是支撑线——告诉你身体什么时候准备好去冲它。</p>
-      </div>
+<!-- ============ FAQ ============ -->
+<section id="support">
+  <div class="sec-head">
+    <div class="sec-tag reveal">常见问题</div>
+    <h2 class="sec-title reveal">你可能想知道</h2>
+  </div>
+  <div style="max-width:780px;margin:0 auto;display:flex;flex-direction:column;gap:14px;">
+    <details class="faq reveal d1"><summary>为什么我的配速看起来和 Apple「体能训练」里不一样?</summary><p>我们采用「净配速」——自动识别并去掉组间休息时间,只计算你真正在游的那段。所以同一次训练,我们的配速通常比含休息的配速更能反映你的真实强度。详情页里会同时显示净配速与含休息配速,方便对照。</p></details>
+    <details class="faq reveal d1"><summary>为什么需要健康(HealthKit)权限?</summary><p>App 通过 HealthKit 读取你的游泳训练记录、心率、HRV、睡眠等数据,用于生成配速、SWOLF、恢复等分析。这些读取需要你授权,且可随时在系统「设置 › 健康」中撤销。</p></details>
+    <details class="faq reveal d2"><summary>我的数据会上传到服务器吗?</summary><p>不会。所有数据的读取、计算与提醒生成都在你的 iPhone 与 Apple Watch 本地完成,我们不收集、不上传你的健康数据,也没有任何第三方统计或广告 SDK。</p></details>
+    <details class="faq reveal d2"><summary>不同泳姿的配速会被混在一起算吗?</summary><p>不会。自由泳、蛙泳、仰泳、蝶泳的配速与 SWOLF 各自独立统计,不同池长(25m/50m)也严格分列,避免不可比的数据被平均。</p></details>
+    <details class="faq reveal d3"><summary>免费版和高级版的区别是什么?</summary><p>每一次训练的客观数据(距离、配速、SWOLF、分段、心率区间)完全免费。跨训练的对比、长期趋势、强度分位与深度解读由高级版解锁。</p></details>
+    <details class="faq reveal d3"><summary>怎么订阅和退订?</summary><p>订阅通过 Apple StoreKit 处理,可选月付、年付(含 7 天免费试用)或终身买断。退订在 iPhone「设置 › Apple ID › 订阅」中管理,我们不保存你的支付信息。</p></details>
+    <details class="faq reveal d4"><summary>Apple Watch 上能看什么?</summary><p>抬腕可查看运动准备度、最近一次游泳(含分泳姿净配速)、本周游泳量与负荷恢复;也可把运动准备度、距上次游泳、本周游泳次数添加到表盘 complication。</p></details>
+    <details class="faq reveal d4"><summary>遇到数据异常或问题怎么办?</summary><p>App 会自动标注物理不可能的异常分段(如比世界纪录还快的脏数据)并排除出成绩。若仍有疑问,可邮件联系 <a href="mailto:support@swimtrace.app" style="color:var(--green-d);">support@swimtrace.app</a>。</p></details>
+  </div>
+</section>
 
-      <div class="theme-grid">
-        <article class="theme-card is-swim" data-reveal>
-          <span class="theme-tag is-swim" data-lang="en">Swim performance · main line</span>
-          <span class="theme-tag is-swim" data-lang="zh">游泳表现 · 主线</span>
-          <h3 data-lang="en">Every length, measured honestly</h3>
-          <h3 data-lang="zh">每一趟，都被诚实地量化</h3>
-          <p data-lang="en">From the moment you push off, SwimTrace reads your swim and breaks it down the way swimmers actually think about it.</p>
-          <p data-lang="zh">从你蹬壁出发的那一刻起，SwimTrace 就按游泳者真正在意的方式拆解这次训练。</p>
-          <ul class="theme-points">
-            <li data-lang="en">Net pace (rest removed)</li>
-            <li data-lang="en">SWOLF efficiency</li>
-            <li data-lang="en">Distance &amp; lengths</li>
-            <li data-lang="en">Per-stroke splits</li>
-            <li data-lang="en">Personal bests</li>
-            <li data-lang="en">Progress trends</li>
-            <li data-lang="zh">净配速（去掉组间休息）</li>
-            <li data-lang="zh">SWOLF 划水效率</li>
-            <li data-lang="zh">距离与圈数</li>
-            <li data-lang="zh">分泳姿配速</li>
-            <li data-lang="zh">个人最佳</li>
-            <li data-lang="zh">进步趋势</li>
-          </ul>
-          <div class="theme-media">
-            <div class="phone-mock">
-              <div class="phone-screen">
-                <img class="phone-shot" src="./swim-activity.png" alt="SwimTrace activity list with weekly totals and personal bests" loading="lazy">
-              </div>
-            </div>
-          </div>
-        </article>
+<!-- ============ FINAL ============ -->
+<section class="final" id="download">
+  <h2 class="reveal">下一次下水,<br>带上一双更懂你的眼睛</h2>
+  <p class="reveal d1">免费下载,立刻看见你的游泳进步。</p>
+  <div class="reveal d2" style="position:relative;z-index:2;display:flex;justify-content:center;">
+    <a href="#" class="btn-store">
+      <svg viewBox="0 0 24 24" fill="currentColor"><path d="M17.05 12.04c-.03-2.6 2.13-3.85 2.22-3.91-1.21-1.77-3.1-2.01-3.77-2.04-1.6-.16-3.13.94-3.94.94-.81 0-2.07-.92-3.4-.89-1.75.03-3.36 1.02-4.26 2.58-1.82 3.16-.47 7.84 1.3 10.41.86 1.26 1.89 2.67 3.24 2.62 1.3-.05 1.79-.84 3.36-.84 1.57 0 2.01.84 3.39.81 1.4-.02 2.29-1.28 3.15-2.55.99-1.46 1.4-2.87 1.42-2.94-.03-.01-2.73-1.05-2.76-4.16M14.5 4.7c.72-.87 1.2-2.07 1.07-3.27-1.03.04-2.28.69-3.02 1.55-.66.77-1.24 2-1.08 3.18 1.15.09 2.32-.59 3.03-1.46"/></svg>
+      <span><small>下载于</small><b>App Store</b></span>
+    </a>
+  </div>
+  <div class="waves"><svg viewBox="0 0 2400 150" preserveAspectRatio="none"><path d="M0,75 C300,25 600,125 900,75 C1200,25 1500,125 1800,75 C2100,25 2400,125 2400,75 V150 H0 Z" fill="rgba(255,255,255,.12)"/></svg></div>
+</section>
 
-        <article class="theme-card is-recovery" data-reveal>
-          <span class="theme-tag is-recovery" data-lang="en">Recovery · supporting line</span>
-          <span class="theme-tag is-recovery" data-lang="zh">运动恢复 · 支撑线</span>
-          <h3 data-lang="en">Know when you are ready</h3>
-          <h3 data-lang="zh">知道自己什么时候准备好</h3>
-          <p data-lang="en">Readiness, HRV, sleep, and load are read from Apple Health so a hard swim lands on a day your body can actually take it.</p>
-          <p data-lang="zh">运动准备度、HRV、睡眠与负荷来自 Apple Health，让强度落在身体真正扛得住的那天。</p>
-          <ul class="theme-points">
-            <li data-lang="en">Training readiness</li>
-            <li data-lang="en">Heart-rate variability (HRV)</li>
-            <li data-lang="en">Sleep quality</li>
-            <li data-lang="en">Load &amp; recovery balance</li>
-            <li data-lang="zh">运动准备度</li>
-            <li data-lang="zh">心率变异性（HRV）</li>
-            <li data-lang="zh">睡眠质量</li>
-            <li data-lang="zh">负荷与恢复平衡</li>
-          </ul>
-          <div class="theme-media">
-            <div class="phone-mock">
-              <div class="phone-screen">
-                <img class="phone-shot" src="./swim-today.png" alt="SwimTrace today screen — readiness, HRV, and your latest swim" loading="lazy">
-              </div>
-            </div>
-          </div>
-        </article>
-      </div>
-    </section>
+<footer>
+  <span>© 2026 SwimTrace · 游泳表现与运动恢复</span>
+  <span><a href="privacy.html">隐私政策</a><a href="#support">支持</a><a href="mailto:support@swimtrace.app">联系我们</a></span>
+</footer>
 
-    <!-- ============================ DIFFERENCES ============================ -->
-    <section class="editorial-section" id="difference">
-      <div class="section-head" data-reveal>
-        <p class="eyebrow" data-lang="en">Why it is different</p>
-        <p class="eyebrow" data-lang="zh">和原生有何不同</p>
-        <h2 class="section-title" data-lang="en">Four things the watch<br><span class="serif-accent">won't tell you.</span></h2>
-        <h2 class="section-title" data-lang="zh">原生不会告诉你的<br><span class="serif-accent">四件事。</span></h2>
-        <p class="section-copy" data-lang="en">Apple Watch records the swim. SwimTrace reads it the way a coach would.</p>
-        <p class="section-copy" data-lang="zh">Apple Watch 把这次游泳记下来；SwimTrace 像教练一样把它读懂。</p>
-      </div>
+<script>
+  const io=new IntersectionObserver((es)=>{es.forEach(e=>{if(e.isIntersecting){e.target.style.animationPlayState='running';io.unobserve(e.target);}})},{threshold:.15});
+  document.querySelectorAll('section .reveal').forEach(el=>{el.style.animationPlayState='paused';io.observe(el);});
+</script>
 
-      <div class="feature-stack">
-        <article class="feature-row" data-reveal>
-          <div class="feature-index">01</div>
-          <div>
-            <h3 class="feature-name">Net pace</h3>
-            <p class="feature-subtitle" data-lang="en">Pace that understands intervals</p>
-            <p class="feature-subtitle" data-lang="zh">懂间歇的净配速</p>
-          </div>
-          <div>
-            <p class="feature-description" data-lang="en">Rest between sets quietly inflates your average pace. SwimTrace removes the rest and shows the pace you actually swam — so a real effort isn't watered down by standing at the wall.</p>
-            <p class="feature-description" data-lang="zh">组间休息会悄悄拉低你的平均配速。SwimTrace 去掉休息时间，还原你真正游出来的配速——真实强度不会被池边的等待稀释。</p>
-          </div>
-          <div class="feature-metric">
-            <strong class="swim-accent">1:38</strong>
-            <span data-lang="en">net /100m</span>
-            <span data-lang="zh">净配速 /100m</span>
-          </div>
-        </article>
-
-        <article class="feature-row" data-reveal>
-          <div class="feature-index">02</div>
-          <div>
-            <h3 class="feature-name">Progress</h3>
-            <p class="feature-subtitle" data-lang="en">See yourself getting faster</p>
-            <p class="feature-subtitle" data-lang="zh">看见自己在进步</p>
-          </div>
-          <div>
-            <p class="feature-description" data-lang="en">Every session is placed next to your history and personal bests. Instead of a wall of numbers, you see the line that matters: are you improving, holding, or slipping?</p>
-            <p class="feature-description" data-lang="zh">每次训练都会和你的历史成绩、个人最佳并排放在一起。你看到的不是一堆数字，而是最关键的那条线：在进步、在保持，还是在退步？</p>
-          </div>
-          <div class="feature-metric">
-            <strong>+6%</strong>
-            <span data-lang="en">vs last month</span>
-            <span data-lang="zh">较上月</span>
-          </div>
-        </article>
-
-        <article class="feature-row" data-reveal>
-          <div class="feature-index">03</div>
-          <div>
-            <h3 class="feature-name">Per stroke</h3>
-            <p class="feature-subtitle" data-lang="en">Strokes never get mixed</p>
-            <p class="feature-subtitle" data-lang="zh">分泳姿不混算</p>
-          </div>
-          <div>
-            <p class="feature-description" data-lang="en">Freestyle, breaststroke, backstroke, and butterfly are kept strictly apart — and so is every pool length. Your free pace is never averaged together with your breaststroke.</p>
-            <p class="feature-description" data-lang="zh">自由泳、蛙泳、仰泳、蝶泳严格分列，每种池长也分开统计。你的自由泳配速，绝不会和蛙泳被平均到一起。</p>
-          </div>
-          <div class="feature-metric">
-            <strong class="swim-accent">4</strong>
-            <span data-lang="en">strokes split out</span>
-            <span data-lang="zh">泳姿独立统计</span>
-          </div>
-        </article>
-
-        <article class="feature-row" data-reveal>
-          <div class="feature-index">04</div>
-          <div>
-            <h3 class="feature-name">Guardrails</h3>
-            <p class="feature-subtitle" data-lang="en">Bad data, caught for you</p>
-            <p class="feature-subtitle" data-lang="zh">替你把关数据</p>
-          </div>
-          <div>
-            <p class="feature-description" data-lang="en">A misread turn or a physically impossible split shouldn't become a fake personal best. SwimTrace flags those segments automatically and leaves them out of your results.</p>
-            <p class="feature-description" data-lang="zh">一次误判的转身、一段物理上不可能的分段，不该变成假的个人最佳。SwimTrace 会自动标注这些异常分段，并把它们排除在成绩之外。</p>
-          </div>
-          <div class="feature-metric">
-            <strong>Auto</strong>
-            <span data-lang="en">anomaly flagging</span>
-            <span data-lang="zh">异常自动标注</span>
-          </div>
-        </article>
-      </div>
-    </section>
-
-    <!-- ============================ CAPABILITIES ============================ -->
-    <section class="editorial-section" id="capabilities">
-      <div class="section-head" data-reveal>
-        <p class="eyebrow" data-lang="en">Everything inside</p>
-        <p class="eyebrow" data-lang="zh">完整功能</p>
-        <h2 class="section-title" data-lang="en">The full <span class="serif-accent">picture.</span></h2>
-        <h2 class="section-title" data-lang="zh">完整的<span class="serif-accent">全貌。</span></h2>
-        <p class="section-copy" data-lang="en">Swim metrics in blue, recovery context in green — everything works together, all on your device.</p>
-        <p class="section-copy" data-lang="zh">蓝色是游泳指标，绿色是恢复信息——它们彼此配合，全部在你的设备上完成。</p>
-      </div>
-
-      <div class="capability-grid">
-        <article class="capability-card is-swim" data-reveal>
-          <span class="cap-icon" aria-hidden="true">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 12c2-2 4-2 6 0s4 2 6 0 4-2 6 0"/><path d="M2 17c2-2 4-2 6 0s4 2 6 0 4-2 6 0"/></svg>
-          </span>
-          <h3 data-lang="en">Net pace</h3>
-          <h3 data-lang="zh">净配速</h3>
-          <p data-lang="en">Rest removed, so each interval reflects real swimming intensity.</p>
-          <p data-lang="zh">去掉休息时间，让每组都反映真实的游泳强度。</p>
-        </article>
-
-        <article class="capability-card is-swim" data-reveal>
-          <span class="cap-icon" aria-hidden="true">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 18V8m5 10V5m5 13v-7m5 7V9"/></svg>
-          </span>
-          <h3 data-lang="en">SWOLF</h3>
-          <h3 data-lang="zh">SWOLF 效率</h3>
-          <p data-lang="en">Stroke efficiency per length, tracked over time.</p>
-          <p data-lang="zh">每趟的划水效率，随时间持续追踪。</p>
-        </article>
-
-        <article class="capability-card is-swim" data-reveal>
-          <span class="cap-icon" aria-hidden="true">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12h4l3 7 4-14 3 7h4"/></svg>
-          </span>
-          <h3 data-lang="en">Distance &amp; lengths</h3>
-          <h3 data-lang="zh">距离与圈数</h3>
-          <p data-lang="en">Totals and per-length detail for every session.</p>
-          <p data-lang="zh">每次训练的总距离与逐趟明细。</p>
-        </article>
-
-        <article class="capability-card is-swim" data-reveal>
-          <span class="cap-icon" aria-hidden="true">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="16" rx="2"/><path d="M3 10h18M9 4v16"/></svg>
-          </span>
-          <h3 data-lang="en">Per-stroke splits</h3>
-          <h3 data-lang="zh">分泳姿配速</h3>
-          <p data-lang="en">Free, breast, back, fly — each stroke and pool length kept separate.</p>
-          <p data-lang="zh">自由泳、蛙泳、仰泳、蝶泳——每种泳姿、每种池长分开统计。</p>
-        </article>
-
-        <article class="capability-card is-swim" data-reveal>
-          <span class="cap-icon" aria-hidden="true">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M8 21h8M12 17v4M7 4h10v4a5 5 0 0 1-10 0zM7 6H4v2a3 3 0 0 0 3 3M17 6h3v2a3 3 0 0 1-3 3"/></svg>
-          </span>
-          <h3 data-lang="en">Personal bests</h3>
-          <h3 data-lang="zh">个人最佳</h3>
-          <p data-lang="en">Bests by distance and stroke, with the date you set them.</p>
-          <p data-lang="zh">按距离与泳姿记录个人最佳，并标注创造日期。</p>
-        </article>
-
-        <article class="capability-card is-swim" data-reveal>
-          <span class="cap-icon" aria-hidden="true">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 17l6-6 4 4 7-8"/><path d="M21 7v5h-5"/></svg>
-          </span>
-          <h3 data-lang="en">Progress trends</h3>
-          <h3 data-lang="zh">进步趋势</h3>
-          <p data-lang="en">Long-term lines that show whether you are truly improving.</p>
-          <p data-lang="zh">长期趋势曲线，看清你是否真的在进步。</p>
-        </article>
-
-        <article class="capability-card is-recovery" data-reveal>
-          <span class="cap-icon" aria-hidden="true">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>
-          </span>
-          <h3 data-lang="en">Readiness</h3>
-          <h3 data-lang="zh">运动准备度</h3>
-          <p data-lang="en">A daily read on whether your body is ready to push.</p>
-          <p data-lang="zh">每天判断身体是否准备好加量。</p>
-        </article>
-
-        <article class="capability-card is-recovery" data-reveal>
-          <span class="cap-icon" aria-hidden="true">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12h4l2-5 3 10 2-6 2 3h5"/></svg>
-          </span>
-          <h3 data-lang="en">HRV &amp; heart rate</h3>
-          <h3 data-lang="zh">HRV 与心率</h3>
-          <p data-lang="en">HRV and resting heart rate as recovery signals.</p>
-          <p data-lang="zh">以 HRV 和静息心率作为恢复信号。</p>
-        </article>
-
-        <article class="capability-card is-recovery" data-reveal>
-          <span class="cap-icon" aria-hidden="true">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"/></svg>
-          </span>
-          <h3 data-lang="en">Sleep &amp; load</h3>
-          <h3 data-lang="zh">睡眠与负荷</h3>
-          <p data-lang="en">Sleep quality and training load, balanced against recovery.</p>
-          <p data-lang="zh">睡眠质量与训练负荷，与恢复状态相互平衡。</p>
-        </article>
-      </div>
-    </section>
-
-    <!-- ============================ PRIVACY STANCE ============================ -->
-    <section class="editorial-section" id="privacy-stance">
-      <div class="privacy-band" data-reveal>
-        <div>
-          <p class="eyebrow" data-lang="en">Privacy</p>
-          <p class="eyebrow" data-lang="zh">隐私</p>
-          <h2 class="section-title" data-lang="en">Your data <span class="serif-accent">stays</span> with you.</h2>
-          <h2 class="section-title" data-lang="zh">你的数据，<span class="serif-accent">留在你这里。</span></h2>
-          <p class="privacy-lead" data-lang="en">SwimTrace is built to process everything on your device. There is nothing to log into, and nothing is sent to a server.</p>
-          <p class="privacy-lead" data-lang="zh">SwimTrace 的设计是把一切都放在你的设备上处理。没有账号要登录，也没有任何数据发往服务器。</p>
-          <a class="action-link privacy-link" href="./privacy.html" data-lang="en">Read the full privacy policy →</a>
-          <a class="action-link privacy-link" href="./privacy.html" data-lang="zh">查看完整隐私政策 →</a>
-        </div>
-        <ul class="privacy-points">
-          <li>
-            <strong data-lang="en">Processed on your device</strong>
-            <strong data-lang="zh">全部在你的设备上处理</strong>
-            <span data-lang="en">All analysis happens locally — there is no SwimTrace server.</span>
-            <span data-lang="zh">所有分析都在本地完成——没有 SwimTrace 服务器。</span>
-          </li>
-          <li>
-            <strong data-lang="en">No third-party SDKs</strong>
-            <strong data-lang="zh">无第三方 SDK</strong>
-            <span data-lang="en">No analytics, no advertising, no tracking SDKs.</span>
-            <span data-lang="zh">不接入统计、广告或追踪类 SDK。</span>
-          </li>
-          <li>
-            <strong data-lang="en">No account, no tracking</strong>
-            <strong data-lang="zh">无账户、无追踪</strong>
-            <span data-lang="en">No sign-up, no name or email collection, no location tracking.</span>
-            <span data-lang="zh">无需注册，不收集姓名或邮箱，不进行位置追踪。</span>
-          </li>
-          <li>
-            <strong data-lang="en">Subscriptions via Apple</strong>
-            <strong data-lang="zh">订阅经 Apple StoreKit</strong>
-            <span data-lang="en">Billing is handled by Apple StoreKit — we never see payment details.</span>
-            <span data-lang="zh">支付由 Apple StoreKit 处理——我们不会接触你的支付信息。</span>
-          </li>
-        </ul>
-      </div>
-    </section>
-
-    <!-- ============================ PRICING ============================ -->
-    <section class="editorial-section" id="pricing">
-      <div class="section-head" data-reveal>
-        <p class="eyebrow" data-lang="en">Pricing</p>
-        <p class="eyebrow" data-lang="zh">订阅方案</p>
-        <h2 class="section-title" data-lang="en">Free to start,<br><span class="serif-accent">more when you want it.</span></h2>
-        <h2 class="section-title" data-lang="zh">免费开始，<br><span class="serif-accent">想要更多再升级。</span></h2>
-        <p class="section-copy" data-lang="en">Core swim metrics stay free. Premium adds deeper history, trends, and recovery integration.</p>
-        <p class="section-copy" data-lang="zh">核心游泳指标永久免费；高级版提供更深入的历史、趋势与恢复整合。</p>
-      </div>
-
-      <div class="plan-grid">
-        <article class="plan-card" data-reveal>
-          <div class="plan-head">
-            <span class="plan-name" data-lang="en">Free</span>
-            <span class="plan-name" data-lang="zh">免费版</span>
-          </div>
-          <div class="plan-price" data-lang="en">$0<span> / forever</span></div>
-          <div class="plan-price" data-lang="zh">¥0<span> / 永久</span></div>
-          <ul class="plan-features">
-            <li data-lang="en">Net pace, distance &amp; SWOLF</li>
-            <li data-lang="en">Per-stroke splits</li>
-            <li data-lang="en">Single-session view</li>
-            <li data-lang="en">Anomaly guardrails</li>
-            <li class="is-muted" data-lang="en">Long-term trends &amp; bests history</li>
-            <li class="is-muted" data-lang="en">Recovery integration</li>
-            <li data-lang="zh">净配速、距离与 SWOLF</li>
-            <li data-lang="zh">分泳姿配速</li>
-            <li data-lang="zh">单次训练查看</li>
-            <li data-lang="zh">异常数据把关</li>
-            <li class="is-muted" data-lang="zh">长期趋势与个人最佳历史</li>
-            <li class="is-muted" data-lang="zh">恢复整合</li>
-          </ul>
-          <p class="plan-note" data-lang="en">No account needed. Just download and swim.</p>
-          <p class="plan-note" data-lang="zh">无需账号，下载即用。</p>
-        </article>
-
-        <article class="plan-card is-featured" data-reveal>
-          <div class="plan-head">
-            <span class="plan-name" data-lang="en">Premium</span>
-            <span class="plan-name" data-lang="zh">高级版</span>
-            <span class="plan-flag" data-lang="en">Subscription</span>
-            <span class="plan-flag" data-lang="zh">订阅</span>
-          </div>
-          <div class="plan-price" data-lang="en">Pricing<span> shown in App Store</span></div>
-          <div class="plan-price" data-lang="zh">价格<span> 以 App Store 为准</span></div>
-          <ul class="plan-features">
-            <li data-lang="en">Everything in Free</li>
-            <li data-lang="en">Unlimited history</li>
-            <li data-lang="en">Full progress trends</li>
-            <li data-lang="en">Personal-best history</li>
-            <li data-lang="en">Recovery integration (readiness, HRV, sleep)</li>
-            <li data-lang="en">Periodized guidance</li>
-            <li data-lang="zh">包含免费版全部功能</li>
-            <li data-lang="zh">无限历史记录</li>
-            <li data-lang="zh">完整进步趋势</li>
-            <li data-lang="zh">个人最佳历史</li>
-            <li data-lang="zh">恢复整合（准备度、HRV、睡眠）</li>
-            <li data-lang="zh">周期化训练建议</li>
-          </ul>
-          <p class="plan-note" data-lang="en">Billed through your Apple account. Cancel anytime in App Store subscription settings.</p>
-          <p class="plan-note" data-lang="zh">通过 Apple 账户结算，可随时在 App Store 订阅设置中取消。</p>
-          <a class="button-link primary plan-cta" href="https://apps.apple.com" target="_blank" rel="noreferrer">
-            <span data-lang="en">Get SwimTrace</span>
-            <span data-lang="zh">获取 SwimTrace</span>
-          </a>
-        </article>
-      </div>
-    </section>
-
-    <!-- ============================ FAQ / SUPPORT ============================ -->
-    <section class="editorial-section faq-section" id="faq">
-      <span id="support" class="sr-only" aria-hidden="true"></span>
-      <div class="faq-layout">
-        <aside class="support-panel" data-reveal>
-          <p class="eyebrow" data-lang="en">Support · FAQ</p>
-          <p class="eyebrow" data-lang="zh">支持 · 常见问题</p>
-          <h2 class="section-title" data-lang="en">Questions,<br><span class="serif-accent">answered.</span></h2>
-          <h2 class="section-title" data-lang="zh">你的<br><span class="serif-accent">疑问。</span></h2>
-          <div class="contact-list">
-            <div class="contact-block">
-              <strong data-lang="en">Email</strong>
-              <strong data-lang="zh">邮件 · Email</strong>
-              <a href="mailto:support@swimtrace.app">support@swimtrace.app</a>
-            </div>
-            <div class="contact-block">
-              <strong data-lang="en">Privacy</strong>
-              <strong data-lang="zh">隐私 · Privacy</strong>
-              <span data-lang="en">All data is processed on your device only.</span>
-              <span data-lang="zh">所有数据仅在你的设备上处理。</span>
-              <br>
-              <a href="./privacy.html" data-lang="en">Read the full privacy policy →</a>
-              <a href="./privacy.html" data-lang="zh">查看完整隐私政策 →</a>
-            </div>
-            <div class="contact-block">
-              <strong data-lang="en">More help</strong>
-              <strong data-lang="zh">更多帮助</strong>
-              <a href="./support.html" data-lang="en">Open the support page →</a>
-              <a href="./support.html" data-lang="zh">打开支持页面 →</a>
-            </div>
-          </div>
-        </aside>
-
-        <div class="faq-list" data-reveal>
-          <details class="faq-item">
-            <summary>
-              <span data-lang="en">Why is my pace different from the native Workout app?</span>
-              <span data-lang="zh">为什么配速和原生「体能训练」不一样？</span>
-              <span class="faq-toggle" aria-hidden="true"></span>
-            </summary>
-            <div class="faq-a">
-              <p data-lang="en">SwimTrace shows <strong>net pace</strong>: it removes the rest between sets so the number reflects the speed you actually swam. The native average often blends in time spent resting at the wall, which makes a hard interval look slower than it was.</p>
-              <p data-lang="zh">SwimTrace 显示的是<strong>净配速</strong>：它会去掉组间休息，让数字反映你真正游出来的速度。原生的平均配速常常把池边休息的时间也算进去，于是一组高强度间歇看起来反而更慢。</p>
-            </div>
-          </details>
-
-          <details class="faq-item">
-            <summary>
-              <span data-lang="en">Why does SwimTrace need HealthKit permission?</span>
-              <span data-lang="zh">为什么需要 HealthKit 权限？</span>
-              <span class="faq-toggle" aria-hidden="true"></span>
-            </summary>
-            <div class="faq-a">
-              <p data-lang="en">Your swims, heart rate, sleep, and related metrics are recorded by Apple Watch into Apple Health. SwimTrace reads those records (with your permission) to calculate pace, splits, and recovery. Without HealthKit access there is no swim data to analyze.</p>
-              <p data-lang="zh">你的游泳、心率、睡眠等数据由 Apple Watch 记录到 Apple「健康」中。SwimTrace 在你授权后读取这些记录，用于计算配速、分段和恢复。没有 HealthKit 权限，就没有可分析的游泳数据。</p>
-            </div>
-          </details>
-
-          <details class="faq-item">
-            <summary>
-              <span data-lang="en">Is my data uploaded anywhere?</span>
-              <span data-lang="zh">我的数据会被上传吗？</span>
-              <span class="faq-toggle" aria-hidden="true"></span>
-            </summary>
-            <div class="faq-a">
-              <p data-lang="en">No. SwimTrace processes everything on your device. There is no SwimTrace server, no account, and no third-party analytics or advertising SDKs. Your data is not uploaded, sold, or shared.</p>
-              <p data-lang="zh">不会。SwimTrace 在你的设备上完成全部处理。没有 SwimTrace 服务器、没有账号，也没有第三方统计或广告 SDK。你的数据不会被上传、出售或共享。</p>
-            </div>
-          </details>
-
-          <details class="faq-item">
-            <summary>
-              <span data-lang="en">How are different strokes counted?</span>
-              <span data-lang="zh">不同泳姿是怎么统计的？</span>
-              <span class="faq-toggle" aria-hidden="true"></span>
-            </summary>
-            <div class="faq-a">
-              <p data-lang="en">Freestyle, breaststroke, backstroke, and butterfly are tracked strictly separately, and each pool length is kept distinct too. Your freestyle pace is never averaged together with another stroke.</p>
-              <p data-lang="zh">自由泳、蛙泳、仰泳、蝶泳严格分开统计，每种池长也分别记录。你的自由泳配速绝不会和其他泳姿被平均到一起。</p>
-            </div>
-          </details>
-
-          <details class="faq-item">
-            <summary>
-              <span data-lang="en">What's the difference between Free and Premium?</span>
-              <span data-lang="zh">免费版和高级版有什么区别？</span>
-              <span class="faq-toggle" aria-hidden="true"></span>
-            </summary>
-            <div class="faq-a">
-              <p data-lang="en">Free covers core swim metrics — net pace, distance, SWOLF, per-stroke splits, and single-session views. Premium adds unlimited history, full progress trends, personal-best history, and recovery integration.</p>
-              <p data-lang="zh">免费版包含核心游泳指标——净配速、距离、SWOLF、分泳姿配速和单次训练查看。高级版增加无限历史、完整进步趋势、个人最佳历史以及恢复整合。</p>
-            </div>
-          </details>
-
-          <details class="faq-item">
-            <summary>
-              <span data-lang="en">How do I manage or cancel a subscription?</span>
-              <span data-lang="zh">如何管理或取消订阅？</span>
-              <span class="faq-toggle" aria-hidden="true"></span>
-            </summary>
-            <div class="faq-a">
-              <p data-lang="en">Premium is billed through your Apple account using Apple StoreKit. Renewal, billing, and cancellation are all managed in your Apple account's subscription settings — the developer never handles your payment information.</p>
-              <p data-lang="zh">高级版通过 Apple StoreKit、由你的 Apple 账户结算。续费、账单和取消都在 Apple 账户的订阅设置中完成——开发者不会接触你的支付信息。</p>
-            </div>
-          </details>
-
-          <details class="faq-item">
-            <summary>
-              <span data-lang="en">What can I see on Apple Watch?</span>
-              <span data-lang="zh">Apple Watch 上能看到什么？</span>
-              <span class="faq-toggle" aria-hidden="true"></span>
-            </summary>
-            <div class="faq-a">
-              <p data-lang="en">SwimTrace relies on the swim Apple Watch records during your session. After the swim, your pace, splits, distance, and recovery context appear on iPhone where there is room to compare against your history.</p>
-              <p data-lang="zh">SwimTrace 依赖 Apple Watch 在训练中记录的游泳数据。游完之后，配速、分段、距离与恢复信息会在 iPhone 上呈现，那里有足够空间和你的历史成绩做对比。</p>
-            </div>
-          </details>
-
-          <details class="faq-item">
-            <summary>
-              <span data-lang="en">What happens to abnormal or impossible data?</span>
-              <span data-lang="zh">异常或不可能的数据会怎么处理？</span>
-              <span class="faq-toggle" aria-hidden="true"></span>
-            </summary>
-            <div class="faq-a">
-              <p data-lang="en">A misread turn can produce a split that's physically impossible. SwimTrace detects those segments, marks them clearly, and leaves them out of your results so they never become a fake personal best.</p>
-              <p data-lang="zh">一次误判的转身可能产生物理上不可能的分段。SwimTrace 会识别这些片段、清楚标注，并把它们排除在成绩之外，避免变成假的个人最佳。</p>
-            </div>
-          </details>
-        </div>
-      </div>
-    </section>
-
-    <!-- ============================ CLOSING CTA ============================ -->
-    <section class="editorial-section">
-      <div class="cta-band" data-reveal>
-        <h2 data-lang="en">Stop logging swims.<br>Start <span class="serif-accent">seeing progress.</span></h2>
-        <h2 data-lang="zh">别再只是记录，<br>开始<span class="serif-accent">看见进步。</span></h2>
-        <p data-lang="en">Free to download. Everything on your device. Built for pool swimmers who want to get faster.</p>
-        <p data-lang="zh">免费下载，全部本地处理。为想变快的泳池游泳者而做。</p>
-        <div class="hero-actions">
-          <a class="app-store-badge" href="https://apps.apple.com" target="_blank" rel="noreferrer">
-            <svg width="20" height="24" viewBox="0 0 22 26" fill="currentColor" aria-hidden="true">
-              <path d="M18.4 13.2c0-3.1 2.5-4.6 2.6-4.7-1.4-2.1-3.7-2.4-4.5-2.4-1.9-.2-3.7 1.1-4.7 1.1-1 0-2.5-1.1-4.1-1.1-2.1 0-4 1.2-5.1 3.1-2.2 3.8-.6 9.4 1.5 12.5 1.1 1.5 2.3 3.2 3.9 3.1 1.6-.1 2.2-1 4.1-1 1.9 0 2.5 1 4.1 1 1.7 0 2.8-1.5 3.8-3 1.2-1.7 1.7-3.4 1.7-3.5-.1 0-3.3-1.3-3.3-5.1zM15.3 4c.9-1.1 1.5-2.5 1.3-4-1.3.1-2.8.9-3.7 1.9-.8.9-1.5 2.4-1.3 3.7 1.4.1 2.9-.7 3.7-1.6z"></path>
-            </svg>
-            <span class="app-store-label" data-lang="en">
-              <small>Download on the</small>
-              <strong>App Store</strong>
-            </span>
-            <span class="app-store-label" data-lang="zh">
-              <small>立即下载</small>
-              <strong>App Store</strong>
-            </span>
-          </a>
-        </div>
-      </div>
-
-      <footer class="page-footer">
-        <div class="footer-brand">
-          <span class="brand-mark" aria-hidden="true">
-            <svg class="app-icon" width="28" height="28" viewBox="0 0 40 40" fill="none" role="img" aria-hidden="true">
-              <rect width="40" height="40" rx="9" fill="#6b9b7e"></rect>
-              <circle cx="20" cy="20" r="12.5" fill="none" stroke="#f0ece0" stroke-width="2.6" opacity="0.32"></circle>
-              <path d="M21.1 7.55 A12.5 12.5 0 1 1 7.93 23.24" fill="none" stroke="#f0ece0" stroke-width="2.6" stroke-linecap="round"></path>
-              <path d="M13.5 18.2 q3.2 -2.6 6.5 0 t6.5 0" fill="none" stroke="#f0ece0" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"></path>
-              <path d="M13.5 21.8 q3.2 -2.6 6.5 0 t6.5 0" fill="none" stroke="#f0ece0" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"></path>
-            </svg>
-          </span>
-          <span>SwimTrace</span>
-        </div>
-        <div class="footer-links">
-          <div class="lang-content" data-lang="en">
-            <span>© 2026 SwimTrace. All rights reserved.</span>
-            <a href="./privacy.html">Privacy Policy</a>
-            <a href="./support.html">Support</a>
-            <a href="mailto:support@swimtrace.app">Contact</a>
-            <a href="https://apps.apple.com" target="_blank" rel="noreferrer">App Store</a>
-          </div>
-          <div class="lang-content" data-lang="zh">
-            <span>© 2026 SwimTrace. 保留所有权利。</span>
-            <a href="./privacy.html">隐私政策</a>
-            <a href="./support.html">技术支持</a>
-            <a href="mailto:support@swimtrace.app">联系邮箱</a>
-            <a href="https://apps.apple.com" target="_blank" rel="noreferrer">App Store</a>
-          </div>
-        </div>
-      </footer>
-    </section>
-  </main>
 </body>
 </html>
