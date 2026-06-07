@@ -1,0 +1,15 @@
+{
+  // Cloudflare Workers static-assets deploy for the SwimTrace site.
+  // `wrangler deploy` publishes everything under ./site as static assets
+  // (no Worker script needed — this is an assets-only Worker).
+  //
+  // NOTE: "name" must match the Worker/project name in your Cloudflare
+  // dashboard. It defaults to the repo name here — change it if your
+  // connected Worker is named differently.
+  "name": "health-website",
+  "compatibility_date": "2026-06-07",
+  "assets": {
+    "directory": "./site",
+    "not_found_handling": "404-page"
+  }
+}
