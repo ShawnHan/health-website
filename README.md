@@ -1,8 +1,8 @@
-# SwimTrace App Store Review Website
+# SwimSight App Store Review Website
 
-This repository contains the static website used for SwimTrace's App Store review metadata.
+This repository contains the static website used for SwimSight's App Store review metadata.
 
-SwimTrace is a swimming app for pool swimmers, built around two themes: **swim performance** (net pace, SWOLF, distance, per-stroke splits, personal bests, progress trends) and **recovery** (readiness, HRV, sleep, load). All data is processed on device.
+SwimSight is a swimming app for pool swimmers, built around two themes: **swim performance** (net pace, SWOLF, distance, per-stroke splits, personal bests, progress trends) and **recovery** (readiness, HRV, sleep, load). All data is processed on device.
 
 ## Structure
 
@@ -25,8 +25,8 @@ Use Git integration with GitHub.
 
 These are placeholders to replace before submitting to Apple:
 
-- **App name**: `SwimTrace` (used consistently across all pages; the final name is undecided)
-- **Support email**: `support@swimtrace.app`
+- **App name**: `SwimSight` (used consistently across all pages)
+- **Support email**: `swimsight.app@outlook.com`
 - **Privacy "Last updated" date**: top of `site/privacy.html`
 - **Screenshots**: real app screenshots are wired in (`site/swim-detail.png`, `site/swim-activity.png`, `site/swim-today.png`). Swap them for newer captures (PNG, ~1206×2622) any time
 

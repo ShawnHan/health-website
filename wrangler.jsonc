@@ -1,5 +1,5 @@
 {
-  // Cloudflare Workers static-assets deploy for the SwimTrace site.
+  // Cloudflare Workers static-assets deploy for the SwimSight site.
   // `wrangler deploy` publishes everything under ./site as static assets
   // (no Worker script needed — this is an assets-only Worker).
   //
