@@ -1,5 +1,5 @@
 (function () {
-  var STORAGE_KEY = "swimtrace-language";
+  var STORAGE_KEY = "swimsight-language";
 
   function detectLanguage() {
     try {
