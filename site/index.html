@@ -150,16 +150,6 @@
   .privacy h3{font-size:29px;font-weight:800;margin-bottom:16px;letter-spacing:-.5px;}
   .privacy p{font-size:16px;line-height:1.75;color:rgba(255,255,255,.8);max-width:600px;margin:0 auto;}
 
-  /* 订阅 */
-  .pricing{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;max-width:900px;margin:0 auto;}
-  .plan{background:#fff;border:1.5px solid var(--line);border-radius:22px;padding:32px 26px;text-align:center;position:relative;}
-  .plan.feat-plan{border-color:var(--green);box-shadow:0 16px 40px rgba(91,155,120,.16);}
-  .plan-pop{position:absolute;top:-13px;left:50%;transform:translateX(-50%);background:var(--green);color:#fff;font-family:'Sora';font-size:12px;font-weight:700;padding:6px 16px;border-radius:20px;}
-  .plan h4{font-size:16px;font-weight:600;color:var(--mute);margin-bottom:13px;}
-  .plan .price{font-family:'Sora';font-size:37px;font-weight:800;color:var(--ink);}
-  .plan .price small{font-size:15px;font-weight:500;color:var(--mute);}
-  .plan .pnote{font-size:13px;color:var(--green-d);margin-top:9px;font-weight:600;}
-
   /* FINAL */
   .final{background:linear-gradient(165deg,#3E7D5B,#5B9B78 70%,#6FA98A);color:#fff;text-align:center;position:relative;overflow:hidden;}
   .final h2{font-size:clamp(32px,5vw,54px);font-weight:800;letter-spacing:-1px;margin-bottom:22px;position:relative;z-index:2;}
@@ -180,7 +170,7 @@
   .faq p{font-size:14.5px;line-height:1.75;color:var(--mute);padding:0 0 20px;}
 
   @media(max-width:860px){
-    .themes,.diffs,.feat-grid,.pricing{grid-template-columns:1fr;}
+    .themes,.diffs,.feat-grid{grid-template-columns:1fr;}
     .hero-body{flex-direction:column;padding-top:10px;}
     .hero-visual{margin-top:24px;}
     section{padding:66px 6vw;}
@@ -291,20 +281,6 @@
     <span class="plock"><svg viewBox="0 0 24 24" fill="none"><rect x="5" y="11" width="14" height="9" rx="2.5" stroke="#fff" stroke-width="2"/><path d="M8 11V8a4 4 0 018 0v3" stroke="#fff" stroke-width="2"/></svg></span>
     <h3>你的数据,留在你的设备</h3>
     <p>健康数据的读取、分析与提醒生成,全部在你的 iPhone 与 Apple Watch 本地完成,不上传服务器。订阅通过 Apple StoreKit 处理,我们不保存你的支付信息。</p>
-  </div>
-</section>
-
-<!-- ============ 订阅 ============ -->
-<section class="diff-bg">
-  <div class="sec-head">
-    <div class="sec-tag reveal">订阅方案</div>
-    <h2 class="sec-title reveal">数据始终免费,解读随你解锁</h2>
-    <p class="sec-desc reveal">每一次训练的客观数据完全免费。跨训练的对比、长期趋势与深度解读,由高级版解锁。</p>
-  </div>
-  <div class="pricing">
-    <div class="plan reveal d1"><h4>月付</h4><div class="price">¥18<small>/月</small></div><div class="pnote">灵活体验</div></div>
-    <div class="plan feat-plan reveal d2"><span class="plan-pop">最受欢迎</span><h4>年付</h4><div class="price">¥168<small>/年</small></div><div class="pnote">含 7 天免费试用</div></div>
-    <div class="plan reveal d3"><h4>终身</h4><div class="price">¥398</div><div class="pnote">一次买断 · 约两年回本</div></div>
   </div>
 </section>
 
