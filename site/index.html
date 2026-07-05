@@ -66,6 +66,8 @@
     box-shadow:0 6px 18px rgba(91,155,120,.3);
   }
   .nav-cta:hover{background:var(--green-d);transform:translateY(-2px);}
+  .coming-soon{cursor:default;}
+  .nav-cta.coming-soon:hover{background:var(--green);transform:none;}
 
   .hero-body{position:relative;z-index:5;flex:1;display:flex;align-items:center;padding:30px 7vw 70px;gap:5vw;flex-wrap:wrap;}
   .hero-text{flex:1;min-width:320px;max-width:620px;}
@@ -80,6 +82,7 @@
   .hero-btns{display:flex;gap:18px;flex-wrap:wrap;align-items:center;}
   .btn-store{display:inline-flex;align-items:center;gap:12px;background:var(--ink);color:#fff;font-family:'Sora';font-weight:700;font-size:16px;padding:15px 28px;border-radius:16px;text-decoration:none;box-shadow:0 10px 30px rgba(28,43,34,.18);transition:.3s;}
   .btn-store:hover{transform:translateY(-3px);box-shadow:0 16px 40px rgba(28,43,34,.28);}
+  .btn-store.coming-soon:hover{transform:none;box-shadow:0 10px 30px rgba(28,43,34,.18);}
   .btn-store svg{width:26px;height:26px;}
   .btn-store small{display:block;font-size:11px;font-weight:400;opacity:.6;}
   .btn-store b{font-size:18px;}
@@ -150,16 +153,6 @@
   .privacy h3{font-size:29px;font-weight:800;margin-bottom:16px;letter-spacing:-.5px;}
   .privacy p{font-size:16px;line-height:1.75;color:rgba(255,255,255,.8);max-width:600px;margin:0 auto;}
 
-  /* 订阅 */
-  .pricing{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;max-width:900px;margin:0 auto;}
-  .plan{background:#fff;border:1.5px solid var(--line);border-radius:22px;padding:32px 26px;text-align:center;position:relative;}
-  .plan.feat-plan{border-color:var(--green);box-shadow:0 16px 40px rgba(91,155,120,.16);}
-  .plan-pop{position:absolute;top:-13px;left:50%;transform:translateX(-50%);background:var(--green);color:#fff;font-family:'Sora';font-size:12px;font-weight:700;padding:6px 16px;border-radius:20px;}
-  .plan h4{font-size:16px;font-weight:600;color:var(--mute);margin-bottom:13px;}
-  .plan .price{font-family:'Sora';font-size:37px;font-weight:800;color:var(--ink);}
-  .plan .price small{font-size:15px;font-weight:500;color:var(--mute);}
-  .plan .pnote{font-size:13px;color:var(--green-d);margin-top:9px;font-weight:600;}
-
   /* FINAL */
   .final{background:linear-gradient(165deg,#3E7D5B,#5B9B78 70%,#6FA98A);color:#fff;text-align:center;position:relative;overflow:hidden;}
   .final h2{font-size:clamp(32px,5vw,54px);font-weight:800;letter-spacing:-1px;margin-bottom:22px;position:relative;z-index:2;}
@@ -180,7 +173,7 @@
   .faq p{font-size:14.5px;line-height:1.75;color:var(--mute);padding:0 0 20px;}
 
   @media(max-width:860px){
-    .themes,.diffs,.feat-grid,.pricing{grid-template-columns:1fr;}
+    .themes,.diffs,.feat-grid{grid-template-columns:1fr;}
     .hero-body{flex-direction:column;padding-top:10px;}
     .hero-visual{margin-top:24px;}
     section{padding:66px 6vw;}
@@ -203,7 +196,7 @@
       </svg>
       SwimSight
     </div>
-    <a href="#download" class="nav-cta">免费下载</a>
+    <span class="nav-cta coming-soon">即将上线</span>
   </nav>
 
   <div class="hero-body">
@@ -212,10 +205,7 @@
       <h1 class="hero-title reveal d2">看见你的<br><span class="grad">游泳进步</span></h1>
       <p class="hero-sub reveal d3">专为泳池游泳者打造。用去掉休息的净配速还原真实强度,把每一次训练和过去的你对比,清楚地看见——你正在变快。所有分析都在你的设备上完成。</p>
       <div class="hero-btns reveal d4">
-        <a href="#download" class="btn-store">
-          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M17.05 12.04c-.03-2.6 2.13-3.85 2.22-3.91-1.21-1.77-3.1-2.01-3.77-2.04-1.6-.16-3.13.94-3.94.94-.81 0-2.07-.92-3.4-.89-1.75.03-3.36 1.02-4.26 2.58-1.82 3.16-.47 7.84 1.3 10.41.86 1.26 1.89 2.67 3.24 2.62 1.3-.05 1.79-.84 3.36-.84 1.57 0 2.01.84 3.39.81 1.4-.02 2.29-1.28 3.15-2.55.99-1.46 1.4-2.87 1.42-2.94-.03-.01-2.73-1.05-2.76-4.16M14.5 4.7c.72-.87 1.2-2.07 1.07-3.27-1.03.04-2.28.69-3.02 1.55-.66.77-1.24 2-1.08 3.18 1.15.09 2.32-.59 3.03-1.46"/></svg>
-          <span><small>下载于</small><b>App Store</b></span>
-        </a>
+        <span class="btn-store coming-soon">即将上线</span>
         <span class="hero-note">iPhone · Apple Watch<br>需 iOS 15 及以上</span>
       </div>
     </div>
@@ -294,20 +284,6 @@
   </div>
 </section>
 
-<!-- ============ 订阅 ============ -->
-<section class="diff-bg">
-  <div class="sec-head">
-    <div class="sec-tag reveal">订阅方案</div>
-    <h2 class="sec-title reveal">数据始终免费,解读随你解锁</h2>
-    <p class="sec-desc reveal">每一次训练的客观数据完全免费。跨训练的对比、长期趋势与深度解读,由高级版解锁。</p>
-  </div>
-  <div class="pricing">
-    <div class="plan reveal d1"><h4>月付</h4><div class="price">¥18<small>/月</small></div><div class="pnote">灵活体验</div></div>
-    <div class="plan feat-plan reveal d2"><span class="plan-pop">最受欢迎</span><h4>年付</h4><div class="price">¥168<small>/年</small></div><div class="pnote">含 7 天免费试用</div></div>
-    <div class="plan reveal d3"><h4>终身</h4><div class="price">¥398</div><div class="pnote">一次买断 · 约两年回本</div></div>
-  </div>
-</section>
-
 <!-- ============ FAQ ============ -->
 <section id="support">
   <div class="sec-head">
@@ -329,12 +305,9 @@
 <!-- ============ FINAL ============ -->
 <section class="final" id="download">
   <h2 class="reveal">下一次下水,<br>带上一双更懂你的眼睛</h2>
-  <p class="reveal d1">免费下载,立刻看见你的游泳进步。</p>
+  <p class="reveal d1">即将上线，敬请期待。</p>
   <div class="reveal d2" style="position:relative;z-index:2;display:flex;justify-content:center;">
-    <a href="#" class="btn-store">
-      <svg viewBox="0 0 24 24" fill="currentColor"><path d="M17.05 12.04c-.03-2.6 2.13-3.85 2.22-3.91-1.21-1.77-3.1-2.01-3.77-2.04-1.6-.16-3.13.94-3.94.94-.81 0-2.07-.92-3.4-.89-1.75.03-3.36 1.02-4.26 2.58-1.82 3.16-.47 7.84 1.3 10.41.86 1.26 1.89 2.67 3.24 2.62 1.3-.05 1.79-.84 3.36-.84 1.57 0 2.01.84 3.39.81 1.4-.02 2.29-1.28 3.15-2.55.99-1.46 1.4-2.87 1.42-2.94-.03-.01-2.73-1.05-2.76-4.16M14.5 4.7c.72-.87 1.2-2.07 1.07-3.27-1.03.04-2.28.69-3.02 1.55-.66.77-1.24 2-1.08 3.18 1.15.09 2.32-.59 3.03-1.46"/></svg>
-      <span><small>下载于</small><b>App Store</b></span>
-    </a>
+    <span class="btn-store coming-soon">即将上线</span>
   </div>
   <div class="waves"><svg viewBox="0 0 2400 150" preserveAspectRatio="none"><path d="M0,75 C300,25 600,125 900,75 C1200,25 1500,125 1800,75 C2100,25 2400,125 2400,75 V150 H0 Z" fill="rgba(255,255,255,.12)"/></svg></div>
 </section>
