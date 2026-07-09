@@ -66,9 +66,6 @@
     box-shadow:0 6px 18px rgba(91,155,120,.3);
   }
   .nav-cta:hover{background:var(--green-d);transform:translateY(-2px);}
-  .coming-soon{cursor:default;}
-  .nav-cta.coming-soon:hover{background:var(--green);transform:none;}
-
   .hero-body{position:relative;z-index:5;flex:1;display:flex;align-items:center;padding:30px 7vw 70px;gap:5vw;flex-wrap:wrap;}
   .hero-text{flex:1;min-width:320px;max-width:620px;}
   .eyebrow{
@@ -80,12 +77,9 @@
   h1.hero-title .grad{background:linear-gradient(110deg,var(--green),var(--blue));-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;}
   .hero-sub{font-size:clamp(16px,2vw,19px);line-height:1.7;color:var(--mute);max-width:520px;margin-bottom:38px;}
   .hero-btns{display:flex;gap:18px;flex-wrap:wrap;align-items:center;}
-  .btn-store{display:inline-flex;align-items:center;gap:12px;background:var(--ink);color:#fff;font-family:'Sora';font-weight:700;font-size:16px;padding:15px 28px;border-radius:16px;text-decoration:none;box-shadow:0 10px 30px rgba(28,43,34,.18);transition:.3s;}
-  .btn-store:hover{transform:translateY(-3px);box-shadow:0 16px 40px rgba(28,43,34,.28);}
-  .btn-store.coming-soon:hover{transform:none;box-shadow:0 10px 30px rgba(28,43,34,.18);}
-  .btn-store svg{width:26px;height:26px;}
-  .btn-store small{display:block;font-size:11px;font-weight:400;opacity:.6;}
-  .btn-store b{font-size:18px;}
+  .btn-store{display:inline-flex;line-height:0;text-decoration:none;filter:drop-shadow(0 10px 24px rgba(28,43,34,.16));transition:.3s;}
+  .btn-store:hover{transform:translateY(-3px);filter:drop-shadow(0 16px 32px rgba(28,43,34,.24));}
+  .btn-store img{display:block;width:190px;max-width:100%;height:auto;}
   .hero-note{font-size:13px;color:var(--mute);line-height:1.5;}
 
   /* 手机:iPhone 17 Pro 外框 + 真实截图 */
@@ -157,7 +151,6 @@
   .final{background:linear-gradient(165deg,#3E7D5B,#5B9B78 70%,#6FA98A);color:#fff;text-align:center;position:relative;overflow:hidden;}
   .final h2{font-size:clamp(32px,5vw,54px);font-weight:800;letter-spacing:-1px;margin-bottom:22px;position:relative;z-index:2;}
   .final p{font-size:18px;color:rgba(255,255,255,.82);margin-bottom:38px;position:relative;z-index:2;}
-  .final .btn-store{background:#fff;color:var(--green-deep);}
   .waves{position:absolute;bottom:0;left:0;width:100%;height:150px;opacity:.35;}
   .waves svg{width:200%;height:100%;animation:wave 18s linear infinite;}
   footer{padding:38px 7vw;background:var(--ink);color:rgba(255,255,255,.45);font-size:13px;display:flex;justify-content:space-between;flex-wrap:wrap;gap:16px;}
@@ -196,7 +189,7 @@
       </svg>
       SwimSight
     </div>
-    <span class="nav-cta coming-soon">即将上线</span>
+    <a class="nav-cta" href="https://apps.apple.com/us/app/swimsight-%E6%B8%B8%E6%B3%B3%E8%A1%A8%E7%8E%B0%E4%B8%8E%E6%81%A2%E5%A4%8D/id6785397012">免费下载</a>
   </nav>
 
   <div class="hero-body">
@@ -205,8 +198,10 @@
       <h1 class="hero-title reveal d2">看见你的<br><span class="grad">游泳进步</span></h1>
       <p class="hero-sub reveal d3">专为泳池游泳者打造。用去掉休息的净配速还原真实强度,把每一次训练和过去的你对比,清楚地看见——你正在变快。所有分析都在你的设备上完成。</p>
       <div class="hero-btns reveal d4">
-        <span class="btn-store coming-soon">即将上线</span>
-        <span class="hero-note">iPhone · Apple Watch<br>需 iOS 15 及以上</span>
+        <a class="btn-store" href="https://apps.apple.com/us/app/swimsight-%E6%B8%B8%E6%B3%B3%E8%A1%A8%E7%8E%B0%E4%B8%8E%E6%81%A2%E5%A4%8D/id6785397012" aria-label="Download on the App Store">
+          <img src="app-store-badge.svg" alt="Download on the App Store">
+        </a>
+        <span class="hero-note">iPhone · Apple Watch<br>需 iOS 18 及以上</span>
       </div>
     </div>
 
@@ -305,9 +300,11 @@
 <!-- ============ FINAL ============ -->
 <section class="final" id="download">
   <h2 class="reveal">下一次下水,<br>带上一双更懂你的眼睛</h2>
-  <p class="reveal d1">即将上线，敬请期待。</p>
+  <p class="reveal d1">免费下载,立刻看见你的游泳进步。</p>
   <div class="reveal d2" style="position:relative;z-index:2;display:flex;justify-content:center;">
-    <span class="btn-store coming-soon">即将上线</span>
+    <a class="btn-store" href="https://apps.apple.com/us/app/swimsight-%E6%B8%B8%E6%B3%B3%E8%A1%A8%E7%8E%B0%E4%B8%8E%E6%81%A2%E5%A4%8D/id6785397012" aria-label="Download on the App Store">
+      <img src="app-store-badge.svg" alt="Download on the App Store">
+    </a>
   </div>
   <div class="waves"><svg viewBox="0 0 2400 150" preserveAspectRatio="none"><path d="M0,75 C300,25 600,125 900,75 C1200,25 1500,125 1800,75 C2100,25 2400,125 2400,75 V150 H0 Z" fill="rgba(255,255,255,.12)"/></svg></div>
 </section>
